@@ -7,8 +7,8 @@ class HomeView{
     showGuestPage(mainData){//TODO
         let _that = this;
         $.get('templates/home.html', function (template) {
-            let renderedTemplate = Mustache.render(template, null);
-            $(_that._wrapperSelector).html(renderedTemplate);            
+            //let renderedTemplate = Mustache.render(template, null);
+            $.get('.wrapper').includes('templates/home.html');
         });
     }
 
