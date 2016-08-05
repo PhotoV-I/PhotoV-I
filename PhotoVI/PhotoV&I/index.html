@@ -6,28 +6,186 @@
         <title>photoV&I</title>
         <!--TODO:Styles-->
         <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/bootstrap/bootstrap.css">
 
         <!--Scripts-->
-        <script src="scripts/libs/mustache.js"></script>
-        <script src="scripts/libs/moment.js"></script>
-        <script src="scripts/libs/jquery.min.js"></script>
-        <script src="scripts/libs/jquery.noty.minified.js"></script>
-       <!-- <script src="scripts/libs/jquery-3.1.0.js"></script>-->
-        <script src="scripts/libs/sammy.js"></script>
-        <script src="scripts/libs/framework.js"></script>
+        <script src="scripts/libs/jquery-3.1.0.js"></script>
+        <script src="scripts/app.js"></script>
     </head>
     <body>
-        <div class="wrapper">
-            <!-- main content with AJAX calls -->
+        <header>
+            <div class="container-fluid">
+                <div id="logo" class="col-md-3">
+                    <a href="#"><img src="images/logo.png" alt="site logo" id="linkHome"/></a>
+                </div>
+                <div class="navbar col-md-9">
+                    <ul>
+                        <a href="#" id="linkGallery"><li>GALLERY</li></a>
+                        <a href="#" id="linkAddPhoto"><li>ADD PHOTO</li></a>
+                        <a href="#" id="linkAbout"><li>ABOUT</li></a>
+                        <a href="#" id="linkRegister"><li>REGISTER</li></a>
+                        <a href="#" id="linkLogin"><li>LOGIN</li></a>
+                        <a href="#" id="linkLogout"><li>LOGOUT</li></a>
+                        <a href="#" id="linkProfile"><li>PROFILE</li></a>
+                    </ul>
+                </div>
+            </div>
+        </header>
 
+        <main>
+            <section id="loadingBox">loading....</section>
+
+            <section id="infoBox">Info</section>
+
+            <section id="errorBox">Error</section>
+
+            <section id="viewHome">
+                <div class="container-fluid">
+                    <div class="row">
+                        <img class="background-image" src="images/main_background.png" alt="background"/>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <div class="welcome-sign">
+                                Do you like to take pictures?
+                                <br/>
+                                Upload your favorite
+                                <br/>
+                                photos on our page.
+                                <br/>
+                                Enjoy our beautiful photo gallery.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8">
+                            <div class="fav-images" id="favImages">
+                                <img src="images/pic1.jpg" alt="pic1"/>
+                                <img src="images/pic2.jpg" alt="pic2"/>
+                                <img src="images/pic3.jpg" alt="pic3"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="viewGallery">gallery</section>
+
+            <section id="viewAddPhoto">
+                <div class="container-fluid">
+                    <div class="row">
+                        <img class="background-image" src="images/main_background.png" alt="background"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7"></div>
+                        <div class="col-md-3">
+                            <form id="addPhotoForm">
+                                <div>
+                                    Photo name
+                                    <input type="text" id="AddPhotoName" required/>
+                                </div>
+                                <div>
+                                    Category
+                                    <input type="text"/> <!--TODO: make this into a dropdown -->
+                                </div>
+                                <div>
+                                    <input type="submit" value="Browse"/><input type="text" id="AddPathOfPhoto"/>
+                                </div>
+                                <div>
+                                    <input type="submit" id="addPhotoButton" value="Add"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="viewAbout">  <!--TODO -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <img class="background-image" src="images/main_background.png" alt="background"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7"></div>
+                        <div class="col-md-3">
+                            <div>ZA VAN4ETO</div>
+                            <div>ZA IVAKA</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="viewRegister">
+                <div class="container-fluid">
+                    <div class="row">
+                        <img class="background-image" src="images/main_background.png" alt="background"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7"></div>
+                        <div class="col-md-3">
+                            <form id="registerForm">
+                                <div>
+                                    Full name
+                                    <input type="text" id="registerFullName" required/>
+                                </div>
+                                <div>
+                                    Email adress
+                                    <input type="text" id="registerEmailAdress" required/>
+                                </div>
+                                <div>
+                                    User name
+                                    <input type="text" id="registerUserName" required/>
+                                </div>
+                                <div>
+                                    Password
+                                    <input type="password" id="registerPassword" required/>
+                                </div>
+                                <div>
+                                    Confirm password
+                                    <input type="password" id="registerConfirmPassword" required/>
+                                </div>
+                                <div>
+                                    <input type="submit" id="registerButton" value="Register"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="viewLogin">
+                <div class="container-fluid">
+                    <div class="row">
+                        <img class="background-image" src="images/main_background.png" alt="background"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7"></div>
+                        <div class="col-md-3">
+                            <form id="loginForm">
+                                <div>
+                                    Username
+                                    <input type="text" id="loginUserName" required/>
+                                </div>
+                                <div>
+                                    Password
+                                    <input type="password" id="loginPassword" required/>
+                                </div>
+                                <div>
+                                    <input type="submit" id="loginButton" value="Login"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section id="viewProfile">Profile</section>
+        </main>
+
+
+        <div class="col-md-12">
+            <div class="footer">All rights reserved 2016 &copy; We are not responsible for the photos            uploaded by our users.</div>
         </div>
-
-        <script src="scripts/views/homeView.js"></script>
-        <script src="scripts/controllers/homeController.js"></script>
-        <script src="scripts/views/userView.js"></script>
-        <script src="scripts/controllers/userController.js"></script>
-        <script src="scripts/views/postView.js"></script>
-        <script src="scripts/controllers/postController.js"></script>
-        <script src="scripts/app.js"></script>
     </body>
 </html>

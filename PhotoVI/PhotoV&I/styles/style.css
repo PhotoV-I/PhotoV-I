@@ -43,6 +43,21 @@ table {
     border-spacing: 0;
 }
 
+#infoBox, #errorBox, #loadingBox{
+    display: none;
+    background: green;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+main > section{
+    display:none;
+}
+
+
 #logo {
     padding: 0 100px 0 50px;
     height: 80px;

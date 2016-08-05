@@ -1,80 +1,109 @@
-(function () {
 
-    // Create your own kinvey application
+const kynveyAppID = 'kid_rypBID8w';
+const kynveyAppSecret = 'f3610928907d4fc691152798e5385946';
+const kynveyServiceBaseUrl = 'https://baas.kynvey.com/';
 
-    let baseUrl = "https://baas.kinvey.com";
-    let appKey = "kid_rypBID8w";
-    let appSecret = "f3610928907d4fc691152798e5385946";
-    let _guestCredentials = "6baa5896-57e2-452e-883b-52b5c4d9a418.hLx1iy6eTDSG9Sn/5NzAWJX19KsqA/zbFaNnRaqQJzg=";
 
-    let authService = new AuthorizationService(baseUrl, appKey, appSecret, _guestCredentials);
-    authService.initAuthorizationType("Kinvey");
-    let requester = new Requester(authService);
+function showView(viewId) {
+    $('main > section').hide();
 
-    let selector = ".wrapper";
-    let mainContentSelector = ".main-content";
+    $("#" + viewId).show();
+}
 
-    // Create HomeView, HomeController, UserView, UserController, PostView and PostController
-    let homeView = new HomeView(mainContentSelector, selector);
-    let homeController = new HomeController(homeView, requester, baseUrl, appKey);
+function showHideNavigationLinks() {
+    let loggedIn = sessionStorage.authToken != null;
+    if (loggedIn){
+        $("#linkAddPhoto").show();
+        $("#linkRegister").hide();
+        $("#linkLogin").hide();
+        $("#linkLogout").show();
+        $("#linkProfile").show();
+    } else {
+        $("#linkAddPhoto").hide();
+        $("#linkRegister").show();
+        $("#linkLogin").show();
+        $("#linkLogout").hide();
+        $("#linkProfile").hide();
+    }
+    
+}
 
-    let userView = new UserView(mainContentSelector, selector);
-    let userController = new UserController(userView, requester, baseUrl, appKey);
+function showHomeView() {
+    showView('viewHome');
+}
 
-    let postView = new PostView(mainContentSelector, selector);
-    let postController = new PostController(postView, requester, baseUrl, appKey);
-
-    initEventServices();
-
-    onRoute("#/", function () {
-        // Check if user is logged in and if its not show the guest page, otherwise show the user page...
-        if(authService.isLoggedIn()){
-            homeController.showUserPage();
-        }
-        else {
-            homeController.showGuestPage();
-        }
+function login() {
+    let authBase = btoa(kynveyAppID + ":" + kynveyAppSecret);
+    let loginUrl = kynveyServiceBaseUrl + "user/" + kynveyAppID + "/login";
+    $.ajax({
+       method: "POST",
+       url: loginUrl,
+       headers: {"Authorization": "Basic" + authBase},
+       success: loginSuccess,
+       error: showAjaxError
     });
+    
+    function loginSuccess() {
+        alert("success") //TODO
+    }
+}
 
-    onRoute("#/post-:id", function () {
-        // Create a redirect to one of the recent posts...
-    });
+function showAjaxError() {
+    //TODO
+}
 
-    onRoute("#/login", function () {
-        // Show the login page...
-        userController.showLoginPage(authService.isLoggedIn());
-    });
+function showGalleryView() {
+    showView('viewGallery');
+}
 
-    onRoute("#/register", function () {
-        // Show the register page...
-        userController.showRegisterPage(authService.isLoggedIn());
-    });
+function addPhoto() {
+    
+}
 
-    onRoute("#/logout", function () {
-        // Logout the current user...
-        userController.logout();
-    });
+function showAddPhotoView() {
+    showView('viewAddPhoto');
+}
 
-    onRoute('#/posts/create', function () {
-        // Show the new post page...
-        let fullName = sessionStorage.getItem('fullname');
-        postController.showAddPhotoPage(fullName, authService.isLoggedIn());
-    });
+function showAboutView() {
+    showView('viewAbout');
+}
 
-    bindEventHandler('login', function (ev, data) {
-        // Login the user...
-        userController.login(data);
-    });
+function register() {
+    
+}
 
-    bindEventHandler('register', function (ev, data) {
-        // Register a new user...
-        userController.register(data);
-    });
+function showRegisterView() {
+    showView('viewRegister');
+}
 
-    bindEventHandler('createPost', function (ev, data) {
-        // Create a new post...
-        postController.addPhoto(data);
-    });
+function showLoginView() {
+    showView('viewLogin')
+}
 
-    run('#/');
-})();
+function logout() {
+    alert(1);
+    showHomeView();
+}
+
+function showProfileView() {
+    showView('viewProfile');
+}
+
+$(function () {
+   $("#linkHome").click(showHomeView);
+   $("#linkGallery").click(showGalleryView);
+   $("#linkAddPhoto").click(showAddPhotoView);
+   $("#linkAbout").click(showAboutView);
+   $("#linkRegister").click(showRegisterView);
+   $("#linkLogin").click(showLoginView);
+   $("#linkLogout").click(logout);
+   $("#linkProfile").click(showProfileView);
+
+   $("#loginButton").click(login);
+   $("#registerButton").click(register); //TODO 
+   $("#addPhotoButton").click(addPhoto); //TODO 
+   
+
+   showHomeView();
+   showHideNavigationLinks();
+});
