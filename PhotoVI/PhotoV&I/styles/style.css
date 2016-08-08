@@ -45,12 +45,21 @@ table {
 
 #infoBox, #errorBox, #loadingBox{
     display: none;
-    background: green;
+    background-color: green;
     padding: 5px 10px;
     border-radius: 5px;
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 0 100px ;
     text-align: center;
+
+}
+
+#errorBox {
+    background-color: red;
+}
+
+#infoBox {
+    color:white;
 }
 
 main > section{
@@ -79,24 +88,112 @@ main > section{
     background-color: #f3f06a;
 }
 
-.navbar ul {
-    /*position: absolute;
-    left: 300px;*/
-}
-
 .navbar a {
     text-decoration: none;
     color: #355021;
 }
 
 .main-content {
-    /*position: absolute;
-    margin-top: 150px;*/
     z-index: -1;
 }
 
 .background-image {
     width: 100%;
+}
+
+#loginForm {
+    margin-top: -600px;
+    line-height: 1.5em;
+}
+
+.span-form {
+    color: #355021;
+    font-size: 1.3em;
+}
+
+#loginButton {
+    margin-left: 90px;
+    color: #355021;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+    padding: 5px 10px;
+    font-size: 1.3em;
+}
+
+#loginButton:hover{
+    background-color: #d3d4d2;
+}
+
+#loginUserName , #loginPassword {
+
+    background-color: #eaede8;
+    border: 1px solid #d0d2cf;
+    border-radius: 5px;
+}
+
+#registerForm {
+    margin-top: -600px;
+    line-height: 1.5em;
+}
+
+#registerButton{
+    margin-left: 90px;
+    color: #355021;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+    padding: 5px 10px;
+    font-size: 1.3em;
+}
+
+#registerButton:hover{
+    background-color: #d3d4d2;
+}
+
+#registerUserName, #registerPassword, #registerFullName, #registerEmailAdress, #registerConfirmPassword {
+    background-color: #eaede8;
+    border: 1px solid #d0d2cf;
+    border-radius: 5px;
+}
+
+#addPhotoForm{
+    margin-top: -600px;
+    line-height: 1.5em;
+}
+
+#addPhotoName, #addPathOfPhoto, #photoCategory, #browsePhotoButton, #addPhotoButton {
+    background-color: #eaede8;
+    border: 1px solid #d0d2cf;
+    border-radius: 5px;
+}
+
+#browsePhotoButton{
+    margin-right: 10px;
+    color: #355021;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+    padding: 5px 10px;
+    font-size: 1.3em;
+}
+
+#browsePhotoButton:hover{
+    background-color: #d3d4d2;
+}
+
+#addPhotoButton{
+    margin-left: 100px;
+    color: #355021;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+    padding: 5px 10px;
+    font-size: 1.3em;
+}
+
+#addPhotoButton:hover{
+    background-color: #d3d4d2;
 }
 
 .welcome-sign {
@@ -107,7 +204,6 @@ main > section{
     font-family: Verdana, sans-serif;
     color: #355021;
     line-height: 1.5em;
-
 }
 
 .fav-images {

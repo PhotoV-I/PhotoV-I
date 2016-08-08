@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="styles/bootstrap/bootstrap.css">
 
         <!--Scripts-->
-        <script src="scripts/libs/jquery-3.1.0.js"></script>
+        <script src="scripts/libs/jquery-3.0.0.min.js" type=""></script>
         <script src="scripts/app.js"></script>
     </head>
     <body>
@@ -20,13 +20,13 @@
                 </div>
                 <div class="navbar col-md-9">
                     <ul>
-                        <a href="#" id="linkGallery"><li>GALLERY</li></a>
-                        <a href="#" id="linkAddPhoto"><li>ADD PHOTO</li></a>
-                        <a href="#" id="linkAbout"><li>ABOUT</li></a>
                         <a href="#" id="linkRegister"><li>REGISTER</li></a>
                         <a href="#" id="linkLogin"><li>LOGIN</li></a>
-                        <a href="#" id="linkLogout"><li>LOGOUT</li></a>
+                        <a href="#" id="linkGallery"><li>GALLERY</li></a>
+                        <a href="#" id="linkAddPhoto"><li>ADD PHOTO</li></a>
                         <a href="#" id="linkProfile"><li>PROFILE</li></a>
+                        <a href="#" id="linkAbout"><li>ABOUT</li></a>
+                        <a href="#" id="linkLogout"><li>LOGOUT</li></a>
                     </ul>
                 </div>
             </div>
@@ -35,9 +35,9 @@
         <main>
             <section id="loadingBox">loading....</section>
 
-            <section id="infoBox">Info</section>
+            <section id="infoBox" onclick="$(this).hide()">Info</section>
 
-            <section id="errorBox">Error</section>
+            <section id="errorBox" onclick="$(this).hide()">Error</section>
 
             <section id="viewHome">
                 <div class="container-fluid">
@@ -69,7 +69,14 @@
                 </div>
             </section>
 
-            <section id="viewGallery">gallery</section>
+            <section id="viewGallery">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h2>GALLERY</h2>
+                       <img class="background-image" src="images/main_background.png" alt="background"/>
+                    </div>
+                </div>
+            </section>
 
             <section id="viewAddPhoto">
                 <div class="container-fluid">
@@ -81,16 +88,19 @@
                         <div class="col-md-3">
                             <form id="addPhotoForm">
                                 <div>
-                                    Photo name
-                                    <input type="text" id="AddPhotoName" required/>
+                                    <span class="span-form">Photo name</span>
+                                    <input type="text" id="addPhotoName" required/>
                                 </div>
+                                <br/>
                                 <div>
-                                    Category
-                                    <input type="text"/> <!--TODO: make this into a dropdown -->
+                                    <span class="span-form">Category</span>
+                                    <input type="text" id="photoCategory"/> <!--TODO: make this into a dropdown -->
                                 </div>
+                                <br/>
                                 <div>
-                                    <input type="submit" value="Browse"/><input type="text" id="AddPathOfPhoto"/>
+                                    <input type="submit" value="Browse" id="browsePhotoButton"/><input type="text" id="addPathOfPhoto"/>
                                 </div>
+                                <br/>
                                 <div>
                                     <input type="submit" id="addPhotoButton" value="Add"/>
                                 </div>
@@ -125,25 +135,30 @@
                         <div class="col-md-3">
                             <form id="registerForm">
                                 <div>
-                                    Full name
-                                    <input type="text" id="registerFullName" required/>
+                                    <span class="span-form">Full name</span>
+                                    <input type="text" id="registerFullName"/>
                                 </div>
+                                <br/>
                                 <div>
-                                    Email adress
-                                    <input type="text" id="registerEmailAdress" required/>
+                                    <span class="span-form">Email adress</span>
+                                    <input type="text" id="registerEmailAdress"/>
                                 </div>
+                                <br/>
                                 <div>
-                                    User name
+                                    <span class="span-form">User name</span>
                                     <input type="text" id="registerUserName" required/>
                                 </div>
+                                <br/>
                                 <div>
-                                    Password
+                                    <span class="span-form">Password</span>
                                     <input type="password" id="registerPassword" required/>
                                 </div>
+                                <br/>
                                 <div>
-                                    Confirm password
+                                    <span class="span-form">Confirm password</span>
                                     <input type="password" id="registerConfirmPassword" required/>
                                 </div>
+                                <br/>
                                 <div>
                                     <input type="submit" id="registerButton" value="Register"/>
                                 </div>
@@ -163,13 +178,15 @@
                         <div class="col-md-3">
                             <form id="loginForm">
                                 <div>
-                                    Username
+                                    <span class="span-form">Username</span>
                                     <input type="text" id="loginUserName" required/>
                                 </div>
+                                <br/>
                                 <div>
-                                    Password
+                                    <span class="span-form">Password&nbsp;</span>
                                     <input type="password" id="loginPassword" required/>
                                 </div>
+                                <br/>
                                 <div>
                                     <input type="submit" id="loginButton" value="Login"/>
                                 </div>
@@ -180,7 +197,14 @@
 
             </section>
 
-            <section id="viewProfile">Profile</section>
+            <section id="viewProfile">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h2>PROFILE</h2>
+                        <img class="background-image" src="images/main_background.png" alt="background"/>
+                    </div>
+                </div>
+            </section>
         </main>
 
 

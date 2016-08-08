@@ -1,7 +1,7 @@
 
-const kynveyAppID = 'kid_rypBID8w';
-const kynveyAppSecret = 'f3610928907d4fc691152798e5385946';
-const kynveyServiceBaseUrl = 'https://baas.kynvey.com/';
+const kinveyAppID = 'kid_HycsO3rF';
+const kinveyAppSecret = 'd0c21de73cd04b95aa68f4f48ad6ce66';
+const kinveyServiceBaseUrl = 'https://baas.kinvey.com/';
 
 
 function showView(viewId) {
@@ -11,7 +11,7 @@ function showView(viewId) {
 }
 
 function showHideNavigationLinks() {
-    let loggedIn = sessionStorage.authToken != null;
+    let loggedIn = sessionStorage.authtoken != null;
     if (loggedIn){
         $("#linkAddPhoto").show();
         $("#linkRegister").hide();
@@ -25,7 +25,6 @@ function showHideNavigationLinks() {
         $("#linkLogout").hide();
         $("#linkProfile").hide();
     }
-    
 }
 
 function showHomeView() {
@@ -33,23 +32,44 @@ function showHomeView() {
 }
 
 function login() {
-    let authBase = btoa(kynveyAppID + ":" + kynveyAppSecret);
-    let loginUrl = kynveyServiceBaseUrl + "user/" + kynveyAppID + "/login";
-    $.ajax({
-       method: "POST",
-       url: loginUrl,
-       headers: {"Authorization": "Basic" + authBase},
-       success: loginSuccess,
-       error: showAjaxError
-    });
-    
-    function loginSuccess() {
-        alert("success") //TODO
-    }
+    let loginUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/login";
+    let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppSecret)};
+    let loginData = {
+        username: $("#loginUserName").val(),
+        password: $("#loginPassword").val()
+    };
+    //let username = $("#loginUserName").val();
+    //let password = $("#loginPassword").val();
+    //if (username.length < 1 || password.length < 1) { //TODO: To be or not :)
+        $.ajax({
+            method: "POST",
+            url: loginUrl,
+            data: loginData,
+            headers: kinveyAuthHeaders,
+            success: loginSuccess,
+            error: showAjaxError
+        });
+        function loginSuccess(data, status) {
+            sessionStorage.authtoken = data._kmd.authtoken;
+            showHideNavigationLinks();
+            showInfo("You are in!");
+        }
+    //} else{
+        //showError("Please, enter user name and password!");
+    //}
 }
 
-function showAjaxError() {
-    //TODO
+function isAdmin() {
+
+}
+
+function showInfo(messageText) {
+    $('#infoBox').text(messageText).show().delay(3000).fadeOut();
+}
+
+function showAjaxError(data, status) {
+    let errorMsg = "Error: " + JSON.stringify(data);
+    $('#errorBox').text(errorMsg).show();
 }
 
 function showGalleryView() {
@@ -69,7 +89,39 @@ function showAboutView() {
 }
 
 function register() {
-    
+
+    let registerUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/";
+    let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppSecret)};
+    let registerData = {
+        username: $("#registerUserName").val(),
+        password: $("#registerPassword").val(),
+        fullname: $("#registerFullName").val(),
+        email: $("#registerEmailAdress").val() //TODO: валидация за имеил
+    };
+    let password = $("#registerPassword").val();
+    let confirmPassword = $("#registerConfirmPassword").val();
+    if( password == confirmPassword && password.length >= 6){ //TODO: по-читава валидация
+        $.ajax({
+            method: "POST",
+            url: registerUrl,
+            data: registerData,
+            headers: kinveyAuthHeaders,
+            success: registerSuccess,
+            error: showAjaxError
+        });
+        function registerSuccess(data, status) {
+            sessionStorage.authtoken = data._kmd.authtoken;
+            showHideNavigationLinks();
+            showInfo("Register successful");
+        }
+    } else{
+        showError("Password and confirm password is not match or is too short! Must be minimum 6 symbol length!");
+    }
+
+}
+
+function showError(errorMessage) {
+    $('#errorBox').text(errorMessage).show();
 }
 
 function showRegisterView() {
@@ -81,7 +133,8 @@ function showLoginView() {
 }
 
 function logout() {
-    alert(1);
+    sessionStorage.clear();
+    showHideNavigationLinks();
     showHomeView();
 }
 
@@ -100,7 +153,7 @@ $(function () {
    $("#linkProfile").click(showProfileView);
 
    $("#loginButton").click(login);
-   $("#registerButton").click(register); //TODO 
+   $("#registerButton").click(register);
    $("#addPhotoButton").click(addPhoto); //TODO 
    
 
