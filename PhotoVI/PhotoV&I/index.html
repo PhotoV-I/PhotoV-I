@@ -14,7 +14,7 @@
     </head>
     <body>
         <header>
-            <div class="container-fluid">
+            <div class="container">
                 <div id="logo" class="col-md-3">
                     <a href="#"><img src="images/logo.png" alt="site logo" id="linkHome"/></a>
                 </div>
@@ -40,7 +40,7 @@
             <section id="errorBox" onclick="$(this).hide()">Error</section>
 
             <section id="viewHome">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <img class="background-image" src="images/main_background.png" alt="background"/>
                         <div class="col-md-6"></div>
@@ -70,7 +70,7 @@
             </section>
 
             <section id="viewGallery">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <h2>GALLERY</h2>
                        <img class="background-image" src="images/main_background.png" alt="background"/>
@@ -79,13 +79,13 @@
             </section>
 
             <section id="viewAddPhoto">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <img class="background-image" src="images/main_background.png" alt="background"/>
                     </div>
                     <div class="row">
-                        <div class="col-md-7"></div>
-                        <div class="col-md-3">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-4">
                             <form id="addPhotoForm">
                                 <div>
                                     <span class="span-form">Photo name</span>
@@ -111,7 +111,7 @@
             </section>
 
             <section id="viewAbout">  <!--TODO -->
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <img class="background-image" src="images/main_background.png" alt="background"/>
                     </div>
@@ -126,36 +126,36 @@
             </section>
 
             <section id="viewRegister">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <img class="background-image" src="images/main_background.png" alt="background"/>
                     </div>
                     <div class="row">
-                        <div class="col-md-7"></div>
-                        <div class="col-md-3">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-4">
                             <form id="registerForm">
                                 <div>
-                                    <span class="span-form">Full name</span>
+                                    <span class="span-form">Full name</span>&nbsp;
                                     <input type="text" id="registerFullName"/>
                                 </div>
                                 <br/>
                                 <div>
-                                    <span class="span-form">Email adress</span>
+                                    <span class="span-form">Email adress</span>&nbsp;
                                     <input type="text" id="registerEmailAdress"/>
                                 </div>
                                 <br/>
                                 <div>
-                                    <span class="span-form">User name</span>
+                                    <span class="span-form">User name</span>&nbsp;
                                     <input type="text" id="registerUserName" required/>
                                 </div>
                                 <br/>
                                 <div>
-                                    <span class="span-form">Password</span>
+                                    <span class="span-form">Password</span>&nbsp;
                                     <input type="password" id="registerPassword" required/>
                                 </div>
                                 <br/>
                                 <div>
-                                    <span class="span-form">Confirm password</span>
+                                    <span class="span-form">Confirm password</span>&nbsp;
                                     <input type="password" id="registerConfirmPassword" required/>
                                 </div>
                                 <br/>
@@ -169,7 +169,7 @@
             </section>
 
             <section id="viewLogin">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <img class="background-image" src="images/main_background.png" alt="background"/>
                     </div>
@@ -198,7 +198,7 @@
             </section>
 
             <section id="viewProfile">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <h2>PROFILE</h2>
                         <img class="background-image" src="images/main_background.png" alt="background"/>
@@ -209,7 +209,9 @@
 
 
         <div class="col-md-12">
-            <div class="footer">All rights reserved 2016 &copy; We are not responsible for the photos            uploaded by our users.</div>
+            <div class="container">
+                <div class="footer">All rights reserved 2016 &copy; We are not responsible for the photos            uploaded by our users.</div>
+            </div>
         </div>
     </body>
 </html>

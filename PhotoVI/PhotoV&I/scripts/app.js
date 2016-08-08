@@ -52,6 +52,7 @@ function login() {
         function loginSuccess(data, status) {
             sessionStorage.authtoken = data._kmd.authtoken;
             showHideNavigationLinks();
+            showHomeView();
             showInfo("You are in!");
         }
     //} else{

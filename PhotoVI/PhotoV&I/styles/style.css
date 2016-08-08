@@ -74,12 +74,17 @@ main > section{
 #logo>img{
     height: 200px
 }
+
+#linkHome{
+    height: 170px;
+}
+
 .navbar li {
     background-color: #fffc7d;
     display:inline-block;
     border-radius: 10px;
     padding: 10px 20px;
-    margin: 35px 10px 0 10px;
+    margin: 25px 10px 0 5px;
     font-family: Verdana, sans-serif;
     font-size: 15pt;
 }
@@ -93,17 +98,23 @@ main > section{
     color: #355021;
 }
 
+.container-fluid{
+
+}
+
 .main-content {
     z-index: -1;
 }
 
 .background-image {
-    width: 100%;
+    width: auto;
+    height: 485px;
 }
 
 #loginForm {
-    margin-top: -600px;
+    margin-top: -350px;
     line-height: 1.5em;
+    text-align: right;
 }
 
 .span-form {
@@ -133,8 +144,9 @@ main > section{
 }
 
 #registerForm {
-    margin-top: -600px;
+    margin-top: -415px;
     line-height: 1.5em;
+    text-align: right;
 }
 
 #registerButton{
@@ -158,8 +170,9 @@ main > section{
 }
 
 #addPhotoForm{
-    margin-top: -600px;
+    margin-top: -400px;
     line-height: 1.5em;
+    text-align: right;
 }
 
 #addPhotoName, #addPathOfPhoto, #photoCategory, #browsePhotoButton, #addPhotoButton {
