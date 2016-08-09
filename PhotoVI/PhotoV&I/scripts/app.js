@@ -1,6 +1,7 @@
 
 const kinveyAppID = 'kid_HycsO3rF';
 const kinveyAppSecret = 'd0c21de73cd04b95aa68f4f48ad6ce66';
+const kinveyAppMasterSecret = "3b22a7bf51264d209af567ee79d4becc";
 const kinveyServiceBaseUrl = 'https://baas.kinvey.com/';
 
 
@@ -38,7 +39,7 @@ function login() {
         username: $("#loginUserName").val(),
         password: $("#loginPassword").val()
     };
-    //let username = $("#loginUserName").val();
+    let username = $("#loginUserName").val();
     //let password = $("#loginPassword").val();
     //if (username.length < 1 || password.length < 1) { //TODO: To be or not :)
         $.ajax({
@@ -47,21 +48,48 @@ function login() {
             data: loginData,
             headers: kinveyAuthHeaders,
             success: loginSuccess,
-            error: showAjaxError
+            error: showAjaxError()
         });
         function loginSuccess(data, status) {
             sessionStorage.authtoken = data._kmd.authtoken;
             showHideNavigationLinks();
             showHomeView();
-            showInfo("You are in!");
+            showInfo("Welcome " + username);
         }
     //} else{
         //showError("Please, enter user name and password!");
     //}
+    //isAdmin(username);
 }
 
-function isAdmin() {
+function isAdmin(username) { //TODO
 
+    let isAdminUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/_lookup";
+    let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+    let isAdminData = {
+        first_name: "admin"
+    };
+
+    $.ajax({
+        method: "POST",
+        url:isAdminUrl,
+        data: isAdminData,
+        ContentType: 'application/json',
+        headers: kinveyAuthHeaders,
+        success: showAdminPage(),
+        error: showAjaxError()
+    });
+
+    function showAdminPage(response, status) {
+        let responseString = JSON.stringify(response);
+        //let matches = responseString.search('"' + username + '"');
+
+        //if(matches > 0){
+        //    alert("te twa e ");
+        //}
+
+        alert(responseString);
+    }
 }
 
 function showInfo(messageText) {
@@ -69,7 +97,7 @@ function showInfo(messageText) {
 }
 
 function showAjaxError(data, status) {
-    let errorMsg = "Error: " + JSON.stringify(data);
+    let errorMsg = "Error: Something wrong"; //+ JSON.stringify(data); //TODO: Кво да пише?
     $('#errorBox').text(errorMsg).show();
 }
 
@@ -99,6 +127,7 @@ function register() {
         fullname: $("#registerFullName").val(),
         email: $("#registerEmailAdress").val() //TODO: валидация за имеил
     };
+    let username = $("#registerUserName").val();
     let password = $("#registerPassword").val();
     let confirmPassword = $("#registerConfirmPassword").val();
     if( password == confirmPassword && password.length >= 6){ //TODO: по-читава валидация
@@ -108,12 +137,13 @@ function register() {
             data: registerData,
             headers: kinveyAuthHeaders,
             success: registerSuccess,
-            error: showAjaxError
+            error: showAjaxError()
         });
         function registerSuccess(data, status) {
             sessionStorage.authtoken = data._kmd.authtoken;
             showHideNavigationLinks();
-            showInfo("Register successful");
+            showHomeView();
+            showInfo("Register successful, dear " + username);
         }
     } else{
         showError("Password and confirm password is not match or is too short! Must be minimum 6 symbol length!");
