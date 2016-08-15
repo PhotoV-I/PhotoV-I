@@ -252,3 +252,33 @@ main > section{
     margin-top: 30px;
     margin-left: -15px;
 }
+
+#adminPanelButton{
+    display: none;
+}
+
+#usersTable{
+    margin-top: -420px;
+}
+
+#usersTable table{
+    border: 3px solid #bbbcba;
+    border-radius: 5px;
+}
+
+#usersTable th{
+    font-size: 1.3em;
+    font-weight: bold;
+    background-color: #d3d6d1;
+    padding: 10px;
+}
+
+#usersTable td{
+    background-color: #e3e5e2;
+    padding: 10px;
+}
+
+#usersTable h2{
+    color:#355021;
+    margin-left:100px;
+}

@@ -48,7 +48,7 @@ function login() {
             data: loginData,
             headers: kinveyAuthHeaders,
             success: loginSuccess,
-            error: showAjaxError()
+            error: showAjaxError
         });
         function loginSuccess(data, status) {
             sessionStorage.authtoken = data._kmd.authtoken;
@@ -59,10 +59,10 @@ function login() {
     //} else{
         //showError("Please, enter user name and password!");
     //}
-    //isAdmin(username);
+    isAdmin(username);
 }
 
-function isAdmin(username) { //TODO
+function isAdmin(username) { //TODO: Fix bug with invalid Admin credentials
 
     let isAdminUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/_lookup";
     let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
@@ -76,21 +76,61 @@ function isAdmin(username) { //TODO
         data: isAdminData,
         ContentType: 'application/json',
         headers: kinveyAuthHeaders,
-        success: showAdminPage(),
-        error: showAjaxError()
+        success: showAdminPage,
+        error: showAjaxError
     });
 
     function showAdminPage(response, status) {
         let responseString = JSON.stringify(response);
-        //let matches = responseString.search('"' + username + '"');
+        let matches = responseString.search('"' + username + '"');
 
-        //if(matches > 0){
-        //    alert("te twa e ");
-        //}
+        if(matches > 0){
+            //TODO:Functionalities
+            $("#adminPanelButton").show();
+            $("#viewHome").hide();
+            $("#viewAdminPanel").show();
 
-        alert(responseString);
+            let listUsersData = {
+                first_name: "user"
+            };
+            $.ajax({
+                method: "POST",
+                url:isAdminUrl,
+                data: listUsersData,
+                ContentType: 'application/json',
+                headers: kinveyAuthHeaders,
+                success: listUsers,
+                error: showAjaxError
+            });
+
+            function listUsers(response, status) {
+                let usersTable = $('<table>')
+                    .append($('<tr>').append(
+                        '<th>Username</th>',
+                        '<th>Full name</th>',
+                        '<th>Email adress</th>')
+                    );
+
+                for (let user of response){
+                    usersTable.append($('<tr>').append(
+                        $('<td>').text(user.username),
+                        $('<td>').text(user.last_name),
+                        $('<td>').text(user.email))
+                    );
+                }
+
+                $("#usersTable").append(usersTable);
+            }
+        }
+        if(sessionStorage.authtoken == null){
+            $("#adminPanelButton").hide();
+            $("#viewLogin").show();
+            $("#viewAdminPanel").hide();
+        }
     }
 }
+
+
 
 function showInfo(messageText) {
     $('#infoBox').text(messageText).show().delay(3000).fadeOut();
@@ -124,8 +164,9 @@ function register() {
     let registerData = {
         username: $("#registerUserName").val(),
         password: $("#registerPassword").val(),
-        fullname: $("#registerFullName").val(),
-        email: $("#registerEmailAdress").val() //TODO: валидация за имеил
+        last_name: $("#registerFullName").val(),
+        email: $("#registerEmailAdress").val(), //TODO: валидация за имеил
+        first_name: "user"
     };
     let username = $("#registerUserName").val();
     let password = $("#registerPassword").val();
@@ -137,7 +178,7 @@ function register() {
             data: registerData,
             headers: kinveyAuthHeaders,
             success: registerSuccess,
-            error: showAjaxError()
+            error: showAjaxError
         });
         function registerSuccess(data, status) {
             sessionStorage.authtoken = data._kmd.authtoken;
@@ -167,6 +208,8 @@ function logout() {
     sessionStorage.clear();
     showHideNavigationLinks();
     showHomeView();
+    $("#adminPanelButton").hide();
+    location.reload(true);
 }
 
 function showProfileView() {
@@ -186,8 +229,16 @@ $(function () {
    $("#loginButton").click(login);
    $("#registerButton").click(register);
    $("#addPhotoButton").click(addPhoto); //TODO 
-   
+   $("#adminPanelButton").click(function(){ //TODO: Може да се изнесе в метод
+       $("#viewAdminPanel").show();
+       $("#viewHome").hide();
+       $("#viewAbout").hide();
+       $("#viewProfile").hide();
+       $("#viewAddPhoto").hide();
+       $("#viewGallery").hide();
+   });
 
    showHomeView();
    showHideNavigationLinks();
+
 });
