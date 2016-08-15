@@ -259,11 +259,12 @@ main > section{
 
 #usersTable{
     margin-top: -420px;
+    border-radius: 5px;
 }
 
 #usersTable table{
     border: 3px solid #bbbcba;
-    border-radius: 5px;
+
 }
 
 #usersTable th{
@@ -281,4 +282,42 @@ main > section{
 #usersTable h2{
     color:#355021;
     margin-left:100px;
+}
+
+.info-vanya{
+    color:#355020;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: left;
+    border: 1px solid #d0d2cf;
+    font-family: Verdana, sans-serif;
+    border-radius: 5px;
+    width: auto;
+    margin-top: -450px;
+    line-height: 1.7em;
+    padding: 10px;
+    box-shadow: 5px 5px 3px #888888;
+}
+
+.left-info {
+    float: left;
+    margin-right: 10px;
+}
+
+.left-info img{
+    width: 130px;
+    padding: 10px;
+}
+
+.info-ivo{
+    color:#355020;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: left;
+    border: 1px solid #d0d2cf;
+    font-family: Verdana, sans-serif;
+    border-radius: 5px;
+    width: auto;
+    margin-top: 20px;
+    line-height: 1.7em;
+    padding: 10px;
+    box-shadow: 5px 5px 3px #888888;
 }
