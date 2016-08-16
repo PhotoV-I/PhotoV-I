@@ -53,13 +53,13 @@ function login() {
         function loginSuccess(data, status) {
             sessionStorage.authtoken = data._kmd.authtoken;
             showHideNavigationLinks();
+            isAdmin(username);
             showHomeView();
             showInfo("Welcome " + username);
         }
     //} else{
         //showError("Please, enter user name and password!");
     //}
-    isAdmin(username);
 }
 
 function isAdmin(username) { //TODO: Fix bug with invalid Admin credentials
@@ -104,22 +104,82 @@ function isAdmin(username) { //TODO: Fix bug with invalid Admin credentials
             });
 
             function listUsers(response, status) {
-                let usersTable = $('<table>')
+                let usersTable = $('<table id="usersTableFromJS">')
                     .append($('<tr>').append(
-                        '<th>Username</th>',
+                        '<th data-field="username">Username</th>',
+                        '<th data-field="username">IDs</th>',
+                        '<th>Status</th>',
                         '<th>Full name</th>',
-                        '<th>Email adress</th>')
+                        '<th>Email adress</th>',
+                        '<th>Delete</th>')
                     );
+
 
                 for (let user of response){
                     usersTable.append($('<tr>').append(
                         $('<td>').text(user.username),
+                        $('<td>').text(user._id),
+                        $('<td>').text($('<p class="userStatus"></p>')),
                         $('<td>').text(user.last_name),
-                        $('<td>').text(user.email))
+                        $('<td>').text(user.email),
+                        $('<td>').append('<form class="adminCheckBoxes">').append($('<input type="checkbox" >')))
                     );
                 }
 
+                let isLockedData= {
+                    //TODO     
+                }; 
+
+                function isLocked() { //TODO
+                    $.ajax({
+                        method: "POST",
+                        url:isAdminUrl,
+                        data: isAdminData,
+                        ContentType: 'application/json',
+                        headers: kinveyAuthHeaders,
+                        success: showAdminPage,
+                        error: showAjaxError
+                    });
+                }
+
                 $("#usersTable").append(usersTable);
+
+                let lockdonwUsers;
+                $('#lockUserButton').click(function () {
+                    lockdonwUsers = $('#usersTableFromJS').find('[type="checkbox"]:checked')
+                        .map(function(){
+                            return $(this).closest('tr').find('td:nth-child(2)').text();
+                        }).get();
+                    
+                        console.log(lockdonwUsers);
+
+                        //for(let user of lockdonwUsers){
+                          //  $(".userStatus").empty(); //TODO: Това е вярно, само не го хваща по клас
+                          //  $(".userStatus").append("disabled");
+                        //}
+
+                        for (let user of lockdonwUsers) {
+    
+                            let dataForLockdown = {
+                                "userId": '"' + user + '"',
+                                "setLockdownStateTo": true
+                            };
+
+                            let lockdownUsersUrl = kinveyServiceBaseUrl + "rpc/" + kinveyAppID + "/lockdown-user";
+
+    
+                            $.ajax({
+                                method: "POST",
+                                url: lockdownUsersUrl,
+                                data: dataForLockdown,
+                                ContentType: "application/json",
+                                headers: kinveyAuthHeaders,
+                                success: alert("SUCCESS"),
+                                error: alert("FAIL")
+                            });
+                        }
+                });
+
             }
         }
         if(sessionStorage.authtoken == null){
@@ -128,6 +188,8 @@ function isAdmin(username) { //TODO: Fix bug with invalid Admin credentials
             $("#viewAdminPanel").hide();
         }
     }
+
+
 }
 
 

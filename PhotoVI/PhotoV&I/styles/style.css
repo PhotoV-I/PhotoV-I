@@ -272,17 +272,24 @@ main > section{
     font-weight: bold;
     background-color: #d3d6d1;
     padding: 10px;
+    border: 3px solid #bbbcba;
 }
 
 #usersTable td{
     background-color: #e3e5e2;
     padding: 10px;
+    border: 3px solid #bbbcba;
+}
+
+.adminCheckBoxes {
+    width: 25px;
 }
 
 #usersTable h2{
-    color:#355021;
+    color:red;
     margin-left:100px;
 }
+
 
 .info-vanya{
     color:#355020;
@@ -321,3 +328,4 @@ main > section{
     padding: 10px;
     box-shadow: 5px 5px 3px #888888;
 }
+
