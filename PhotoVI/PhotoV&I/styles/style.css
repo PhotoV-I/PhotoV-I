@@ -260,6 +260,7 @@ main > section{
 #usersTable{
     margin-top: -420px;
     border-radius: 5px;
+
 }
 
 #usersTable table{
@@ -283,11 +284,15 @@ main > section{
 
 .adminCheckBoxes {
     width: 25px;
+
 }
 
 #usersTable h2{
-    color:red;
-    margin-left:100px;
+    color:#355020;
+    font-family: Verdana, sans-serif;
+    margin-left:400px;
+    margin-top: -40px;
+
 }
 
 
