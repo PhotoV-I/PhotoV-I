@@ -32,6 +32,7 @@ function showHomeView() {
     showView('viewHome');
 }
 
+let username;
 function login() {
     let loginUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/login";
     let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppSecret)};
@@ -39,7 +40,7 @@ function login() {
         username: $("#loginUserName").val(),
         password: $("#loginPassword").val()
     };
-    let username = $("#loginUserName").val();
+    username = $("#loginUserName").val();
     //let password = $("#loginPassword").val();
     //if (username.length < 1 || password.length < 1) { //TODO: To be or not :)
         $.ajax({
@@ -52,6 +53,7 @@ function login() {
         });
         function loginSuccess(data, status) {
             sessionStorage.authtoken = data._kmd.authtoken;
+            activeUser = data._kmd.authtoken;
             showHideNavigationLinks();
             isAdmin(username);
             showHomeView();
@@ -119,10 +121,10 @@ function isAdmin(username) { //TODO: Fix bug with invalid Admin credentials
                     usersTable.append($('<tr>').append(
                         $('<td>').text(user.username),
                         $('<td>').text(user._id),
-                        $('<td>').text($('<p class="userStatus"></p>')),
+                        $('<td>').text($('<form class="userStatus">').append($('<p>'))), //TODO: за СофтУни
                         $('<td>').text(user.last_name),
                         $('<td>').text(user.email),
-                        $('<td>').append('<form class="adminCheckBoxes">').append($('<input type="checkbox" >')))
+                        $('<td>').append('<form class="adminCheckBoxes">').append($('<input type="checkbox" />')))
                     );
                 }
 
@@ -150,7 +152,8 @@ function isAdmin(username) { //TODO: Fix bug with invalid Admin credentials
                         .map(function(){
                             return $(this).closest('tr').find('td:nth-child(2)').text();
                         }).get();
-                    
+
+                        // TODO: как да се визуализират заключените юзири???
                         console.log(lockdonwUsers);
 
                         //for(let user of lockdonwUsers){
@@ -162,7 +165,7 @@ function isAdmin(username) { //TODO: Fix bug with invalid Admin credentials
     
                             let dataForLockdown = {
                                 "userId": '"' + user + '"',
-                                "setLockdownStateTo": true
+                                "setLockdownStateTo": true //TODO: подавам булева, то ми казва че му подавам стринг????
                             };
 
                             let lockdownUsersUrl = kinveyServiceBaseUrl + "rpc/" + kinveyAppID + "/lockdown-user";
@@ -276,6 +279,20 @@ function logout() {
 
 function showProfileView() {
     showView('viewProfile');
+
+    let profileView = $('<table id="profileViewFromJS">')
+        .append($('<tr>').append(
+            '<th data-field="username">Username: '+ username + '</th>',
+            '<th data-field="email">Email</th>',
+            '<th><form><input type="submit" value="delete"/></form></th>')
+        );
+
+    //$('#profileView').append(profileView); //TODO: Подготовка за когато има снимки в базата
+
+    profileView.append($('<tr>').append(
+        $('<td>').text('IMAGE'),
+        $('<td>').text('IMAGE'),
+        $('<td>').text('IMAGE')));
 }
 
 $(function () {
