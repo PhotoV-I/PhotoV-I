@@ -90,9 +90,10 @@ main > section{
     display:inline-block;
     border-radius: 10px;
     padding: 10px 20px;
-    margin: 25px 10px 0 5px;
+    margin: 25px 15px 0 5px;
     font-family: Verdana, sans-serif;
     font-size: 15pt;
+    float: right;
 }
 
 .navbar li:hover {
