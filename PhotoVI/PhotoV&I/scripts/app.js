@@ -64,7 +64,7 @@ function login() {
     //}
 }
 
-function isAdmin(username) { //TODO: Fix bug with invalid Admin credentials
+function isAdmin(username) {
 
     let isAdminUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/_lookup";
     let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
@@ -91,6 +91,7 @@ function isAdmin(username) { //TODO: Fix bug with invalid Admin credentials
             $("#adminPanelButton").show();
             $("#viewHome").hide();
             $("#viewAdminPanel").show();
+            $("#deleteConfirm").show();
 
             let listUsersData = {
                 first_name: "user"
@@ -189,6 +190,7 @@ function isAdmin(username) { //TODO: Fix bug with invalid Admin credentials
             $("#adminPanelButton").hide();
             $("#viewLogin").show();
             $("#viewAdminPanel").hide();
+            $("#deleteConfirm").hide();
         }
     }
 
@@ -208,7 +210,160 @@ function showAjaxError(data, status) {
 
 function showGalleryView() {
     showView('viewGallery');
+    ajaxGallery();
+
+
+    function ajaxGallery() {
+
+        let showGalleryUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID;
+        let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+
+        $.ajax({
+            method: "GET",
+            url: showGalleryUrl,
+            headers: kinveyAuthHeaders,
+            success: loadGallery
+        });
+
+    }
+
+    function loadGallery(data, status){
+
+        showInfo("THE IMAGES!!!");
+
+        let pictureTable = $('<table id="pictureTableFromJS">')
+            .append($('<tr>').append(
+                '<th>Picture name</th>',
+                '<th>By</th>',
+                '<th>Likes</th>',
+                '<th>Check</th>')
+            );
+
+        let pictureName;
+        let pictureId;
+        let pictureLikes;
+        let pictureObj;
+
+        for (let picture of data){
+
+            pictureName = picture._filename;
+            pictureId = picture._id;
+            pictureLikes = Number.parseFloat(picture.myProperty);
+
+            pictureTable.append($('<tr>').append(
+                $('<td>').text(picture._filename),
+                $('<td>').text(picture._acl.creator),
+                $('<td>').text(picture.myProperty),
+                $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
+            );
+        }
+
+
+        $('#likeConfirm').click(function () {
+            let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
+                .map(function(){
+                    return $(this).closest('tr').find('td:nth-child(1)').text();
+                }).get();
+
+
+           pictureName = likedPictures[0];
+
+
+            for (let picture of data){
+                pictureLikes = Number.parseFloat(picture.myProperty);
+
+                pictureId = picture._id;
+
+                pictureObj = {
+                    pictureName:pictureId,
+                    myProperty: pictureLikes
+                };
+
+                if (picture._filename === pictureName){
+                    break;
+                }
+            }
+
+
+                let newLikeUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID + "/" + pictureObj.pictureName;
+                let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+
+
+                let newValueOfLikes = pictureObj.myProperty + 1;
+                let dataNewValueOfLikes = {
+                     "myProperty": newValueOfLikes
+                };
+
+                $.ajax({
+                    method: "PUT",
+                    url: newLikeUrl,
+                    data: dataNewValueOfLikes,
+                    ContentType: 'application/json',
+                    headers: kinveyAuthHeaders,
+                    success: likedPictureSuccessful
+                });
+
+            function likedPictureSuccessful() {
+                showInfo("Like successful"); //TODO: адекватен начин за рефреш
+
+                $('#pictureTableFromJS').empty();
+                showGalleryView();
+            }
+
+        });
+
+        $('#gallery').append(pictureTable);
+
+        $('#deleteConfirm').click(function () { //TODO: да се оптимизира
+            let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
+                .map(function(){
+                    return $(this).closest('tr').find('td:nth-child(1)').text();
+                }).get();
+
+            pictureName = likedPictures[0];
+
+
+            for (let picture of data){
+                pictureLikes = Number.parseFloat(picture.myProperty);
+
+                pictureId = picture._id;
+
+                pictureObj = {
+                    pictureName:pictureId,
+                    myProperty: pictureLikes
+                };
+
+                if (picture._filename === pictureName){
+                    break;
+                }
+            }
+
+            console.log(pictureObj);
+
+            let deletePictureUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID + "/" + pictureObj.pictureName;
+            let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+
+            $.ajax({
+                method: "DELETE",
+                url: deletePictureUrl,
+                headers: kinveyAuthHeaders,
+                success: deletePictureSuccessful
+            });
+
+            function deletePictureSuccessful() {
+                showInfo("Delete successful"); //TODO: адекватен начин за рефреш
+
+                $('#pictureTableFromJS').empty();
+                showGalleryView();
+            }
+
+        });
+    }
 }
+
+
+
+
 
 function addPhoto() {
     

@@ -373,3 +373,37 @@ main > section{
     padding: 10px;
     border: 2px solid red;
 }
+
+#gallery {
+    margin-left:500px;
+    position: absolute;
+    margin-top:200px;
+}
+
+#gallery table {
+    background-color: #dddddd;
+    padding: 10px;
+    font-family: Verdana, sans-serif;
+    border-radius: 5px;
+}
+
+#gallery th,td {
+    border: 2px solid #3c3c3c;
+    text-align: center;
+}
+
+#gallery th{
+    font-size: 1.3em;
+}
+
+#gallery td{
+    padding: 0 40px;
+}
+
+#gallery h4 {
+    color:red;
+}
+
+#deleteConfirm{
+    display:none;
+}
