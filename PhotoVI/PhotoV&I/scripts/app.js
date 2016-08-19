@@ -110,21 +110,21 @@ function isAdmin(username) {
                 let usersTable = $('<table id="usersTableFromJS">')
                     .append($('<tr>').append(
                         '<th data-field="username">Username</th>',
-                        '<th data-field="username">IDs</th>',
-                        '<th>Status</th>',
                         '<th>Full name</th>',
                         '<th>Email adress</th>',
-                        '<th>Delete</th>')
+                        '<th data-field="username">IDs</th>',
+                        '<th>Status</th>',
+                        '<th>Check</th>')
                     );
 
 
                 for (let user of response){
-                    usersTable.append($('<tr>').append(
+                    usersTable.append($('<tr class="users-list-td">').append(
                         $('<td>').text(user.username),
-                        $('<td>').text(user._id),
-                        $('<td>').text($('<form class="userStatus">').append($('<p>'))), //TODO: за СофтУни
                         $('<td>').text(user.last_name),
                         $('<td>').text(user.email),
+                        $('<td>').text(user._id),
+                        $('<td>').text($('<form class="userStatus">').append($('<p>'))), //TODO: за СофтУни
                         $('<td>').append('<form class="adminCheckBoxes">').append($('<input type="checkbox" />')))
                     );
                 }
@@ -151,7 +151,7 @@ function isAdmin(username) {
                 $('#lockUserButton').click(function () {
                     lockdonwUsers = $('#usersTableFromJS').find('[type="checkbox"]:checked')
                         .map(function(){
-                            return $(this).closest('tr').find('td:nth-child(2)').text();
+                            return $(this).closest('tr').find('td:nth-child(4)').text();
                         }).get();
 
                         // TODO: как да се визуализират заключените юзири???
@@ -204,7 +204,7 @@ function showInfo(messageText) {
 }
 
 function showAjaxError(data, status) {
-    let errorMsg = "Error: Something wrong"; //+ JSON.stringify(data); //TODO: Кво да пише?
+    let errorMsg = "Wrong password or user name!";
     $('#errorBox').text(errorMsg).show();
 }
 
@@ -398,7 +398,7 @@ function register() {
             data: registerData,
             headers: kinveyAuthHeaders,
             success: registerSuccess,
-            error: showAjaxError
+            error: showError("This username already exist!")
         });
         function registerSuccess(data, status) {
             sessionStorage.authtoken = data._kmd.authtoken;

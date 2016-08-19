@@ -45,7 +45,7 @@ table {
 
 #infoBox, #errorBox, #loadingBox{
     display: none;
-    background-color: green;
+
     padding: 5px 10px;
     border-radius: 5px;
     width: 80%;
@@ -54,18 +54,22 @@ table {
 }
 
 #errorBox {
-    background-color: red;
+    color: red;
     position: absolute;
-    margin-top: 155px;
-    margin-left: 1230px;
+    margin-top: 172px;
+    margin-left: 1070px;
     padding: 5px 5px;
     width: 150px;
 }
 
+
 #infoBox {
+    background-color: #355021;
     color:white;
     position: absolute;
-    margin-top: -30px;
+    margin-top: -15px;
+    width: 735px;
+    margin-left: 490px;
 }
 
 main > section{
@@ -266,28 +270,58 @@ main > section{
 }
 
 #usersTable{
-    margin-top: -420px;
+    color:#355020;
+    font-family: Verdana, sans-serif;
+    margin-top: -380px;
     border-radius: 5px;
-
+    overflow: auto;
+    height: 310px;
 }
 
 #usersTable table{
-    border: 3px solid #bbbcba;
+    border: 5px solid #d0d2cf;
 
 }
 
 #usersTable th{
     font-size: 1.3em;
     font-weight: bold;
-    background-color: #d3d6d1;
-    padding: 10px;
-    border: 3px solid #bbbcba;
+    background-color: rgba(208, 210, 207, 0.6);
+    padding: 5px;
+    border: 1px solid #d0d2cf;
 }
 
 #usersTable td{
-    background-color: #e3e5e2;
-    padding: 10px;
-    border: 3px solid #bbbcba;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 5px 10px;
+    border: 2px solid #d0d2cf;
+    vertical-align: middle;
+}
+
+
+#lockUserButton {
+    margin-left: 735px;
+    margin-top: 20px;
+    color: #355021;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+    padding: 5px 10px;
+    font-size: 1.3em;
+    position: absolute;
+
+}
+#unlockUserButton{
+    margin-left: 600px;
+    margin-top: 20px;
+    color: #355021;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+    padding: 5px 10px;
+    font-size: 1.3em;
+    position: absolute;
+
 }
 
 .adminCheckBoxes {
@@ -295,12 +329,12 @@ main > section{
 
 }
 
-#usersTable h2{
+.title-users-list{
     color:#355020;
     font-family: Verdana, sans-serif;
     margin-left:400px;
-    margin-top: -40px;
-
+    margin-top: -440px;
+    position: absolute;
 }
 
 
