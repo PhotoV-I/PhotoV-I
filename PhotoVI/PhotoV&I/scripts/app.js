@@ -171,7 +171,8 @@ function isAdmin(username) {
 
                             let lockdownUsersUrl = kinveyServiceBaseUrl + "rpc/" + kinveyAppID + "/lockdown-user";
 
-    
+    console.log(lockdownUsersUrl);
+	console.log(dataForLockdown);
                             $.ajax({
                                 method: "POST",
                                 url: lockdownUsersUrl,
@@ -366,7 +367,25 @@ function showGalleryView() {
 
 
 function addPhoto() {
-    
+    var form = document.getElementsByName('fileUpload')[0];
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Upload all the submitted files in parallel.
+        var uploads  = [];
+        var fileList = form.getElementsByTagName('input')[0].files;
+        for(var i = 0, length = fileList.length; i < length; i += 1) {
+            var file = fileList.item(i);
+            uploads.push(Kinvey.File.upload(file));
+        }
+        // Wait until all files are uploaded.
+        var promise = Kinvey.Defer.all(uploads);
+        promise.then(function(response) {
+		console.log(response);
+            // response is an Array of file metadata as returned by Kinvey.
+        }, function(error) {
+            // One or more uploads failed.
+        });
+    });
 }
 
 function showAddPhotoView() {
