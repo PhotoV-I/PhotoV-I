@@ -32,12 +32,8 @@ function showHomeView() {
     showView('viewHome');
 }
 
-
-
 let username;
-
-
- function login() {
+function login() {
     let loginUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/login";
     let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppSecret)};
     let loginData = {
@@ -169,7 +165,7 @@ function isAdmin(username) {
                         for (let user of lockdonwUsers) {
     
                             let dataForLockdown = {
-                                "userId": user,
+                                "userId": '"' + user + '"',
                                 "setLockdownStateTo": true //TODO: подавам булева, то ми казва че му подавам стринг????
                             };
 
@@ -213,10 +209,7 @@ function showAjaxError(data, status) {
 }
 
 function showGalleryView() {
-    $('#pictureTableFromJS').empty();
-
     showView('viewGallery');
-
     ajaxGallery();
 
 
@@ -236,7 +229,7 @@ function showGalleryView() {
 
     function loadGallery(data, status){
 
-        $('#pictureTableFromJS').empty();
+        showInfo("THE IMAGES!!!");
 
         let pictureTable = $('<table id="pictureTableFromJS">')
             .append($('<tr>').append(
@@ -276,20 +269,18 @@ function showGalleryView() {
            pictureName = likedPictures[0];
 
 
-            if (likedPictures.length > 0) {
-                for (let picture of data) {
-                    pictureLikes = Number.parseFloat(picture.myProperty);
+            for (let picture of data){
+                pictureLikes = Number.parseFloat(picture.myProperty);
 
-                    pictureId = picture._id;
+                pictureId = picture._id;
 
-                    pictureObj = {
-                        pictureName: pictureId,
-                        myProperty: pictureLikes
-                    };
+                pictureObj = {
+                    pictureName:pictureId,
+                    myProperty: pictureLikes
+                };
 
-                    if (picture._filename === pictureName) {
-                        break;
-                    }
+                if (picture._filename === pictureName){
+                    break;
                 }
             }
 
@@ -332,20 +323,18 @@ function showGalleryView() {
             pictureName = likedPictures[0];
 
 
-            if (likedPictures.length > 0) {
-                for (let picture of data) {
-                    pictureLikes = Number.parseFloat(picture.myProperty);
+            for (let picture of data){
+                pictureLikes = Number.parseFloat(picture.myProperty);
 
-                    pictureId = picture._id;
+                pictureId = picture._id;
 
-                    pictureObj = {
-                        pictureName: pictureId,
-                        myProperty: pictureLikes
-                    };
+                pictureObj = {
+                    pictureName:pictureId,
+                    myProperty: pictureLikes
+                };
 
-                    if (picture._filename === pictureName) {
-                        break;
-                    }
+                if (picture._filename === pictureName){
+                    break;
                 }
             }
 
@@ -432,7 +421,7 @@ function showRegisterView() {
 }
 
 function showLoginView() {
-    showView('viewLogin');
+    showView('viewLogin')
 }
 
 function logout() {
@@ -462,8 +451,6 @@ function showProfileView() {
 }
 
 $(function () {
-    sessionStorage.clear();
-
    $("#linkHome").click(showHomeView);
    $("#linkGallery").click(showGalleryView);
    $("#linkAddPhoto").click(showAddPhotoView);
@@ -487,4 +474,5 @@ $(function () {
 
    showHomeView();
    showHideNavigationLinks();
+
 });
