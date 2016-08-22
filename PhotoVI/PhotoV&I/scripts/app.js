@@ -270,18 +270,20 @@ function showGalleryView() {
            pictureName = likedPictures[0];
 
 
-            for (let picture of data){
-                pictureLikes = Number.parseFloat(picture.myProperty);
+            if(likedPictures.length > 0){
+                for (let picture of data){
+                    pictureLikes = Number.parseFloat(picture.myProperty);
 
-                pictureId = picture._id;
+                    pictureId = picture._id;
 
-                pictureObj = {
-                    pictureName:pictureId,
-                    myProperty: pictureLikes
-                };
+                    pictureObj = {
+                        pictureName:pictureId,
+                        myProperty: pictureLikes
+                    };
 
-                if (picture._filename === pictureName){
-                    break;
+                    if (picture._filename === pictureName){
+                        break;
+                    }
                 }
             }
 
@@ -323,19 +325,20 @@ function showGalleryView() {
 
             pictureName = likedPictures[0];
 
+            if(likedPictures.length > 0){
+                for (let picture of data){
+                    pictureLikes = Number.parseFloat(picture.myProperty);
 
-            for (let picture of data){
-                pictureLikes = Number.parseFloat(picture.myProperty);
+                    pictureId = picture._id;
 
-                pictureId = picture._id;
+                    pictureObj = {
+                        pictureName:pictureId,
+                        myProperty: pictureLikes
+                    };
 
-                pictureObj = {
-                    pictureName:pictureId,
-                    myProperty: pictureLikes
-                };
-
-                if (picture._filename === pictureName){
-                    break;
+                    if (picture._filename === pictureName){
+                        break;
+                    }
                 }
             }
 
@@ -363,22 +366,28 @@ function showGalleryView() {
 }
 
 
-
+function showAddPhotoView() {
+    showView('viewAddPhoto');
+    $('#addPhotoButton').click(addPhoto());
+}
 
 
 function addPhoto() {
-    var form = document.getElementsByName('fileUpload')[0];
-    form.addEventListener('submit', function(e) {
+    let fileList = $('#browsePhotoButton').get(0).files[0];
+    //form.addEventListener($("#addPhotoButton")
+       $('#addPhotoButton').click(function(e) {
         e.preventDefault();
         // Upload all the submitted files in parallel.
-        var uploads  = [];
-        var fileList = form.getElementsByTagName('input')[0].files;
-        for(var i = 0, length = fileList.length; i < length; i += 1) {
-            var file = fileList.item(i);
+        let uploads  = [];
+        //let fileList = form.getElementsByTagName($('#browsePhotoButton')).get(0).files;
+
+        for( let file of fileList){
+        //for(let i = 0, length = fileList.length; i < length; i += 1) {
+           // file = fileList.item(i);
             uploads.push(Kinvey.File.upload(file));
         }
         // Wait until all files are uploaded.
-        var promise = Kinvey.Defer.all(uploads);
+        let promise = Kinvey.Defer.all(uploads);
         promise.then(function(response) {
 		console.log(response);
             // response is an Array of file metadata as returned by Kinvey.
@@ -388,9 +397,7 @@ function addPhoto() {
     });
 }
 
-function showAddPhotoView() {
-    showView('viewAddPhoto');
-}
+
 
 function showAboutView() {
     showView('viewAbout');
@@ -470,6 +477,9 @@ function showProfileView() {
 }
 
 $(function () {
+
+    sessionStorage.clear();
+
    $("#linkHome").click(showHomeView);
    $("#linkGallery").click(showGalleryView);
    $("#linkAddPhoto").click(showAddPhotoView);

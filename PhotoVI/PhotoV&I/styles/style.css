@@ -321,7 +321,10 @@ main > section{
     padding: 5px 10px;
     font-size: 1.3em;
     position: absolute;
+}
 
+#lockUserButton:hover , #unlockUserButton:hover{
+    background-color: #d8ddd4;
 }
 
 .adminCheckBoxes {
