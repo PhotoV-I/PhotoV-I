@@ -75,7 +75,7 @@
                     <div class="row">
                         <div id="gallery">
                             <h4>Please, choose only one!!!</h4>
-                            <form>
+                            <form id="likeConfirmForm">
                                 <input type="button" id="likeConfirm" value="Like confirm"/>
                             </form>
                             <form>
@@ -272,16 +272,18 @@
 
                         <div class="col-md-9">
                             <h2 class="title-users-list">Users List:</h2>
-                            <table id="staticUsersTable">
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Full name</th>
-                                    <th>Email adress</th>
-                                    <th>IDs</th>
-                                    <th>Status</th>
-                                    <th>Check</th>
-                                </tr>
-                            </table>
+                            <div id="staticUsersTableHeader">
+                                <table>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Full name</th>
+                                        <th>Email adress</th>
+                                        <th>IDs</th>
+                                        <th>Status</th>
+                                        <th>Check</th>
+                                    </tr>
+                                </table>
+                            </div>
                             <div id="usersTable">
                             </div>
                             <form>

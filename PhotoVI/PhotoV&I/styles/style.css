@@ -278,12 +278,18 @@ main > section{
     height: 310px;
 }
 
-#staticUsersTable th{
+#staticUsersTableHeader {
+    position: absolute;
+    margin-top: -420px;
+}
+
+#staticUsersTableHeader th{
     font-size: 1.3em;
     font-weight: bold;
     background-color: rgba(208, 210, 207, 0.6);
     padding: 5px;
     border: 1px solid #d0d2cf;
+    width: 150px;
 }
 
 #usersTable table{

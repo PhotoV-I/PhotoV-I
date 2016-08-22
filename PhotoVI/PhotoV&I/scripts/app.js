@@ -313,7 +313,7 @@ function showGalleryView() {
                 $('#pictureTableFromJS').empty();
                 showGalleryView();
             }
-
+            
         });
 
         $('#gallery').append(pictureTable);
@@ -369,33 +369,57 @@ function showGalleryView() {
 
 function showAddPhotoView() {
     showView('viewAddPhoto');
-    $('#addPhotoButton').click(addPhoto());
 }
 
 
-function addPhoto() {
-    let fileList = $('#browsePhotoButton').get(0).files[0];
-    //form.addEventListener($("#addPhotoButton")
-       $('#addPhotoButton').click(function(e) {
-        e.preventDefault();
-        // Upload all the submitted files in parallel.
-        let uploads  = [];
-        //let fileList = form.getElementsByTagName($('#browsePhotoButton')).get(0).files;
+function addPhoto() { 
 
-        for( let file of fileList){
-        //for(let i = 0, length = fileList.length; i < length; i += 1) {
-           // file = fileList.item(i);
-            uploads.push(Kinvey.File.upload(file));
+
+    let photoName = $('#addPhotoName').val();
+
+    let addPhotoUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID;
+    let addPhotoData = {
+        "_filename": photoName,
+        "myProperty": 0,
+        "_acl":
+        {
+            "creator": username,
+            "gr": true,
+            "gw": true
         }
-        // Wait until all files are uploaded.
-        let promise = Kinvey.Defer.all(uploads);
-        promise.then(function(response) {
-		console.log(response);
-            // response is an Array of file metadata as returned by Kinvey.
-        }, function(error) {
-            // One or more uploads failed.
-        });
+    };
+    let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+
+
+
+    $.ajax({
+        method: "POST",
+        url: addPhotoUrl,
+        data: addPhotoData,
+        ContentType: 'application/json',
+        headers: kinveyAuthHeaders,
+        success: putRequestToGoogle
     });
+
+    function putRequestToGoogle(data) {
+
+        let uploadUrl = data._uploadURL;
+        let photo = $("#browsePhotoButton").val();
+
+        let putRequestData = {
+            signature: data.signature
+        };
+
+        $.ajax({
+            method: "PUT",
+            url: uploadUrl,
+            data: putRequestData,
+            //ContentType: 'application/json',
+            //headers: kinveyAuthHeaders,
+            success: console.log("uspq"),
+            error: console.log("tc... ne uspq... tup si")
+        });
+    }
 }
 
 
@@ -498,8 +522,10 @@ $(function () {
         event.preventDefault();
         register();
     });
-
-   $("#addPhotoButton").click(addPhoto); //TODO 
+   $("#addPhotoForm").submit(function( event ) {
+        event.preventDefault();
+        addPhoto();
+    }); //TODO: not finished
    $("#adminPanelButton").click(function(){ //TODO: Може да се изнесе в метод
        $("#viewAdminPanel").show();
        $("#viewHome").hide();
