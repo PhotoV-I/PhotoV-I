@@ -171,8 +171,9 @@ function isAdmin(username) {
 
                             let lockdownUsersUrl = kinveyServiceBaseUrl + "rpc/" + kinveyAppID + "/lockdown-user";
 
-    console.log(lockdownUsersUrl);
-	console.log(dataForLockdown);
+                            console.log(lockdownUsersUrl);
+                            console.log(dataForLockdown);
+                            
                             $.ajax({
                                 method: "POST",
                                 url: lockdownUsersUrl,
@@ -411,20 +412,20 @@ function register() {
         username: $("#registerUserName").val(),
         password: $("#registerPassword").val(),
         last_name: $("#registerFullName").val(),
-        email: $("#registerEmailAdress").val(), //TODO: валидация за имеил
+        email: $("#registerEmailAdress").val(),
         first_name: "user"
     };
     let username = $("#registerUserName").val();
     let password = $("#registerPassword").val();
     let confirmPassword = $("#registerConfirmPassword").val();
-    if( password == confirmPassword && password.length >= 6){ //TODO: по-читава валидация
+    if( password == confirmPassword && password.length >= 6){
         $.ajax({
             method: "POST",
             url: registerUrl,
             data: registerData,
             headers: kinveyAuthHeaders,
             success: registerSuccess,
-            error: showError("This username already exist!")
+            error: showError("This username already exist!") //TODO:show on success and error
         });
         function registerSuccess(data, status) {
             sessionStorage.authtoken = data._kmd.authtoken;
@@ -489,8 +490,15 @@ $(function () {
    $("#linkLogout").click(logout);
    $("#linkProfile").click(showProfileView);
 
-   $("#loginButton").click(login);
-   $("#registerButton").click(register);
+   $("#loginForm").submit(function( event ) {
+        event.preventDefault();
+        login();
+    });
+   $("#registerForm").submit(function( event ) {
+        event.preventDefault();
+        register();
+    });
+
    $("#addPhotoButton").click(addPhoto); //TODO 
    $("#adminPanelButton").click(function(){ //TODO: Може да се изнесе в метод
        $("#viewAdminPanel").show();
