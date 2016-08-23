@@ -25,8 +25,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="53" />
+            <state relative-caret-position="370">
+              <caret line="78" column="91" selection-start-line="78" selection-start-column="91" selection-end-line="78" selection-end-column="91" />
               <folding>
                 <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#section#3;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -39,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/styles/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="372">
-              <caret line="291" column="13" selection-start-line="291" selection-start-column="13" selection-end-line="291" selection-end-column="13" />
+              <caret line="291" column="14" selection-start-line="291" selection-start-column="14" selection-end-line="291" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -48,13 +48,32 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="637">
-              <caret line="315" column="12" selection-start-line="315" selection-start-column="12" selection-end-line="315" selection-end-column="12" />
+            <state relative-caret-position="209">
+              <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
               <folding>
-                <element signature="e#16188#16244#0" expanded="false" />
-                <element signature="e#16294#16353#0" expanded="false" />
-                <element signature="e#16403#16462#0" expanded="false" />
-                <element signature="e#16528#16765#0" expanded="false" />
+                <element signature="n#!!block;n#showView#0" expanded="false" />
+                <element signature="n#!!block;n#showHideNavigationLinks#0" expanded="false" />
+                <element signature="n#!!block;n#showHomeView#0" expanded="false" />
+                <element signature="n#!!block;n#login#0" expanded="false" />
+                <element signature="n#!!block;n#isAdmin#0" expanded="false" />
+                <element signature="n#!!block;n#showAdminPage#0;n#!!block;n#isAdmin#0" expanded="false" />
+                <element signature="n#!!block;n#showInfo#0" expanded="false" />
+                <element signature="n#!!block;n#showAjaxError#0" expanded="false" />
+                <element signature="n#!!block;n#showGalleryView#0" expanded="false" />
+                <element signature="n#!!block;n#loadGallery#0;n#!!block;n#showGalleryView#0" expanded="false" />
+                <element signature="n#!!block;n#showAddPhotoView#0" expanded="false" />
+                <element signature="n#!!block;n#addPhoto#0" expanded="false" />
+                <element signature="n#!!block;n#showAboutView#0" expanded="false" />
+                <element signature="n#!!block;n#register#0" expanded="false" />
+                <element signature="n#!!block;n#showError#0" expanded="false" />
+                <element signature="n#!!block;n#showRegisterView#0" expanded="false" />
+                <element signature="n#!!block;n#showLoginView#0" expanded="false" />
+                <element signature="n#!!block;n#logout#0" expanded="false" />
+                <element signature="n#!!block;n#showProfileView#0" expanded="false" />
+                <element signature="e#15311#16360#0" expanded="false" />
+                <element signature="e#15728#15784#0" expanded="false" />
+                <element signature="e#15834#15893#0" expanded="false" />
+                <element signature="e#15943#16002#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -123,6 +142,9 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -147,9 +169,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files" />
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -160,7 +179,7 @@
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="loginButton&#9;null&#9;null&#10;show&#9;null&#9;null&#10;showGa&#9;null&#9;null&#10;errorBo&#9;null&#9;null&#10;.admin&#9;null&#9;null&#10;showAjaxError&#9;null&#9;null&#10;errorbox&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="showA&#9;null&#9;null&#10;showGa&#9;null&#9;null&#10;loginButton&#9;null&#9;null&#10;show&#9;null&#9;null&#10;errorBo&#9;null&#9;null&#10;.admin&#9;null&#9;null&#10;showAjaxError&#9;null&#9;null&#10;errorbox&#9;null&#9;null" />
     <property name="jsx.switch.disabled" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
@@ -235,11 +254,12 @@
       <workItem from="1471760516661" duration="4296000" />
       <workItem from="1471845143928" duration="8540000" />
       <workItem from="1471864033170" duration="6866000" />
+      <workItem from="1471936623354" duration="6128000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150180000" />
+    <option name="totallyTimeSpent" value="156308000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -276,17 +296,12 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/styles/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2074">
@@ -603,19 +618,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/proba.html" />
+    <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/libs/kinvey-backbone-1.6.10.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/proba.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/styles/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
-          <caret line="291" column="13" selection-start-line="291" selection-start-column="13" selection-end-line="291" selection-end-column="13" />
+          <caret line="291" column="14" selection-start-line="291" selection-start-column="14" selection-end-line="291" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="53" />
+        <state relative-caret-position="370">
+          <caret line="78" column="91" selection-start-line="78" selection-start-column="91" selection-end-line="78" selection-end-column="91" />
           <folding>
             <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#3;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -625,13 +655,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="315" column="12" selection-start-line="315" selection-start-column="12" selection-end-line="315" selection-end-column="12" />
+        <state relative-caret-position="209">
+          <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
           <folding>
-            <element signature="e#16188#16244#0" expanded="false" />
-            <element signature="e#16294#16353#0" expanded="false" />
-            <element signature="e#16403#16462#0" expanded="false" />
-            <element signature="e#16528#16765#0" expanded="false" />
+            <element signature="n#!!block;n#showView#0" expanded="false" />
+            <element signature="n#!!block;n#showHideNavigationLinks#0" expanded="false" />
+            <element signature="n#!!block;n#showHomeView#0" expanded="false" />
+            <element signature="n#!!block;n#login#0" expanded="false" />
+            <element signature="n#!!block;n#isAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#showAdminPage#0;n#!!block;n#isAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#showInfo#0" expanded="false" />
+            <element signature="n#!!block;n#showAjaxError#0" expanded="false" />
+            <element signature="n#!!block;n#showGalleryView#0" expanded="false" />
+            <element signature="n#!!block;n#loadGallery#0;n#!!block;n#showGalleryView#0" expanded="false" />
+            <element signature="n#!!block;n#showAddPhotoView#0" expanded="false" />
+            <element signature="n#!!block;n#addPhoto#0" expanded="false" />
+            <element signature="n#!!block;n#showAboutView#0" expanded="false" />
+            <element signature="n#!!block;n#register#0" expanded="false" />
+            <element signature="n#!!block;n#showError#0" expanded="false" />
+            <element signature="n#!!block;n#showRegisterView#0" expanded="false" />
+            <element signature="n#!!block;n#showLoginView#0" expanded="false" />
+            <element signature="n#!!block;n#logout#0" expanded="false" />
+            <element signature="n#!!block;n#showProfileView#0" expanded="false" />
+            <element signature="e#15311#16360#0" expanded="false" />
+            <element signature="e#15728#15784#0" expanded="false" />
+            <element signature="e#15834#15893#0" expanded="false" />
+            <element signature="e#15943#16002#0" expanded="false" />
           </folding>
         </state>
       </provider>

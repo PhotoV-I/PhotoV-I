@@ -107,17 +107,8 @@ function isAdmin(username) {
             });
 
             function listUsers(response, status) {
-                let usersTable = $('<table id="usersTableFromJS">')
-                    .append($('<tr>').append(
-                        '<th data-field="username">Username</th>',
-                        '<th>Full name</th>',
-                        '<th>Email adress</th>',
-                        '<th data-field="username">IDs</th>',
-                        '<th>Status</th>',
-                        '<th>Check</th>')
-                    );
-
-
+                let usersTable = $('<table id="usersTableFromJS">');                   
+                
                 for (let user of response){
                     usersTable.append($('<tr class="users-list-td">').append(
                         $('<td>').text(user.username),
@@ -157,10 +148,10 @@ function isAdmin(username) {
                         // TODO: как да се визуализират заключените юзири???
                         console.log(lockdonwUsers);
 
-                        //for(let user of lockdonwUsers){
-                          //  $(".userStatus").empty(); //TODO: Това е вярно, само не го хваща по клас
-                          //  $(".userStatus").append("disabled");
-                        //}
+                        for(let user of lockdonwUsers){
+                            $(".userStatus").empty(); //TODO: Това е вярно, само не го хваща по клас
+                            $(".userStatus").append("disabled");
+                        }
 
                         for (let user of lockdonwUsers) {
     
@@ -213,8 +204,6 @@ function showAjaxError(data, status) {
 function showGalleryView() {
     showView('viewGallery');
     ajaxGallery();
-
-
     function ajaxGallery() {
 
         let showGalleryUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID;
@@ -230,6 +219,7 @@ function showGalleryView() {
     }
 
     function loadGallery(data, status){
+
 
         showInfo("THE IMAGES!!!");
 
@@ -262,14 +252,13 @@ function showGalleryView() {
 
 
         $('#likeConfirm').click(function () {
+
             let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
                 .map(function(){
                     return $(this).closest('tr').find('td:nth-child(1)').text();
                 }).get();
 
-
-           pictureName = likedPictures[0];
-
+            pictureName = likedPictures[0];
 
             if(likedPictures.length > 0){
                 for (let picture of data){
@@ -292,7 +281,6 @@ function showGalleryView() {
                 let newLikeUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID + "/" + pictureObj.pictureName;
                 let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
 
-
                 let newValueOfLikes = pictureObj.myProperty + 1;
                 let dataNewValueOfLikes = {
                      "myProperty": newValueOfLikes
@@ -308,7 +296,7 @@ function showGalleryView() {
                 });
 
             function likedPictureSuccessful() {
-                showInfo("Like successful"); //TODO: адекватен начин за рефреш
+
 
                 $('#pictureTableFromJS').empty();
                 showGalleryView();
@@ -317,6 +305,7 @@ function showGalleryView() {
         });
 
         $('#gallery').append(pictureTable);
+
 
         $('#deleteConfirm').click(function () { //TODO: да се оптимизира
             let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
@@ -356,12 +345,11 @@ function showGalleryView() {
             });
 
             function deletePictureSuccessful() {
-                showInfo("Delete successful"); //TODO: адекватен начин за рефреш
+                //TODO: адекватен начин за рефреш
 
                 $('#pictureTableFromJS').empty();
                 showGalleryView();
             }
-
         });
     }
 }
@@ -370,6 +358,8 @@ function showGalleryView() {
 function showAddPhotoView() {
     showView('viewAddPhoto');
 }
+
+
 
 
 function addPhoto() { 
