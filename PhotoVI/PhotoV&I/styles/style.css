@@ -272,10 +272,10 @@ main > section{
 #usersTable{
     color:#355020;
     font-family: Verdana, sans-serif;
-    margin-top: -380px;
+    margin-top: -385px;
     border-radius: 5px;
     overflow: auto;
-    height: 310px;
+    height: 268px;
 }
 
 #staticUsersTableHeader {
@@ -288,20 +288,19 @@ main > section{
     font-weight: bold;
     background-color: rgba(208, 210, 207, 0.6);
     padding: 5px;
-    border: 1px solid #d0d2cf;
-    width: 138px;
+    border: 3px solid #d0d2cf;
+    width: 137.01px;
 }
 
 #usersTable table{
-    border: 5px solid #d0d2cf;
-
+    border: 3px solid #d0d2cf;
 }
 
 #usersTable th{
     font-size: 1.3em;
     font-weight: bold;
     background-color: rgba(208, 210, 207, 0.6);
-    padding: 5px;
+    padding: 1px;
     border: 1px solid #d0d2cf;
     overflow-wrap: normal;
 }
@@ -309,12 +308,11 @@ main > section{
 #usersTable td{
     background-color: rgba(255, 255, 255, 0.6);
     padding: 5px 10px;
-    border: 2px solid #d0d2cf;
+    border: 3px solid #d0d2cf;
     vertical-align: middle;
     word-break: break-all;
     width: 200px;
 }
-
 
 #lockUserButton {
     margin-left: 735px;
@@ -326,7 +324,6 @@ main > section{
     padding: 5px 10px;
     font-size: 1.3em;
     position: absolute;
-
 }
 #unlockUserButton{
     margin-left: 600px;
@@ -346,14 +343,13 @@ main > section{
 
 .adminCheckBoxes {
     width: 25px;
-
 }
 
 .title-users-list{
     color:#355020;
     font-family: Verdana, sans-serif;
     margin-left:400px;
-    margin-top: -440px;
+    margin-top: -460px;
     position: absolute;
 }
 
