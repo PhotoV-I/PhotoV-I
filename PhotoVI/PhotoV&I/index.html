@@ -4,13 +4,14 @@
     <head>
         <meta charset="UTF-8">
         <title>photoV&I</title>
-        <!--TODO:Styles-->
-        <link rel="stylesheet" href="styles/style.css">
-        <link rel="stylesheet" href="styles/bootstrap/bootstrap.css">
-        <link rel="stylesheet" href="styles/icons/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="styles/style.css"/>
+        <link rel="stylesheet" href="styles/bootstrap/bootstrap.css"/>
+        <link rel="stylesheet" href="styles/icons/css/font-awesome.min.css"/>
 
         <!--Scripts-->
         <script src="scripts/libs/jquery-3.0.0.min.js" type=""></script>
+        <script src="scripts/libs/kinvey-html5-1.6.10.min.js" type=""></script>
         <script src="scripts/app.js"></script>
     </head>
     <body>
@@ -107,7 +108,11 @@
                                 </div>
                                 <br/>
                                 <div>
-                                    <input type="file" value="Browse" id="browsePhotoButton" onchange="addEventListener(this.files)"/><!--<input type="text" id="addPathOfPhoto"/>-->
+                                    <input type="file" name="_file" id="_file" onchange="fileSelected();" />
+                                    <div id="photoInfo">
+                                        <div id="photoName"></div>
+                                        <div id="fileType"></div>
+                                    </div>
                                 </div>
                                 <br/>
                                 <div>
@@ -286,7 +291,7 @@
                             </div>
                             <div id="usersTable">
                             </div>
-                            <form>
+                            <form id="lockUserForm">
                                 <input type="submit" value="Lock user" id="lockUserButton"/>
                             </form>
                             <form>

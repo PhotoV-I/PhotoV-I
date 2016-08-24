@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="scripts/libs/jquery-3.0.0.min.js" type=""></script>
+    <script src="scripts/libs/kinvey-html5-1.6.10.min.js" type=""></script>
+</head>
+<body>
+
+<input type="file" name="_file" id="_file" onchange="fileSelected();" />
+<div id="fileinfo">
+    <div id="filename"></div>
+    <div id="filetype"></div>
+</div>
+
+        <script>
+            Kinvey.init({
+                appKey: 'kid_HycsO3rF',
+                appSecret: 'd0c21de73cd04b95aa68f4f48ad6ce66'
+            });
+
+            Kinvey.User.login();
+
+            function fileSelected(){
+                var oFile = document.getElementById('_file').files[0];
+                var oReader = new FileReader();
+                oReader.onload = function(e) {
+                    document.getElementById('fileinfo').style.display = 'block';
+                    document.getElementById('filename').innerHTML = 'Name: ' + oFile.name;
+                    document.getElementById('filetype').innerHTML = 'Type: ' + oFile.type;
+                };
+                oReader.readAsDataURL(oFile);
+                fileUpload(oFile);
+            }
+
+
+            function fileUpload(file) {
+                var file = document.getElementById('_file').files[0];
+                var promise = Kinvey.File.upload(file,{
+                    filename: document.getElementById('fileinfo').toString(),
+                    mimetype: document.getElementById('filetype').toString()
+                });
+                promise.then(function() {
+                    alert("File Uploaded Successfully");
+                }, function(error){
+                    alert("File Upload Failure:  " +  error.description);
+                });
+            }
+        </script>
+</body>
+</html>

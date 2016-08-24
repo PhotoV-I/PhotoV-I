@@ -4,6 +4,12 @@ const kinveyAppSecret = 'd0c21de73cd04b95aa68f4f48ad6ce66';
 const kinveyAppMasterSecret = "3b22a7bf51264d209af567ee79d4becc";
 const kinveyServiceBaseUrl = 'https://baas.kinvey.com/';
 
+Kinvey.init({
+    appKey: 'kid_HycsO3rF',
+    appSecret: 'd0c21de73cd04b95aa68f4f48ad6ce66'
+});
+
+
 
 function showView(viewId) {
     $('main > section').hide();
@@ -139,7 +145,10 @@ function isAdmin(username) {
                 $("#usersTable").append(usersTable);
 
                 let lockdonwUsers;
-                $('#lockUserButton').click(function () {
+                $('#lockUserForm').submit(function (event) {
+
+                    event.preventDefault();
+
                     lockdonwUsers = $('#usersTableFromJS').find('[type="checkbox"]:checked')
                         .map(function(){
                             return $(this).closest('tr').find('td:nth-child(4)').text();
@@ -362,52 +371,80 @@ function showAddPhotoView() {
 
 
 
-function addPhoto() { 
+function addPhoto() {
 
 
-    let photoName = $('#addPhotoName').val();
+//    let photoName = $('#addPhotoName').val();
 
-    let addPhotoUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID;
-    let addPhotoData = {
-        "_filename": photoName,
-        "myProperty": 0,
-        "_acl":
-        {
-            "creator": username,
-            "gr": true,
-            "gw": true
-        }
-    };
-    let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+//    let addPhotoUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID;
+//    let addPhotoData = {
+//        "_filename": photoName,
+//        "myProperty": 0,
+//        "_acl":
+//        {
+//            "creator": username,
+//            "gr": true,
+//            "gw": true
+//        }
+//    };
+//    let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
 
 
 
-    $.ajax({
-        method: "POST",
-        url: addPhotoUrl,
-        data: addPhotoData,
-        ContentType: 'application/json',
-        headers: kinveyAuthHeaders,
-        success: putRequestToGoogle
-    });
+//    $.ajax({
+//        method: "POST",
+//        url: addPhotoUrl,
+//        data: addPhotoData,
+//        ContentType: 'application/json',
+//        headers: kinveyAuthHeaders,
+//        success: putRequestToGoogle
+//    });
 
-    function putRequestToGoogle(data) {
+//    function putRequestToGoogle(data) {
 
-        let uploadUrl = data._uploadURL;
-        let photo = $("#browsePhotoButton").val();
+//        let uploadUrl = data._uploadURL;
+//        let photo = $("#browsePhotoButton").val();
 
-        let putRequestData = {
-            signature: data.signature
+//        let putRequestData = {
+//            signature: data.signature
+//        };
+
+//        $.ajax({
+//            method: "PUT",
+//            url: uploadUrl,
+//            data: putRequestData,
+//            ContentType: 'application/json',
+//            headers: kinveyAuthHeaders,
+//            success: console.log("uspq"),
+//            error: console.log("tc... ne uspq... tup si")
+//        });
+//    }
+
+
+    function fileSelected(){
+        let oFile = document.getElementById('_file').files[0];
+        let oReader = new FileReader();
+        oReader.onload = function(e) {
+            document.getElementById('photoInfo').style.display = 'block';
+            document.getElementById('photoName').innerHTML = 'Name: ' + oFile.name;
+            document.getElementById('photoType').innerHTML = 'Type: ' + oFile.type;
         };
+        oReader.readAsDataURL(oFile);
+        fileUpload(oFile);
+    }
+        
+    //http://stackoverflow.com/questions/35285825/kinvey-rest-api-upload
 
-        $.ajax({
-            method: "PUT",
-            url: uploadUrl,
-            data: putRequestData,
-            //ContentType: 'application/json',
-            //headers: kinveyAuthHeaders,
-            success: console.log("uspq"),
-            error: console.log("tc... ne uspq... tup si")
+    function fileUpload(file) {
+        let file = document.getElementById('_file').files[0];
+        let promise = Kinvey.File.upload(file,{
+            filename: document.getElementById('photoInfo').toString(),
+            mimetype: document.getElementById('photoType').toString()
+        });
+        promise.then(function() {
+            alert("File Uploaded Successfully");
+        }, function(error){
+            alert("File Upload Failure:  " +  error.description);
         });
     }
 }
