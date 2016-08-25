@@ -12,6 +12,8 @@
         <!--Scripts-->
         <script src="scripts/libs/jquery-3.0.0.min.js" type=""></script>
         <script src="scripts/libs/kinvey-html5-1.6.10.min.js" type=""></script>
+        <script src="scripts/libs/ospry.js" type=""></script>
+        <script src="https://code.ospry.io/v1/ospry.js"></script>
         <script src="scripts/app.js"></script>
     </head>
     <body>
@@ -97,27 +99,11 @@
                         <div class="col-md-6"></div>
                         <div class="col-md-4">
                             <form id="addPhotoForm">
-                                <div>
-                                    <span class="span-form">Photo name</span>
-                                    <input type="text" id="addPhotoName" required/>
-                                </div>
-                                <br/>
-                                <div>
-                                    <span class="span-form">Category</span>
-                                    <input type="text" id="photoCategory"/> <!--TODO: make this into a dropdown -->
-                                </div>
-                                <br/>
-                                <div>
-                                    <input type="file" name="_file" id="_file" onchange="fileSelected();" />
-                                    <div id="photoInfo">
-                                        <div id="photoName"></div>
-                                        <div id="fileType"></div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <div>
-                                    <input type="submit" id="addPhotoButton" value="Add"/>
-                                </div>
+                                <form id="up-form">
+                                    <input type="file" multiple />
+                                    <input type="text" id="fileName"/>
+                                    <input type="submit" id="submitBtn" value="upload"/>
+                                </form>
                             </form>
                         </div>
                     </div>

@@ -12,7 +12,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -25,8 +24,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="110" column="68" selection-start-line="110" selection-start-column="68" selection-end-line="110" selection-end-column="68" />
+            <state relative-caret-position="136">
+              <caret line="14" column="61" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
               <folding>
                 <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#section#3;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -42,11 +41,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ospry.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/libs/ospry.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="proba.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/proba.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="591">
-              <caret line="42" column="76" selection-start-line="42" selection-start-column="76" selection-end-line="42" selection-end-column="76" />
+            <state relative-caret-position="323">
+              <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -55,8 +64,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/styles/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="291" column="14" selection-start-line="291" selection-start-column="14" selection-end-line="291" selection-end-column="14" />
+            <state relative-caret-position="7820">
+              <caret line="460" column="19" selection-start-line="460" selection-start-column="19" selection-end-line="460" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -65,21 +74,20 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="435" column="72" selection-start-line="435" selection-start-column="72" selection-end-line="435" selection-end-column="72" />
+            <state relative-caret-position="340">
+              <caret line="475" column="31" selection-start-line="475" selection-start-column="31" selection-end-line="475" selection-end-column="31" />
               <folding>
+                <element signature="e#233#314#0" expanded="false" />
+                <element signature="n#!!block;n#showView#0" expanded="false" />
                 <element signature="n#!!block;n#showHideNavigationLinks#0" expanded="false" />
                 <element signature="n#!!block;n#showHomeView#0" expanded="false" />
                 <element signature="n#!!block;n#login#0" expanded="false" />
                 <element signature="n#!!block;n#isAdmin#0" expanded="false" />
+                <element signature="n#!!block;n#showAdminPage#0;n#!!block;n#isAdmin#0" expanded="false" />
                 <element signature="n#!!block;n#showInfo#0" expanded="false" />
                 <element signature="n#!!block;n#showAjaxError#0" expanded="false" />
                 <element signature="n#!!block;n#showGalleryView#0" expanded="false" />
-                <element signature="n#!!block;n#loadGallery#0;n#!!block;n#showGalleryView#0" expanded="false" />
                 <element signature="n#!!block;n#showAddPhotoView#0" expanded="false" />
-                <element signature="e#12623#12665#0" expanded="false" />
-                <element signature="e#12720#12752#0" expanded="false" />
-                <element signature="e#12807#12825#0" expanded="false" />
                 <element signature="n#!!block;n#showAboutView#0" expanded="false" />
                 <element signature="n#!!block;n#register#0" expanded="false" />
                 <element signature="n#!!block;n#showError#0" expanded="false" />
@@ -87,7 +95,6 @@
                 <element signature="n#!!block;n#showLoginView#0" expanded="false" />
                 <element signature="n#!!block;n#logout#0" expanded="false" />
                 <element signature="n#!!block;n#showProfileView#0" expanded="false" />
-                <marker date="1472049883081" expanded="false" signature="346:410" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -107,8 +114,8 @@
       <list>
         <option value="$PROJECT_DIR$/PhotoV&amp;I/templates/home.html" />
         <option value="$PROJECT_DIR$/PhotoV&amp;I/scripts/views/homeView.js" />
-        <option value="$PROJECT_DIR$/PhotoV&amp;I/styles/style.css" />
         <option value="$PROJECT_DIR$/proba.html" />
+        <option value="$PROJECT_DIR$/PhotoV&amp;I/styles/style.css" />
         <option value="$PROJECT_DIR$/PhotoV&amp;I/proba.html" />
         <option value="$PROJECT_DIR$/PhotoV&amp;I/index.html" />
         <option value="$PROJECT_DIR$/PhotoV&amp;I/scripts/app.js" />
@@ -128,8 +135,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1696" />
-    <option name="height" value="1026" />
+    <option name="width" value="1296" />
+    <option name="height" value="776" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -156,6 +163,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files" />
+      </pane>
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -179,16 +189,53 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PhotoVI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PhotoVI" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PhotoV&amp;I" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PhotoVI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PhotoVI" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PhotoV&amp;I" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files" />
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Simple-blog" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
@@ -200,11 +247,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Valeri\Desktop\PhotoVI\PhotoV-I\PhotoVI\PhotoV&amp;I\scripts\libs" />
       <recent name="C:\Users\ivo\Desktop\New folder (2)\PhotoV-I\PhotoVI\PhotoV&amp;I\scripts\libs" />
     </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -232,6 +283,19 @@
       <scripts />
       <node-interpreter value="project" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
       <method />
     </configuration>
   </component>
@@ -271,17 +335,19 @@
       <workItem from="1471864033170" duration="6866000" />
       <workItem from="1471936623354" duration="6128000" />
       <workItem from="1472044312036" duration="5371000" />
+      <workItem from="1472121673028" duration="15998000" />
+      <workItem from="1472139633584" duration="1350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161679000" />
+    <option name="totallyTimeSpent" value="179027000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09940476" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18828125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -313,18 +379,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/styles/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -622,14 +681,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/libs/kinvey-backbone-1.6.10.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/libs/kinvey-backbone-1.6.10.min.js" />
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/libs/kinvey-html5-1.6.10.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -638,34 +690,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/proba.html" />
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/styles/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="291" column="14" selection-start-line="291" selection-start-column="14" selection-end-line="291" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proba.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
+        <state relative-caret-position="7820">
+          <caret line="460" column="19" selection-start-line="460" selection-start-column="19" selection-end-line="460" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/proba.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="42" column="76" selection-start-line="42" selection-start-column="76" selection-end-line="42" selection-end-column="76" />
+        <state relative-caret-position="323">
+          <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/libs/ospry.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="110" column="68" selection-start-line="110" selection-start-column="68" selection-end-line="110" selection-end-column="68" />
+        <state relative-caret-position="136">
+          <caret line="14" column="61" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
           <folding>
             <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#3;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -682,21 +735,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="435" column="72" selection-start-line="435" selection-start-column="72" selection-end-line="435" selection-end-column="72" />
+        <state relative-caret-position="340">
+          <caret line="475" column="31" selection-start-line="475" selection-start-column="31" selection-end-line="475" selection-end-column="31" />
           <folding>
+            <element signature="e#233#314#0" expanded="false" />
+            <element signature="n#!!block;n#showView#0" expanded="false" />
             <element signature="n#!!block;n#showHideNavigationLinks#0" expanded="false" />
             <element signature="n#!!block;n#showHomeView#0" expanded="false" />
             <element signature="n#!!block;n#login#0" expanded="false" />
             <element signature="n#!!block;n#isAdmin#0" expanded="false" />
+            <element signature="n#!!block;n#showAdminPage#0;n#!!block;n#isAdmin#0" expanded="false" />
             <element signature="n#!!block;n#showInfo#0" expanded="false" />
             <element signature="n#!!block;n#showAjaxError#0" expanded="false" />
             <element signature="n#!!block;n#showGalleryView#0" expanded="false" />
-            <element signature="n#!!block;n#loadGallery#0;n#!!block;n#showGalleryView#0" expanded="false" />
             <element signature="n#!!block;n#showAddPhotoView#0" expanded="false" />
-            <element signature="e#12623#12665#0" expanded="false" />
-            <element signature="e#12720#12752#0" expanded="false" />
-            <element signature="e#12807#12825#0" expanded="false" />
             <element signature="n#!!block;n#showAboutView#0" expanded="false" />
             <element signature="n#!!block;n#register#0" expanded="false" />
             <element signature="n#!!block;n#showError#0" expanded="false" />
@@ -704,7 +756,6 @@
             <element signature="n#!!block;n#showLoginView#0" expanded="false" />
             <element signature="n#!!block;n#logout#0" expanded="false" />
             <element signature="n#!!block;n#showProfileView#0" expanded="false" />
-            <marker date="1472049883081" expanded="false" signature="346:410" ph="{...}" />
           </folding>
         </state>
       </provider>

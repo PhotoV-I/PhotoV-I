@@ -25,12 +25,14 @@ function showHideNavigationLinks() {
         $("#linkLogin").hide();
         $("#linkLogout").show();
         $("#linkProfile").show();
+        $("#likeConfirm").show();
     } else {
         $("#linkAddPhoto").hide();
         $("#linkRegister").show();
         $("#linkLogin").show();
         $("#linkLogout").hide();
         $("#linkProfile").hide();
+        $("#likeConfirm").hide();
     }
 }
 
@@ -269,6 +271,9 @@ function showGalleryView() {
 
             pictureName = likedPictures[0];
 
+            //let responseString = JSON.stringify(data.usersLiked);
+            //let matches = responseString.search('"' + username + '"'); //TODO: Logic for likes restrictions
+
             if(likedPictures.length > 0){
                 for (let picture of data){
                     pictureLikes = Number.parseFloat(picture.myProperty);
@@ -292,25 +297,29 @@ function showGalleryView() {
 
                 let newValueOfLikes = pictureObj.myProperty + 1;
                 let dataNewValueOfLikes = {
-                     "myProperty": newValueOfLikes
+                     "myProperty": newValueOfLikes,
+                     "usersLiked": username
                 };
 
-                $.ajax({
-                    method: "PUT",
-                    url: newLikeUrl,
-                    data: dataNewValueOfLikes,
-                    ContentType: 'application/json',
-                    headers: kinveyAuthHeaders,
-                    success: likedPictureSuccessful
-                });
-
-            function likedPictureSuccessful() {
 
 
-                $('#pictureTableFromJS').empty();
-                showGalleryView();
-            }
-            
+
+                    $.ajax({
+                        method: "PUT",
+                        url: newLikeUrl,
+                        data: dataNewValueOfLikes,
+                        ContentType: 'application/json',
+                        headers: kinveyAuthHeaders,
+                        success: likedPictureSuccessful
+                    });
+
+                    function likedPictureSuccessful() {
+
+
+                        $('#pictureTableFromJS').empty();
+                        showGalleryView();
+                    }
+
         });
 
         $('#gallery').append(pictureTable);
@@ -372,16 +381,14 @@ function showAddPhotoView() {
 
 
 function addPhoto() {
-
-
 //    let photoName = $('#addPhotoName').val();
-
+//
 //    let addPhotoUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID;
 //    let addPhotoData = {
 //        "_filename": photoName,
 //        "myProperty": 0,
 //        "_acl":
-//        {
+//      {
 //            "creator": username,
 //            "gr": true,
 //            "gw": true
@@ -390,11 +397,11 @@ function addPhoto() {
 //    let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
 
 
-
 //    $.ajax({
 //        method: "POST",
 //        url: addPhotoUrl,
 //        data: addPhotoData,
+    //"X-Kinvey-API-Version": 3,
 //        ContentType: 'application/json',
 //        headers: kinveyAuthHeaders,
 //        success: putRequestToGoogle
@@ -404,7 +411,7 @@ function addPhoto() {
 
 //        let uploadUrl = data._uploadURL;
 //        let photo = $("#browsePhotoButton").val();
-
+//
 //        let putRequestData = {
 //            signature: data.signature
 //        };
@@ -413,42 +420,92 @@ function addPhoto() {
 //            method: "PUT",
 //            url: uploadUrl,
 //            data: putRequestData,
-//            ContentType: 'application/json',
+    //ContentType: 'application/json',
 //            headers: kinveyAuthHeaders,
 //            success: console.log("uspq"),
-//            error: console.log("tc... ne uspq... tup si")
+//            error: console.log("tc... ne uspq...")
 //        });
 //    }
 
 
-    function fileSelected(){
-        let oFile = document.getElementById('_file').files[0];
-        let oReader = new FileReader();
-        oReader.onload = function(e) {
-            document.getElementById('photoInfo').style.display = 'block';
-            document.getElementById('photoName').innerHTML = 'Name: ' + oFile.name;
-            document.getElementById('photoType').innerHTML = 'Type: ' + oFile.type;
+    // WITH KINVEY SDK
+//    function fileSelected(){
+//        let oFile = document.getElementById('_file').files[0];
+//        let oReader = new FileReader();
+//        oReader.onload = function(e) {
+//            document.getElementById('photoInfo').style.display = 'block';
+//            document.getElementById('photoName').innerHTML = 'Name: ' + oFile.name;
+//            document.getElementById('photoType').innerHTML = 'Type: ' + oFile.type;
+//        };
+//        oReader.readAsDataURL(oFile);
+//        fileUpload(oFile);
+//    }
+
+//    //http://stackoverflow.com/questions/35285825/kinvey-rest-api-upload
+
+//    function fileUpload(file) {
+//        let file = document.getElementById('_file').files[0];
+//        let promise = Kinvey.File.upload(file,{
+//            filename: document.getElementById('photoInfo').toString(),
+//            mimetype: document.getElementById('photoType').toString()
+//        });
+//        promise.then(function() {
+//            alert("File Uploaded Successfully");
+//        }, function(error){
+//            alert("File Upload Failure:  " +  error.description);
+//        });
+//    }
+
+//////////////////////////////////////////////OSPRAY/////////////////////////////////////
+
+    //TODO: Tук идеята е снимките да се качват първо в Ospry(https://code.ospry.io/) и след това URL-то да се подава към Kinvey като Data
+
+    let ospry = new Ospry('pk-test-rjna2is16e0hjq6g7810zhym');
+    let uploadURL;
+    let fileName = $('#fileName').val;
+    let onUpload = function (err, metadata) {
+
+        ospry.get({
+            url: metadata.url,
+            maxHeight: 400,
+            imageReady: function (err, domImage) {
+                $('body').append(domImage);
+            },
+        });
+        uploadURL = JSON.stringify(metadata.url);
+        console.log(uploadURL);
+    };
+
+
+    $('#up-form').submit(function (e) {
+        e.preventDefault();
+        ospry.up({
+            form: this,
+            imageReady: onUpload,
+        });
+    });
+
+    $('#submitBtn').click(function () {
+        //event.preventDefault();
+
+        let uploadDataUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
+        let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+        let uploadData = {
+            name: fileName,
+            file: uploadURL
         };
-        oReader.readAsDataURL(oFile);
-        fileUpload(oFile);
-    }
-        
-    //http://stackoverflow.com/questions/35285825/kinvey-rest-api-upload
 
-    function fileUpload(file) {
-        let file = document.getElementById('_file').files[0];
-        let promise = Kinvey.File.upload(file,{
-            filename: document.getElementById('photoInfo').toString(),
-            mimetype: document.getElementById('photoType').toString()
+        $.ajax({
+            method: "POST",
+            url: uploadDataUrl,
+            data: uploadData,
+            //ContentType: 'application/json',
+            headers: kinveyAuthHeaders
+            //success: render
+            //error: showAjaxError
         });
-        promise.then(function() {
-            alert("File Uploaded Successfully");
-        }, function(error){
-            alert("File Upload Failure:  " +  error.description);
-        });
-    }
+    });
 }
-
 
 
 function showAboutView() {

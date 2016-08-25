@@ -5,49 +5,75 @@
     <title>Title</title>
 
     <script src="scripts/libs/jquery-3.0.0.min.js" type=""></script>
-    <script src="scripts/libs/kinvey-html5-1.6.10.min.js" type=""></script>
+    <script src="https://code.ospry.io/v1/ospry.js"></script>
+    <style>
+        img {
+            height:150px;
+        }
+    </style>
 </head>
 <body>
 
-<input type="file" name="_file" id="_file" onchange="fileSelected();" />
-<div id="fileinfo">
-    <div id="filename"></div>
-    <div id="filetype"></div>
-</div>
+<form id="up-form">
+    <input type="file" multiple />
+    <input type="text" id="fileName"/>
+    <input type="submit" id="submitBtn" value="upload"/>
+</form>
 
         <script>
-            Kinvey.init({
-                appKey: 'kid_HycsO3rF',
-                appSecret: 'd0c21de73cd04b95aa68f4f48ad6ce66'
+            const kinveyAppID = 'kid_HycsO3rF';
+            const kinveyAppSecret = 'd0c21de73cd04b95aa68f4f48ad6ce66';
+            const kinveyAppMasterSecret = "3b22a7bf51264d209af567ee79d4becc";
+            const kinveyServiceBaseUrl = 'https://baas.kinvey.com/';
+
+            ////////// OSPRAY
+            let ospry = new Ospry('pk-test-rjna2is16e0hjq6g7810zhym');
+            let uploadURL;
+            let fileName = $('#fileName').val;
+            let onUpload = function(err, metadata) {
+
+                ospry.get({
+                    url: metadata.url,
+                    maxHeight: 400,
+                    imageReady: function(err, domImage) {
+                        $('body').append(domImage);
+                    },
+                });
+                uploadURL = JSON.stringify(metadata.url);
+                console.log(uploadURL);
+            };
+
+
+            $('#up-form').submit(function(e) {
+                e.preventDefault();
+                ospry.up({
+                    form: this,
+                    imageReady: onUpload,
+                });
             });
 
-            Kinvey.User.login();
+            $('#submitBtn').click(function () {
+                //event.preventDefault();
 
-            function fileSelected(){
-                var oFile = document.getElementById('_file').files[0];
-                var oReader = new FileReader();
-                oReader.onload = function(e) {
-                    document.getElementById('fileinfo').style.display = 'block';
-                    document.getElementById('filename').innerHTML = 'Name: ' + oFile.name;
-                    document.getElementById('filetype').innerHTML = 'Type: ' + oFile.type;
+                let uploadDataUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
+                let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+                let uploadData = {
+                    name: fileName,
+                    file: uploadURL
                 };
-                oReader.readAsDataURL(oFile);
-                fileUpload(oFile);
-            }
+                $.ajax({
+                    method: "POST",
+                    url:uploadDataUrl,
+                    data: uploadData,
+                    //ContentType: 'application/json',
+                    headers: kinveyAuthHeaders
+                    //success: render
+                    //error: showAjaxError
+                });
 
 
-            function fileUpload(file) {
-                var file = document.getElementById('_file').files[0];
-                var promise = Kinvey.File.upload(file,{
-                    filename: document.getElementById('fileinfo').toString(),
-                    mimetype: document.getElementById('filetype').toString()
-                });
-                promise.then(function() {
-                    alert("File Uploaded Successfully");
-                }, function(error){
-                    alert("File Upload Failure:  " +  error.description);
-                });
-            }
+            });
+
         </script>
 </body>
 </html>
