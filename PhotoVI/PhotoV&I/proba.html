@@ -2,78 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
+    <title>Test</title>
     <script src="scripts/libs/jquery-3.0.0.min.js" type=""></script>
     <script src="https://code.ospry.io/v1/ospry.js"></script>
-    <style>
-        img {
-            height:150px;
-        }
-    </style>
 </head>
 <body>
 
 <form id="up-form">
     <input type="file" multiple />
-    <input type="text" id="fileName"/>
-    <input type="submit" id="submitBtn" value="upload"/>
+    <button type="submit">Upload</button>
 </form>
 
-        <script>
-            const kinveyAppID = 'kid_HycsO3rF';
-            const kinveyAppSecret = 'd0c21de73cd04b95aa68f4f48ad6ce66';
-            const kinveyAppMasterSecret = "3b22a7bf51264d209af567ee79d4becc";
-            const kinveyServiceBaseUrl = 'https://baas.kinvey.com/';
-
-            ////////// OSPRAY
-            let ospry = new Ospry('pk-test-rjna2is16e0hjq6g7810zhym');
-            let uploadURL;
-            let fileName = $('#fileName').val;
-            let onUpload = function(err, metadata) {
-
-                ospry.get({
-                    url: metadata.url,
-                    maxHeight: 400,
-                    imageReady: function(err, domImage) {
-                        $('body').append(domImage);
-                    },
-                });
-                uploadURL = JSON.stringify(metadata.url);
-                console.log(uploadURL);
+<script>
+    const kinveyAppID = 'kid_HycsO3rF';
+    const kinveyAppSecret = 'd0c21de73cd04b95aa68f4f48ad6ce66';
+    const kinveyAppMasterSecret = "3b22a7bf51264d209af567ee79d4becc";
+    const kinveyServiceBaseUrl = 'https://baas.kinvey.com/';
+    ////////// OSPRAY
+    let ospry = new Ospry('pk-test-rjna2is16e0hjq6g7810zhym');
+    let uploadURL;
+    let fileName = $('#fileName').val;
+    let onUpload = function(err, metadata) {
+        ospry.get({
+            url: metadata.url,
+            maxHeight: 400,
+            imageReady: function(err, domImage) {
+                $('body').append(domImage);
+            }
+        });
+        uploadURL = JSON.stringify(metadata.url);
+        console.log(uploadURL);
+        ///// POST to Kinvey
+        if(uploadURL.length > 0){
+            let uploadDataUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
+            let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+            let uploadData = {
+                name: fileName,
+                file: uploadURL
             };
-
-
-            $('#up-form').submit(function(e) {
-                e.preventDefault();
-                ospry.up({
-                    form: this,
-                    imageReady: onUpload,
-                });
+            $.ajax({
+                method: "POST",
+                url:uploadDataUrl,
+                data: uploadData,
+                //ContentType: 'application/json',
+                headers: kinveyAuthHeaders
+                //success: render
+                //error: showAjaxError
             });
-
-            $('#submitBtn').click(function () {
-                //event.preventDefault();
-
-                let uploadDataUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
-                let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
-                let uploadData = {
-                    name: fileName,
-                    file: uploadURL
-                };
-                $.ajax({
-                    method: "POST",
-                    url:uploadDataUrl,
-                    data: uploadData,
-                    //ContentType: 'application/json',
-                    headers: kinveyAuthHeaders
-                    //success: render
-                    //error: showAjaxError
-                });
+        }
+    };
+    $('#up-form').submit(function(e) {
+        e.preventDefault();
+        ospry.up({
+            form: this,
+            imageReady: onUpload
+        });
+    });
 
 
-            });
-
-        </script>
+</script>
 </body>
 </html>

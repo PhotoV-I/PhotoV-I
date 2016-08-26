@@ -49,8 +49,6 @@ function login() {
         password: $("#loginPassword").val()
     };
     username = $("#loginUserName").val();
-    //let password = $("#loginPassword").val();
-    //if (username.length < 1 || password.length < 1) { //TODO: To be or not :)
         $.ajax({
             method: "POST",
             url: loginUrl,
@@ -67,9 +65,6 @@ function login() {
             showHomeView();
             showInfo("Welcome " + username);
         }
-    //} else{
-        //showError("Please, enter user name and password!");
-    //}
 }
 
 function isAdmin(username) {
@@ -122,71 +117,10 @@ function isAdmin(username) {
                         $('<td>').text(user.username),
                         $('<td>').text(user.last_name),
                         $('<td>').text(user.email),
-                        $('<td>').text(user._id),
-                        $('<td>').text($('<form class="userStatus">').append($('<p>'))), //TODO: за СофтУни
-                        $('<td>').append('<form class="adminCheckBoxes">').append($('<input type="checkbox" />')))
-                    );
-                }
-
-                let isLockedData= {
-                    //TODO     
-                }; 
-
-                function isLocked() { //TODO
-                    $.ajax({
-                        method: "POST",
-                        url:isAdminUrl,
-                        data: isAdminData,
-                        ContentType: 'application/json',
-                        headers: kinveyAuthHeaders,
-                        success: showAdminPage,
-                        error: showAjaxError
-                    });
+                        $('<td>').text(user._id)));
                 }
 
                 $("#usersTable").append(usersTable);
-
-                let lockdonwUsers;
-                $('#lockUserForm').submit(function (event) {
-
-                    event.preventDefault();
-
-                    lockdonwUsers = $('#usersTableFromJS').find('[type="checkbox"]:checked')
-                        .map(function(){
-                            return $(this).closest('tr').find('td:nth-child(4)').text();
-                        }).get();
-
-                        // TODO: как да се визуализират заключените юзири???
-                        console.log(lockdonwUsers);
-
-                        for(let user of lockdonwUsers){
-                            $(".userStatus").empty(); //TODO: Това е вярно, само не го хваща по клас
-                            $(".userStatus").append("disabled");
-                        }
-
-                        for (let user of lockdonwUsers) {
-    
-                            let dataForLockdown = {
-                                "userId": '"' + user + '"',
-                                "setLockdownStateTo": true //TODO: подавам булева, то ми казва че му подавам стринг????
-                            };
-
-                            let lockdownUsersUrl = kinveyServiceBaseUrl + "rpc/" + kinveyAppID + "/lockdown-user";
-
-                            console.log(lockdownUsersUrl);
-                            console.log(dataForLockdown);
-                            
-                            $.ajax({
-                                method: "POST",
-                                url: lockdownUsersUrl,
-                                data: dataForLockdown,
-                                ContentType: "application/json",
-                                headers: kinveyAuthHeaders,
-                                success: alert("SUCCESS"),
-                                error: alert("FAIL")
-                            });
-                        }
-                });
 
             }
         }
@@ -197,16 +131,13 @@ function isAdmin(username) {
             $("#deleteConfirm").hide();
         }
     }
-
-
 }
-
 
 
 function showInfo(messageText) {
     $('#infoBox').text(messageText).show().delay(3000).fadeOut();
 }
-
+   
 function showAjaxError(data, status) {
     let errorMsg = "Wrong password or user name!";
     $('#errorBox').text(errorMsg).show();
@@ -230,6 +161,8 @@ function showGalleryView() {
     }
 
     function loadGallery(data, status){
+
+        $('#photos').text('');
 
 
         showInfo("THE IMAGES!!!");
@@ -322,7 +255,7 @@ function showGalleryView() {
 
         });
 
-        $('#gallery').append(pictureTable);
+        $('#photos').append(pictureTable);
 
 
         $('#deleteConfirm').click(function () { //TODO: да се оптимизира
@@ -376,8 +309,6 @@ function showGalleryView() {
 function showAddPhotoView() {
     showView('viewAddPhoto');
 }
-
-
 
 
 function addPhoto() {
@@ -458,7 +389,7 @@ function addPhoto() {
 
 //////////////////////////////////////////////OSPRAY/////////////////////////////////////
 
-    //TODO: Tук идеята е снимките да се качват първо в Ospry(https://code.ospry.io/) и след това URL-то да се подава към Kinvey като Data
+    //TODO: Tук идеята е снимките да се качват първо в Ospry(https://code.ospry.io/) и след това URL-то да се подава към Kinvey като Data, справка proba.html
 
     let ospry = new Ospry('pk-test-rjna2is16e0hjq6g7810zhym');
     let uploadURL;
@@ -470,23 +401,10 @@ function addPhoto() {
             maxHeight: 400,
             imageReady: function (err, domImage) {
                 $('body').append(domImage);
-            },
+            }
         });
         uploadURL = JSON.stringify(metadata.url);
         console.log(uploadURL);
-    };
-
-
-    $('#up-form').submit(function (e) {
-        e.preventDefault();
-        ospry.up({
-            form: this,
-            imageReady: onUpload,
-        });
-    });
-
-    $('#submitBtn').click(function () {
-        //event.preventDefault();
 
         let uploadDataUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
         let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
@@ -503,6 +421,15 @@ function addPhoto() {
             headers: kinveyAuthHeaders
             //success: render
             //error: showAjaxError
+        });
+    };
+
+
+    $('#up-form').submit(function (e) {
+        e.preventDefault();
+        ospry.up({
+            form: this,
+            imageReady: onUpload
         });
     });
 }
