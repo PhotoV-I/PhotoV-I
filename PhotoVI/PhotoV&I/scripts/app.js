@@ -199,7 +199,7 @@ function showGalleryView() {
                 .map(function(){
                     return $(this).closest('tr').find('td:nth-child(1)').text();
                 }).get();
-
+            console.log(likedPictures);
             pictureName = likedPictures[0];
 
             //let responseString = JSON.stringify(data.usersLiked);
@@ -261,6 +261,7 @@ function showGalleryView() {
                 .map(function(){
                     return $(this).closest('tr').find('td:nth-child(1)').text();
                 }).get();
+
 
             pictureName = likedPictures[0];
 

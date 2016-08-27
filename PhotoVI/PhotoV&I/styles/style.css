@@ -276,6 +276,7 @@ main > section{
     border-radius: 5px;
     overflow: auto;
     height: 268px;
+    width: 820px;
 }
 
 #staticUsersTableHeader {
@@ -289,7 +290,7 @@ main > section{
     background-color: rgba(208, 210, 207, 0.6);
     padding: 5px;
     border: 3px solid #d0d2cf;
-    width: 137.01px;
+    width: 200px;
 }
 
 #usersTable table{
@@ -314,36 +315,6 @@ main > section{
     width: 200px;
 }
 
-#lockUserButton {
-    margin-left: 735px;
-    margin-top: 20px;
-    color: #355021;
-    background-color: #eaede8;
-    border-radius: 5px;
-    border: 1px solid #d0d2cf;
-    padding: 5px 10px;
-    font-size: 1.3em;
-    position: absolute;
-}
-#unlockUserButton{
-    margin-left: 600px;
-    margin-top: 20px;
-    color: #355021;
-    background-color: #eaede8;
-    border-radius: 5px;
-    border: 1px solid #d0d2cf;
-    padding: 5px 10px;
-    font-size: 1.3em;
-    position: absolute;
-}
-
-#lockUserButton:hover , #unlockUserButton:hover{
-    background-color: #d8ddd4;
-}
-
-.adminCheckBoxes {
-    width: 25px;
-}
 
 .title-users-list{
     color:#355020;
@@ -460,4 +431,45 @@ main > section{
 
 #up-form  img {
     height: 50px;
+}
+
+#up-form{
+    margin-top: -350px;
+    line-height: 1.5em;
+    text-align: right;
+
+}
+#up-form input[type="file"] {
+    padding: 5px 10px;
+    color: #355021;
+    font-size: 1.3em;
+    margin-left: 50px;
+
+}
+
+#photoName, #categoryName{
+    background-color: #eaede8;
+    border: 1px solid #d0d2cf;
+    border-radius: 5px;
+}
+
+.upload-label{
+    color: #355021;
+    font-size: 1.3em;
+}
+
+
+
+.upload-label-submit{
+    margin-left: 90px;
+    color: #355021;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+    padding: 5px 10px;
+    font-size: 1.3em;
+}
+
+.upload-label-submit:hover{
+    background-color: #d3d4d2;
 }
