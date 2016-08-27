@@ -368,24 +368,28 @@ main > section{
 }
 
 #profileViewFromJS{
+    margin-left:10px;
     position: absolute;
-    margin-left:500px;
+    margin-top: -20px;
     background-color: #eaede8;
     color: #355020;
     font-family: Verdana, sans-serif;
     font-size: 1.5em;
     border-radius: 5px;
     border: 2px solid #000000;
+
 }
 
 #profileViewFromJS table{
     border-radius: 5px;
     border: 2px solid #000000
+
 }
 
 #profileViewFromJS th{
     padding: 20px;
     background-color: #ffffff;
+
 }
 
 #profileViewFromJS td{
@@ -393,13 +397,26 @@ main > section{
     width: 150px;
     padding: 10px;
     border: 2px solid red;
+
+}
+#deleteConfirmProfileForm{
+    margin-left:10px;
+    position: absolute;
+    margin-top: -20px;
+    border: 5px solid blue;
 }
 
 #gallery {
-    margin-left:500px;
+    margin-left:10px;
     position: absolute;
-    margin-top:200px;
+    margin-top: -35px;
+
 }
+ #photos{
+     width: 1200px;
+     height: 470px;
+     overflow: auto;
+ }
 
 #gallery table {
     background-color: #dddddd;
@@ -426,7 +443,32 @@ main > section{
 }
 
 #deleteConfirm{
-    display:none;
+    padding: 5px 10px;
+    color: #355021;
+    font-size: 1.3em;
+    margin-left: 840px;
+    margin-top: -102px;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+}
+#deleteConfirm:hover{
+    background-color: #d3d4d2;
+}
+
+#likeConfirm{
+    padding: 5px 10px;
+    color: #355021;
+    font-size: 1.3em;
+    margin-left: 1040px;
+    margin-top: 2px;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+}
+
+#likeConfirm:hover{
+    background-color: #d3d4d2;
 }
 
 #up-form  img {
@@ -473,3 +515,4 @@ main > section{
 .upload-label-submit:hover{
     background-color: #d3d4d2;
 }
+
