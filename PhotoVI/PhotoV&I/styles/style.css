@@ -458,7 +458,6 @@ main > section{
     display:none;
 }
 
-#pictureTableFromJS{
-    overflow: auto;
-    width: 300px;
+#up-form  img {
+    height: 50px;
 }

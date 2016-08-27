@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Test</title>
-    <script src="scripts/libs/jquery-3.0.0.min.js" type=""></script>
+    <script src="scripts/libs/jquery-3.0.0.min.js"></script>
     <script src="https://code.ospry.io/v1/ospry.js"></script>
 </head>
 <body>
@@ -19,9 +19,12 @@
     const kinveyAppMasterSecret = "3b22a7bf51264d209af567ee79d4becc";
     const kinveyServiceBaseUrl = 'https://baas.kinvey.com/';
     ////////// OSPRAY
+
     let ospry = new Ospry('pk-test-rjna2is16e0hjq6g7810zhym');
     let uploadURL;
+
     let fileName = $('#fileName').val;
+    console.log(fileName);
     let onUpload = function(err, metadata) {
         ospry.get({
             url: metadata.url,
@@ -30,27 +33,60 @@
                 $('body').append(domImage);
             }
         });
-        uploadURL = JSON.stringify(metadata.url);
+        uploadURL = metadata.url;
         console.log(uploadURL);
         ///// POST to Kinvey
         if(uploadURL.length > 0){
             let uploadDataUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
-            let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+
+
+            let kinveyAppHeaders = {
+                'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppSecret),
+                'Content-Type' : "application/json"
+            };
+
+
             let uploadData = {
                 name: fileName,
                 file: uploadURL
             };
-            $.ajax({
+
+            let loginUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/login";
+
+            //login za moi user, smeni go sus tvoi
+            let loginData = {
+                "username": "ivo",
+                "password": "123"
+            };
+
+            //promisi
+            $.when( $.ajax({
                 method: "POST",
-                url:uploadDataUrl,
-                data: uploadData,
-                //ContentType: 'application/json',
-                headers: kinveyAuthHeaders
-                //success: render
-                //error: showAjaxError
+                url:loginUrl,
+                data: JSON.stringify(loginData),
+                headers: kinveyAppHeaders
+            })).then(function( data ) {
+
+                var auth = data._kmd.authtoken;
+                var userHeaders = {
+                    'Authorization': "Kinvey " + auth,
+                    'Content-Type' : "application/json"
+                };
+
+                //zaqvki kum data tablicite v kinvey mogat da se pravqt samo sus user credentials ne sus app credentials
+                $.when( $.ajax({
+                    method: "POST",
+                    url:uploadDataUrl,
+                    data: JSON.stringify(uploadData),
+                    headers: userHeaders
+                })).then(function(data) {
+                    console.log(data);
+                    console.log("aww Yeah");
+                });
             });
         }
     };
+
     $('#up-form').submit(function(e) {
         e.preventDefault();
         ospry.up({
@@ -58,7 +94,6 @@
             imageReady: onUpload
         });
     });
-
 
 </script>
 </body>

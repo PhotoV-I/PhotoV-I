@@ -4,10 +4,7 @@ const kinveyAppSecret = 'd0c21de73cd04b95aa68f4f48ad6ce66';
 const kinveyAppMasterSecret = "3b22a7bf51264d209af567ee79d4becc";
 const kinveyServiceBaseUrl = 'https://baas.kinvey.com/';
 
-Kinvey.init({
-    appKey: 'kid_HycsO3rF',
-    appSecret: 'd0c21de73cd04b95aa68f4f48ad6ce66'
-});
+
 
 
 
@@ -148,7 +145,7 @@ function showGalleryView() {
     ajaxGallery();
     function ajaxGallery() {
 
-        let showGalleryUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID;
+        let showGalleryUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
         let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
 
         $.ajax({
@@ -187,9 +184,10 @@ function showGalleryView() {
             pictureLikes = Number.parseFloat(picture.myProperty);
 
             pictureTable.append($('<tr>').append(
-                $('<td>').text(picture._filename),
-                $('<td>').text(picture._acl.creator),
-                $('<td>').text(picture.myProperty),
+                $('<td>').text(picture.name),
+                $('<td>').text(picture.creator),
+                //$('<td>').text(picture.likes),
+                $("<td>").html($('<img src=' + picture.file +'>')),
                 $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
             );
         }
@@ -308,124 +306,85 @@ function showGalleryView() {
 
 function showAddPhotoView() {
     showView('viewAddPhoto');
+
+    addPhoto()
 }
 
 
 function addPhoto() {
-//    let photoName = $('#addPhotoName').val();
-//
-//    let addPhotoUrl = kinveyServiceBaseUrl + "blob/" + kinveyAppID;
-//    let addPhotoData = {
-//        "_filename": photoName,
-//        "myProperty": 0,
-//        "_acl":
-//      {
-//            "creator": username,
-//            "gr": true,
-//            "gw": true
-//        }
-//    };
-//    let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
-
-
-//    $.ajax({
-//        method: "POST",
-//        url: addPhotoUrl,
-//        data: addPhotoData,
-    //"X-Kinvey-API-Version": 3,
-//        ContentType: 'application/json',
-//        headers: kinveyAuthHeaders,
-//        success: putRequestToGoogle
-//    });
-
-//    function putRequestToGoogle(data) {
-
-//        let uploadUrl = data._uploadURL;
-//        let photo = $("#browsePhotoButton").val();
-//
-//        let putRequestData = {
-//            signature: data.signature
-//        };
-
-//        $.ajax({
-//            method: "PUT",
-//            url: uploadUrl,
-//            data: putRequestData,
-    //ContentType: 'application/json',
-//            headers: kinveyAuthHeaders,
-//            success: console.log("uspq"),
-//            error: console.log("tc... ne uspq...")
-//        });
-//    }
-
-
-    // WITH KINVEY SDK
-//    function fileSelected(){
-//        let oFile = document.getElementById('_file').files[0];
-//        let oReader = new FileReader();
-//        oReader.onload = function(e) {
-//            document.getElementById('photoInfo').style.display = 'block';
-//            document.getElementById('photoName').innerHTML = 'Name: ' + oFile.name;
-//            document.getElementById('photoType').innerHTML = 'Type: ' + oFile.type;
-//        };
-//        oReader.readAsDataURL(oFile);
-//        fileUpload(oFile);
-//    }
-
-//    //http://stackoverflow.com/questions/35285825/kinvey-rest-api-upload
-
-//    function fileUpload(file) {
-//        let file = document.getElementById('_file').files[0];
-//        let promise = Kinvey.File.upload(file,{
-//            filename: document.getElementById('photoInfo').toString(),
-//            mimetype: document.getElementById('photoType').toString()
-//        });
-//        promise.then(function() {
-//            alert("File Uploaded Successfully");
-//        }, function(error){
-//            alert("File Upload Failure:  " +  error.description);
-//        });
-//    }
-
 //////////////////////////////////////////////OSPRAY/////////////////////////////////////
-
-    //TODO: Tук идеята е снимките да се качват първо в Ospry(https://code.ospry.io/) и след това URL-то да се подава към Kinvey като Data, справка proba.html
 
     let ospry = new Ospry('pk-test-rjna2is16e0hjq6g7810zhym');
     let uploadURL;
-    let fileName = $('#fileName').val;
-    let onUpload = function (err, metadata) {
 
+    let fileName = $('#fileName').val;
+    console.log(fileName);
+    let onUpload = function(err, metadata) {
         ospry.get({
             url: metadata.url,
-            maxHeight: 400,
-            imageReady: function (err, domImage) {
-                $('body').append(domImage);
-            }
+            maxHeight: 400
+            //imageReady: function(err, domImage) {
+              //  $('body').append(domImage);
+
         });
-        uploadURL = JSON.stringify(metadata.url);
+        uploadURL = metadata.url;
         console.log(uploadURL);
+        ///// POST to Kinvey
+        if(uploadURL.length > 0){
+            let uploadDataUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
 
-        let uploadDataUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
-        let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
-        let uploadData = {
-            name: fileName,
-            file: uploadURL
-        };
 
-        $.ajax({
-            method: "POST",
-            url: uploadDataUrl,
-            data: uploadData,
-            //ContentType: 'application/json',
-            headers: kinveyAuthHeaders
-            //success: render
-            //error: showAjaxError
-        });
+            let kinveyAppHeaders = {
+                'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppSecret),
+                'Content-Type' : "application/json"
+            };
+
+
+            let uploadData = {
+                name: $('#photoName').val(),
+                file: uploadURL,
+                creator: username,
+                category: $('#categoryName').val(),
+                likes: 0
+            };
+
+            let loginUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/login";
+
+
+            let loginData = {
+                "username": "ivo",
+                "password": "123"
+            };
+
+            //promisi
+            $.when( $.ajax({
+                method: "POST",
+                url:loginUrl,
+                data: JSON.stringify(loginData),
+                headers: kinveyAppHeaders
+            })).then(function( data ) {
+
+                var auth = data._kmd.authtoken;
+                var userHeaders = {
+                    'Authorization': "Kinvey " + auth,
+                    'Content-Type' : "application/json"
+                };
+
+                //zaqvki kum data tablicite v kinvey mogat da se pravqt samo sus user credentials ne sus app credentials
+                $.when( $.ajax({
+                    method: "POST",
+                    url:uploadDataUrl,
+                    data: JSON.stringify(uploadData),
+                    headers: userHeaders
+                })).then(function(data) {
+                    console.log(data);
+                    console.log("aww Yeah");
+                });
+            });
+        }
     };
 
-
-    $('#up-form').submit(function (e) {
+    $('#up-form').submit(function(e) {
         e.preventDefault();
         ospry.up({
             form: this,
@@ -533,10 +492,10 @@ $(function () {
         event.preventDefault();
         register();
     });
-   $("#addPhotoForm").submit(function( event ) {
-        event.preventDefault();
-        addPhoto();
-    }); //TODO: not finished
+   //$("#addPhotoForm").click()
+        
+   //     addPhoto();
+   // ); //TODO: not finished
    $("#adminPanelButton").click(function(){ //TODO: Може да се изнесе в метод
        $("#viewAdminPanel").show();
        $("#viewHome").hide();
