@@ -495,6 +495,11 @@ main > section{
     border-radius: 5px;
 }
 
+#categoryName{
+    width: 175px;
+    height: 25px;
+}
+
 .upload-label{
     color: #355021;
     font-size: 1.3em;
