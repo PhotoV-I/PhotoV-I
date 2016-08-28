@@ -532,7 +532,7 @@ function showProfileView() {
 
             let pictureTable = $('<table id="pictureTableFromJSProfile">')
                 .append($('<tr>').append(
-                    '<th>Picture name</th>',
+                    '<th>Name</th>',
                     '<th>Likes</th>',
                     '<th>Picture</th>',
                     '<th>Check</th>')
