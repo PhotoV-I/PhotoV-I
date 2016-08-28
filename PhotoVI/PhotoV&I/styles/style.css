@@ -516,3 +516,20 @@ main > section{
     background-color: #d3d4d2;
 }
 
+#pictureTableFromJS img {
+    height: 250px;
+}
+
+#pictureTableFromJSProfile img{
+    height: 250px;
+}
+
+#pictureTableFromJSProfile {
+    background-color: #9d9d9d;
+    position: absolute;
+}
+
+#profileView{
+    overflow: auto;
+    width: 300px;
+}

@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="mostLikedPictures">
                         <div class="col-md-4"></div>
                         <div class="col-md-8">
                             <div class="fav-images" id="favImages">
@@ -100,7 +100,16 @@
                                 <div><span class="upload-label">Photo name: </span><input type="text" id="photoName"/>
                                 </div>
                                 <br/>
-                                <div><span class="upload-label">Category name: </span><input type="text" id="categoryName"/>
+                                <div><span class="upload-label">Category name: </span>
+                                    <select id="categoryName">
+                                        <option value="other">Other</option>
+                                        <option value="logos">Logos</option>
+                                        <option value="animal">Animal</option>
+                                        <option value="games">Games</option>
+                                        <option value="flowers">Flowers</option>
+                                        <option value="landscape">Landscape</option>
+                                        <option value="love">Love</option>
+                                    </select>
                                 </div>
                                 <br/>
                                 <div><input class="upload-label-buton" type="file" multiple />

@@ -5,9 +5,6 @@ const kinveyAppMasterSecret = "3b22a7bf51264d209af567ee79d4becc";
 const kinveyServiceBaseUrl = 'https://baas.kinvey.com/';
 
 
-
-
-
 function showView(viewId) {
     $('main > section').hide();
 
@@ -30,11 +27,31 @@ function showHideNavigationLinks() {
         $("#linkLogout").hide();
         $("#linkProfile").hide();
         $("#likeConfirm").hide();
+        $("#deleteConfirm").hide();
     }
 }
 
 function showHomeView() {
     showView('viewHome');
+
+    mostLikedPictures();
+}
+
+function mostLikedPictures() {
+
+    let showGalleryUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
+    let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+
+    $.ajax({
+        method: "GET",
+        url: showGalleryUrl,
+        headers: kinveyAuthHeaders,
+        success: renderMostLikedPictures
+    });
+
+    function renderMostLikedPictures(data) {
+        //TODO
+    }
 }
 
 let username;
@@ -157,6 +174,8 @@ function showGalleryView() {
 
     }
 
+
+
     function loadGallery(data, status){
 
                     $('#photos').text('');
@@ -185,10 +204,10 @@ function showGalleryView() {
 
                         pictureTable.append($('<tr>').append(
                             $('<td>').text(picture.name),
-                $('<td>').text(picture.likes),
-                //$('<td>').text(picture.likes),
-                $("<td>").html($('<img src=' + picture.file +'>')),
-                $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
+                            $('<td>').text(picture.likes),
+                            //$('<td>').text(picture.likes),
+                            $("<td>").html($('<a href='+ picture.file +' target="_blank"><img src=' + picture.file +'></a>')),
+                            $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
             );
         }
 
@@ -336,6 +355,7 @@ function showGalleryView() {
 function showAddPhotoView() {
     showView('viewAddPhoto');
 
+
     addPhoto()
 }
 
@@ -409,7 +429,9 @@ function addPhoto() {
                     console.log(data);
                     console.log("aww Yeah");
                     showInfo("Upload successful!");
-
+                    $('#photoName').val("");
+                    $('.upload-label-buton').val("");
+                    $('#categoryName').val('other');
                 });
             });
         }
@@ -486,6 +508,7 @@ function logout() {
 
 function showProfileView() {
     showView('viewProfile');
+    $('#profileView').text("");
 
     ajaxGallery();
     function ajaxGallery() {
@@ -522,7 +545,7 @@ function showProfileView() {
 
             for (let picture of data){
 
-                pictureName = picture._filename;
+                pictureName = picture.name;
                 pictureId = picture._id;
                 pictureLikes = Number.parseFloat(picture.myProperty);
                 pictureCreator = picture.creator;
@@ -532,7 +555,7 @@ function showProfileView() {
                         $('<td>').text(picture.name),
                         $('<td>').text(picture.likes),
                         //$('<td>').text(picture.likes),
-                        $("<td>").html($('<img src=' + picture.file + '>')),
+                        $("<td>").html($('<a href='+ picture.file +' target="_blank"><img src=' + picture.file + '></a>')),
                         $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
                     );
                 }
@@ -540,11 +563,10 @@ function showProfileView() {
 
             $('#profileView').append(pictureTable);
 
+            $('#deleteConfirmProfileForm').submit(function (e) {
+                e.preventDefault();
 
-            $('#deleteConfirmProfile').click(function () {
-
-
-                let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
+                let likedPictures = $('#pictureTableFromJSProfile').find('[type="checkbox"]:checked')
                     .map(function(){
                         return $(this).closest('tr').find('td:nth-child(1)').text();
                     }).get();
@@ -582,6 +604,7 @@ function showProfileView() {
                 $.ajax({
                     method: "DELETE",
                     url: newLikeUrl,
+                    //data: dataNewValueOfLikes,
                     ContentType: 'application/json',
                     headers: kinveyAuthHeaders,
                     success: likedPictureSuccessful
@@ -594,6 +617,7 @@ function showProfileView() {
                     showProfileView();
                 }
             });
+
         }
     }
 
