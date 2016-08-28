@@ -55,6 +55,8 @@ function mostLikedPictures() {
 }
 
 let username;
+let categoryName;
+let userEmail;
 function login() {
     let loginUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/login";
     let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppSecret)};
@@ -78,6 +80,7 @@ function login() {
             isAdmin(username);
             showHomeView();
             showInfo("Welcome " + username);
+            userEmail = data.email;
         }
 }
 
@@ -158,8 +161,65 @@ function showAjaxError(data, status) {
 }
 
 function showGalleryView() {
-    showView('viewGallery');
-    ajaxGallery();
+    showView('viewCategory');
+
+    $('#catAnimals').click(loadAnimalsCategory);
+    $('#catPeople').click(loadPeopleCategory);
+    $('#catLandscapes').click(loadLandscapesCategory);
+    $('#catFlowers').click(loadFlowersCategory);
+    $('#catLove').click(loadLoveCategory);
+    $('#catLogos').click(loadLogosCategory);
+    $('#catGames').click(loadGamesCategory);
+    $('#catOther').click(loadOtherCategory);
+
+    function loadAnimalsCategory() {
+        categoryName = "animals";
+        showView('viewGallery');
+        ajaxGallery();
+    }
+
+    function loadPeopleCategory() {
+        categoryName = "people";
+        showView('viewGallery');
+        ajaxGallery();
+    }
+    
+    function loadLandscapesCategory() {
+        categoryName = "landscapes";
+        showView('viewGallery');
+        ajaxGallery();
+    }
+
+    function loadFlowersCategory() {
+        categoryName = "flowers";
+        showView('viewGallery');
+        ajaxGallery();
+    }
+
+    function loadLoveCategory() {
+        categoryName = "love";
+        showView('viewGallery');
+        ajaxGallery();
+    }
+
+    function loadLogosCategory() {
+        categoryName = "logos";
+        showView('viewGallery');
+        ajaxGallery();
+    }
+
+    function loadGamesCategory() {
+        categoryName = "games";
+        showView('viewGallery');
+        ajaxGallery();
+    }
+
+    function loadOtherCategory() {
+        categoryName = "other";
+        showView('viewGallery');
+        ajaxGallery();
+    }
+
     function ajaxGallery() {
 
         let showGalleryUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test";
@@ -171,79 +231,78 @@ function showGalleryView() {
             headers: kinveyAuthHeaders,
             success: loadGallery
         });
-
     }
 
 
 
-    function loadGallery(data, status){
-
-                    $('#photos').text('');
+    function loadGallery(data) {
 
 
-                    showInfo("THE IMAGES!!!");
-
-                    let pictureTable = $('<table id="pictureTableFromJS">')
-                        .append($('<tr>').append(
-                            '<th>Picture name</th>',
-                            '<th>Likes</th>',
-                            '<th>Picture</th>',
-                            '<th>Check</th>')
-                        );
-
-                    let pictureName;
-                    let pictureId;
-                    let pictureLikes;
-                    let pictureObj;
-
-                    for (let picture of data){
-
-                        pictureName = picture._filename;
-                        pictureId = picture._id;
-                        pictureLikes = Number.parseFloat(picture.myProperty);
-
-                        pictureTable.append($('<tr>').append(
-                            $('<td>').text(picture.name),
-                            $('<td>').text(picture.likes),
-                            //$('<td>').text(picture.likes),
-                            $("<td>").html($('<a href='+ picture.file +' target="_blank"><img src=' + picture.file +'></a>')),
-                            $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
-            );
-        }
+            $('#photos').text('');
 
 
-        $('#likeConfirm').click(function () {
+            showInfo("THE IMAGES!!!");
 
-            let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
-                .map(function(){
-                    return $(this).closest('tr').find('td:nth-child(1)').text();
-                }).get();
-            console.log(likedPictures);
-            pictureName = likedPictures[0];
+            let pictureTable = $('<table id="pictureTableFromJS">');
 
-            //let responseString = JSON.stringify(data.usersLiked);
-            //let matches = responseString.search('"' + username + '"'); //TODO: Logic for likes restrictions
 
-            if(likedPictures.length > 0){
-                for (let picture of data){
-                    pictureLikes = Number.parseFloat(picture.likes);
 
+            let pictureName;
+            let pictureId;
+            let pictureLikes;
+            let pictureObj;
+            let pictureCategory;
+
+            for (let picture of data) {
+
+
+                    pictureName = picture._filename;
                     pictureId = picture._id;
+                    pictureLikes = Number.parseFloat(picture.myProperty);
+                    pictureCategory = picture.category;
+                    console.log(categoryName + "=" + pictureCategory);
+                if (categoryName === pictureCategory) {
 
-                    pictureObj = {
-                        pictureName:pictureId,
-                        likes: pictureLikes,
-                        name:picture.name,
-                        file:picture.file,
-                        creator:picture.creator,
-                        category:picture.category
-                    };
-
-                    if (picture.name === pictureName){
-                        break;
-                    }
+                    pictureTable.append($('<tr>').append(
+                        $('<td>').text(picture.name),
+                        $('<td>').text(picture.likes),
+                        $("<td>").html($('<a href=' + picture.file + ' target="_blank"><img src=' + picture.file + '></a>')),
+                        $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
+                    );
                 }
             }
+
+
+            $('#likeConfirm').click(function () {
+
+                let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
+                    .map(function () {
+                        return $(this).closest('tr').find('td:nth-child(1)').text();
+                    }).get();
+                console.log(likedPictures);
+                pictureName = likedPictures[0];
+
+
+                if (likedPictures.length > 0) {
+                    for (let picture of data) {
+                        pictureLikes = Number.parseFloat(picture.likes);
+
+                        pictureId = picture._id;
+
+                        pictureObj = {
+                            pictureName: pictureId,
+                            likes: pictureLikes,
+                            name: picture.name,
+                            file: picture.file,
+                            creator: picture.creator,
+                            category: picture.category
+                        };
+
+                        if (picture.name === pictureName) {
+                            break;
+                        }
+                    }
+                }
 
 
                 let newLikeUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test/" + pictureObj.pictureName;
@@ -252,102 +311,137 @@ function showGalleryView() {
                 let newValueOfLikes = pictureObj.likes + 1;
                 let dataNewValueOfLikes = {
 
-                     "likes": newValueOfLikes,
-                      "name": pictureObj.name,
-                      "file": pictureObj.file,
-                     "creator": pictureObj.creator,
-                     "category": pictureObj.category
+                    "likes": newValueOfLikes,
+                    "name": pictureObj.name,
+                    "file": pictureObj.file,
+                    "creator": pictureObj.creator,
+                    "category": pictureObj.category
                 };
 
 
+                $.ajax({
+                    method: "PUT",
+                    url: newLikeUrl,
+                    data: dataNewValueOfLikes,
+                    ContentType: 'application/json',
+                    headers: kinveyAuthHeaders,
+                    success: likedPictureSuccessful
+                });
+
+                function likedPictureSuccessful() {
 
 
-                    $.ajax({
-                        method: "PUT",
-                        url: newLikeUrl,
-                        data: dataNewValueOfLikes,
-                        ContentType: 'application/json',
-                        headers: kinveyAuthHeaders,
-                        success: likedPictureSuccessful
-                    });
+                    $('#pictureTableFromJS').empty();
 
-                    function likedPictureSuccessful() {
-
-
-                        $('#pictureTableFromJS').empty();
-                        showGalleryView();
-                    }
-
-        });
-
-        $('#photos').append(pictureTable);
-
-
-        $('#deleteConfirm').click(function () { //TODO: да се оптимизира
-            let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
-                .map(function(){
-                    return $(this).closest('tr').find('td:nth-child(1)').text();
-                }).get();
-            console.log(likedPictures);
-            pictureName = likedPictures[0];
-
-            //let responseString = JSON.stringify(data.usersLiked);
-            //let matches = responseString.search('"' + username + '"'); //TODO: Logic for likes restrictions
-
-            if(likedPictures.length > 0){
-                for (let picture of data){
-                    pictureLikes = Number.parseFloat(picture.likes);
-
-                    pictureId = picture._id;
-
-                    pictureObj = {
-                        pictureName:pictureId,
-                        likes: pictureLikes,
-                        name:picture.name,
-                        file:picture.file,
-                        creator:picture.creator,
-                        category:picture.category
-                    };
-
-                    if (picture.name === pictureName){
-                        break;
+                    switch (categoryName){
+                        case "animals":
+                            loadAnimalsCategory();
+                            break;
+                        case "people":
+                            loadPeopleCategory();
+                            break;
+                        case "landscapes":
+                            loadLandscapesCategory();
+                            break;
+                        case "flowers":
+                            loadFlowersCategory();
+                            break;
+                        case "love":
+                            loadLoveCategory();
+                            break;
+                        case "logos":
+                            loadLogosCategory();
+                            break;
+                        case "games":
+                            loadGamesCategory();
+                            break;
+                        case "other":
+                            loadOtherCategory();
+                            break;
                     }
                 }
-            }
 
-
-            let newLikeUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test/" + pictureObj.pictureName;
-            let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
-
-            let newValueOfLikes = pictureObj.likes + 1;
-            //let dataNewValueOfLikes = {
-
-              //  "likes": newValueOfLikes,
-              //  "name": pictureObj.name,
-              //  "file": pictureObj.file,
-              //  "creator": pictureObj.creator,
-              //  "category": pictureObj.category
-            //};
-
-
-
-
-            $.ajax({
-                method: "DELETE",
-                url: newLikeUrl,
-                //data: dataNewValueOfLikes,
-                ContentType: 'application/json',
-                headers: kinveyAuthHeaders,
-                success: likedPictureSuccessful
             });
 
-            function likedPictureSuccessful() {
+            $('#photos').append(pictureTable);
 
 
-                $('#pictureTableFromJS').empty();
-                showGalleryView();
-            }
-        });
+            $('#deleteConfirm').click(function () {
+                let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
+                    .map(function () {
+                        return $(this).closest('tr').find('td:nth-child(1)').text();
+                    }).get();
+                console.log(likedPictures);
+                pictureName = likedPictures[0];
+
+
+                if (likedPictures.length > 0) {
+                    for (let picture of data) {
+                        pictureLikes = Number.parseFloat(picture.likes);
+
+                        pictureId = picture._id;
+
+                        pictureObj = {
+                            pictureName: pictureId,
+                            likes: pictureLikes,
+                            name: picture.name,
+                            file: picture.file,
+                            creator: picture.creator,
+                            category: picture.category
+                        };
+
+                        if (picture.name === pictureName) {
+                            break;
+                        }
+                    }
+                }
+
+                let newLikeUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test/" + pictureObj.pictureName;
+                let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
+
+                $.ajax({
+                    method: "DELETE",
+                    url: newLikeUrl,
+                    //data: dataNewValueOfLikes,
+                    ContentType: 'application/json',
+                    headers: kinveyAuthHeaders,
+                    success: likedPictureSuccessful
+                });
+
+                function likedPictureSuccessful() {
+
+
+                    $('#pictureTableFromJS').empty();
+
+                    switch (categoryName){
+                        case "animals":
+                            loadAnimalsCategory();
+                            break;
+                        case "people":
+                            loadPeopleCategory();
+                            break;
+                        case "landscapes":
+                            loadLandscapesCategory();
+                            break;
+                        case "flowers":
+                            loadFlowersCategory();
+                            break;
+                        case "love":
+                            loadLoveCategory();
+                            break;
+                        case "logos":
+                            loadLogosCategory();
+                            break;
+                        case "games":
+                            loadGamesCategory();
+                            break;
+                        case "other":
+                            loadOtherCategory();
+                            break;
+                    }
+                }
+            });
+
     }
 }
 
@@ -510,6 +604,9 @@ function showProfileView() {
     showView('viewProfile');
     $('#profileView').text("");
 
+    $('#infoUser').append($('<span id="usernameProfile">Username: '+ username +'</span>'));
+    $('#infoUser').append($('<span id="emailProfile">Email: '+ userEmail +'</span>'));
+
     ajaxGallery();
     function ajaxGallery() {
 
@@ -530,13 +627,7 @@ function showProfileView() {
 
             showInfo("THE IMAGES!!!");
 
-            let pictureTable = $('<table id="pictureTableFromJSProfile">')
-                .append($('<tr>').append(
-                    '<th>Name</th>',
-                    '<th>Likes</th>',
-                    '<th>Picture</th>',
-                    '<th>Check</th>')
-                );
+            let pictureTable = $('<table id="pictureTableFromJSProfile">');                
 
             let pictureName;
             let pictureId;
@@ -645,10 +736,7 @@ $(function () {
         event.preventDefault();
         register();
     });
-   //$("#addPhotoForm").click()
-        
-   //     addPhoto();
-   // ); //TODO: not finished
+
    $("#adminPanelButton").click(function(){ //TODO: Може да се изнесе в метод
        $("#viewAdminPanel").show();
        $("#viewHome").hide();

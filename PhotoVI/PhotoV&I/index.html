@@ -75,8 +75,17 @@
             <section id="viewGallery">
                 <div class="container">
                     <div class="row">
+                        <div id="staticPicturesTableHeader">
+                            <table>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Likes</th>
+                                    <th>Picture</th>
+                                    <th>Check</th>
+                                </tr>
+                            </table>
+                        </div>
                         <div id="gallery">
-                            <h4>Please, choose only one!!!</h4>
                             <div id="photos"></div>
                             <form id="likeConfirmForm">
                                 <input type="button" id="likeConfirm" value="Like confirm"/>
@@ -84,6 +93,48 @@
                             </form>
                         </div>
                        <img class="background-image" src="images/main_background.png" alt="background"/>
+                    </div>
+                </div>
+            </section>
+
+            <section id="viewCategory">
+                <div class="container">
+                    <div class="row">
+                        <div id="categories">
+                            <div id="catAnimals">
+                                <img src="images/categories/animals.jpg" alt="animals"/>
+                                <span>Animals</span>
+                            </div>
+                            <div id="catPeople">
+                                <img src="images/categories/people.jpg" alt="people"/>
+                                <span>People</span>
+                            </div>
+                            <div id="catLandscapes">
+                                <img src="images/categories/landscapes.jpg" alt="landscapes"/>
+                                <span>Landscapes</span>
+                            </div>
+                            <div id="catFlowers">
+                                <img src="images/categories/flowers.jpg" alt="flowers"/>
+                                <span>Flowers</span>
+                            </div>
+                            <div id="catLove">
+                                <img src="images/categories/love.jpg" alt="love"/>
+                                <span>Love</span>
+                            </div>
+                            <div id="catLogos">
+                                <img src="images/categories/logos.jpg" alt="logos"/>
+                                <span>Logos</span>
+                            </div>
+                            <div id="catGames">
+                                <img src="images/categories/games.jpg" alt="games"/>
+                                <span>Games</span>
+                            </div>
+                            <div id="catOther">
+                                <img src="images/categories/other.jpg" alt="other"/>
+                                <span>Other</span>
+                            </div>
+                        </div>
+                        <img class="background-image" src="images/main_background.png" alt="background"/>
                     </div>
                 </div>
             </section>
@@ -104,11 +155,12 @@
                                     <select id="categoryName">
                                         <option value="other">Other</option>
                                         <option value="logos">Logos</option>
-                                        <option value="animal">Animal</option>
+                                        <option value="animals">Animals</option>
                                         <option value="games">Games</option>
                                         <option value="flowers">Flowers</option>
-                                        <option value="landscape">Landscape</option>
+                                        <option value="landscapes">Landscapes</option>
                                         <option value="love">Love</option>
+                                        <option value="people">People</option>
                                     </select>
                                 </div>
                                 <br/>
@@ -255,6 +307,17 @@
             <section id="viewProfile">
                 <div class="container">
                     <div class="row">
+                        <div id="staticProfilePicturesTableHeader">
+                            <table>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Likes</th>
+                                    <th>Picture</th>
+                                    <th>Check</th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="infoUser"></div>
                         <form id="deleteConfirmProfileForm">
                             <input type="submit" id="deleteConfirmProfile" value="Delete"/>
                         </form>

@@ -365,22 +365,6 @@ main > section{
     box-shadow: 5px 5px 3px #888888;
 }
 
-.disabledUsers {
-    color:red;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 #pictureTableFromJSProfile img{
     height: 250px;
 
@@ -427,12 +411,26 @@ main > section{
     border: 5px solid blue;
 }
 
+#pictureTableFromJS {
+    position: relative;
+    margin-top: 100px;
+}
 
+#photos{
+    overflow:auto;
+    height: 300px;
+}
 
+#staticPicturesTableHeader {
+    position: absolute;
+    margin-top: 70px;
+}
 
-
-
-
+#staticPicturesTableHeader th{
+    padding: 10px;
+    background-color: #9d9d9d;
+    border: 2px solid black;
+}
 
 #pictureTableFromJS img {
     height: 250px;
@@ -441,21 +439,16 @@ main > section{
 #gallery {
     margin-left:10px;
     position: absolute;
-    margin-top: -35px;
-
+    margin-top: 70px;
 
 }
- #photos{
-     width: 1200px;
-     height: 470px;
-     overflow: auto;
- }
 
 #gallery table {
     background-color: #dddddd;
     padding: 10px;
     font-family: Verdana, sans-serif;
     border-radius: 5px;
+
 }
 
 #gallery th,td {
@@ -552,5 +545,54 @@ main > section{
 
 .upload-label-submit:hover{
     background-color: #d3d4d2;
+}
+
+#categories {
+    position: absolute;
+    margin-top: 50px;
+    display: inline;
+}
+
+#categories img {
+    height: 150px;
+}
+
+#pictureTableFromJSProfile{
+    position: relative;
+    margin-top:50px;
+}
+
+#staticProfilePicturesTableHeader{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 300px;
+}
+
+#staticProfilePicturesTableHeader th {
+    padding: 10px;
+    border:2px solid black;
+    background-color: #9d9d9d;
+}
+
+#infoUser {
+    position: absolute;
+    margin-top: 100px;
+    border: 3px solid red;
+
+}
+
+#emailProfile, #usernameProfile{
+    padding: 10px;
+    background-color: #9d9d9d;
+    border-radius: 5px;
+}
+
+#emailProfile{
+    margin-left: 30px;
+}
+
+#profileView{
+    overflow: scroll;
+    height: 300px;
 }
 
