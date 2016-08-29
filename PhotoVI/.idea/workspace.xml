@@ -22,50 +22,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="325" column="30" selection-start-line="325" selection-start-column="30" selection-end-line="325" selection-end-column="30" />
-              <folding>
-                <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#section#3;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#section#4;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#section#5;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#section#6;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#section#7;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#section#8;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#section#9;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/styles/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="420" column="18" selection-start-line="420" selection-start-column="18" selection-end-line="420" selection-end-column="18" />
+            <state relative-caret-position="10353">
+              <caret line="609" column="17" selection-start-line="609" selection-start-column="17" selection-end-line="609" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-308">
-              <caret line="629" column="75" selection-start-line="629" selection-start-column="75" selection-end-line="629" selection-end-column="75" />
+            <state relative-caret-position="578">
+              <caret line="374" column="54" selection-start-line="374" selection-start-column="54" selection-end-line="374" selection-end-column="54" />
               <folding>
+                <element signature="n#!!block;n#showView#0" expanded="false" />
                 <element signature="n#!!block;n#showHideNavigationLinks#0" expanded="false" />
                 <element signature="n#!!block;n#showHomeView#0" expanded="false" />
                 <element signature="n#!!block;n#mostLikedPictures#0" expanded="false" />
+                <element signature="n#!!block;n#renderMostLikedPictures#0;n#!!block;n#mostLikedPictures#0" expanded="false" />
                 <element signature="n#!!block;n#login#0" expanded="false" />
                 <element signature="n#!!block;n#isAdmin#0" expanded="false" />
-                <element signature="n#!!block;n#showAdminPage#0;n#!!block;n#isAdmin#0" expanded="false" />
                 <element signature="n#!!block;n#showInfo#0" expanded="false" />
                 <element signature="n#!!block;n#showAjaxError#0" expanded="false" />
-                <element signature="n#!!block;n#showGalleryView#0" expanded="false" />
+                <element signature="n#!!block;n#loadAnimalsCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
                 <element signature="n#!!block;n#loadPeopleCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
                 <element signature="n#!!block;n#loadLandscapesCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
                 <element signature="n#!!block;n#loadFlowersCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
@@ -73,8 +55,7 @@
                 <element signature="n#!!block;n#loadLogosCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
                 <element signature="n#!!block;n#loadGamesCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
                 <element signature="n#!!block;n#loadOtherCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
-                <element signature="n#!!block;n#ajaxGallery#0;n#!!block;n#showGalleryView#0" expanded="false" />
-                <element signature="n#!!block;n#loadGallery#0;n#!!block;n#showGalleryView#0" expanded="false" />
+                <element signature="e#12557#15370#0" expanded="false" />
                 <element signature="n#!!block;n#showAddPhotoView#0" expanded="false" />
                 <element signature="n#!!block;n#addPhoto#0" expanded="false" />
                 <element signature="n#!!block;n#showAboutView#0" expanded="false" />
@@ -83,7 +64,27 @@
                 <element signature="n#!!block;n#showRegisterView#0" expanded="false" />
                 <element signature="n#!!block;n#showLoginView#0" expanded="false" />
                 <element signature="n#!!block;n#logout#0" expanded="false" />
-                <element signature="e#22666#23586#0" expanded="false" />
+                <element signature="n#!!block;n#showProfileView#0" expanded="false" />
+                <element signature="e#23401#24321#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="84" column="53" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="53" />
+              <folding>
+                <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#section#2;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#section#4;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#section#5;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#section#6;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#section#7;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#section#8;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#section#10;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -105,9 +106,9 @@
         <option value="$PROJECT_DIR$/PhotoV&amp;I/scripts/views/homeView.js" />
         <option value="$PROJECT_DIR$/proba.html" />
         <option value="$PROJECT_DIR$/PhotoV&amp;I/proba.html" />
-        <option value="$PROJECT_DIR$/PhotoV&amp;I/scripts/app.js" />
-        <option value="$PROJECT_DIR$/PhotoV&amp;I/index.html" />
         <option value="$PROJECT_DIR$/PhotoV&amp;I/styles/style.css" />
+        <option value="$PROJECT_DIR$/PhotoV&amp;I/index.html" />
+        <option value="$PROJECT_DIR$/PhotoV&amp;I/scripts/app.js" />
       </list>
     </option>
   </component>
@@ -152,10 +153,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files" />
       </pane>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -296,11 +297,13 @@
       <workItem from="1472305389969" duration="1460000" />
       <workItem from="1472361759076" duration="8175000" />
       <workItem from="1472400457070" duration="15772000" />
+      <workItem from="1472446996743" duration="16499000" />
+      <workItem from="1472478457872" duration="385000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220610000" />
+    <option name="totallyTimeSpent" value="237494000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -338,7 +341,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/PhotoV&amp;I/scripts/app.js</url>
+          <line>681</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -349,13 +359,13 @@
           <caret line="20" column="49" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="49" />
           <folding>
             <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#3;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#section#2;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#4;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#5;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#6;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#7;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#8;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#9;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#section#10;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -654,37 +664,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/styles/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10353">
+          <caret line="609" column="17" selection-start-line="609" selection-start-column="17" selection-end-line="609" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="325" column="30" selection-start-line="325" selection-start-column="30" selection-end-line="325" selection-end-column="30" />
+        <state relative-caret-position="391">
+          <caret line="84" column="53" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="53" />
           <folding>
             <element signature="n#header#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#3;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#section#2;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#4;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#5;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#6;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#7;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#section#8;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#section#9;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#section#10;n#main#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-308">
-          <caret line="629" column="75" selection-start-line="629" selection-start-column="75" selection-end-line="629" selection-end-column="75" />
+        <state relative-caret-position="578">
+          <caret line="374" column="54" selection-start-line="374" selection-start-column="54" selection-end-line="374" selection-end-column="54" />
           <folding>
+            <element signature="n#!!block;n#showView#0" expanded="false" />
             <element signature="n#!!block;n#showHideNavigationLinks#0" expanded="false" />
             <element signature="n#!!block;n#showHomeView#0" expanded="false" />
             <element signature="n#!!block;n#mostLikedPictures#0" expanded="false" />
+            <element signature="n#!!block;n#renderMostLikedPictures#0;n#!!block;n#mostLikedPictures#0" expanded="false" />
             <element signature="n#!!block;n#login#0" expanded="false" />
             <element signature="n#!!block;n#isAdmin#0" expanded="false" />
-            <element signature="n#!!block;n#showAdminPage#0;n#!!block;n#isAdmin#0" expanded="false" />
             <element signature="n#!!block;n#showInfo#0" expanded="false" />
             <element signature="n#!!block;n#showAjaxError#0" expanded="false" />
-            <element signature="n#!!block;n#showGalleryView#0" expanded="false" />
+            <element signature="n#!!block;n#loadAnimalsCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
             <element signature="n#!!block;n#loadPeopleCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
             <element signature="n#!!block;n#loadLandscapesCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
             <element signature="n#!!block;n#loadFlowersCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
@@ -692,8 +711,7 @@
             <element signature="n#!!block;n#loadLogosCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
             <element signature="n#!!block;n#loadGamesCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
             <element signature="n#!!block;n#loadOtherCategory#0;n#!!block;n#showGalleryView#0" expanded="false" />
-            <element signature="n#!!block;n#ajaxGallery#0;n#!!block;n#showGalleryView#0" expanded="false" />
-            <element signature="n#!!block;n#loadGallery#0;n#!!block;n#showGalleryView#0" expanded="false" />
+            <element signature="e#12557#15370#0" expanded="false" />
             <element signature="n#!!block;n#showAddPhotoView#0" expanded="false" />
             <element signature="n#!!block;n#addPhoto#0" expanded="false" />
             <element signature="n#!!block;n#showAboutView#0" expanded="false" />
@@ -702,16 +720,9 @@
             <element signature="n#!!block;n#showRegisterView#0" expanded="false" />
             <element signature="n#!!block;n#showLoginView#0" expanded="false" />
             <element signature="n#!!block;n#logout#0" expanded="false" />
-            <element signature="e#22666#23586#0" expanded="false" />
+            <element signature="n#!!block;n#showProfileView#0" expanded="false" />
+            <element signature="e#23401#24321#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PhotoV&amp;I/styles/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="420" column="18" selection-start-line="420" selection-start-column="18" selection-end-line="420" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>

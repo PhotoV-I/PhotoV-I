@@ -50,7 +50,21 @@ function mostLikedPictures() {
     });
 
     function renderMostLikedPictures(data) {
-        //TODO
+
+            $('#favImages').text("");
+
+            data.sort(function(a, b) {
+                return parseFloat(a.likes) - parseFloat(b.likes);
+            });
+            data.reverse();
+
+        let pictureForRender = data.slice(0, 3);
+
+        for(let picture of pictureForRender){
+            let placeholders = $('<a href=' + picture.file + ' target="_blank"><img src=' + picture.file + '></a>');
+
+            $('#favImages').append(placeholders);
+        }
     }
 }
 
@@ -252,6 +266,7 @@ function showGalleryView() {
             let pictureLikes;
             let pictureObj;
             let pictureCategory;
+            let usersWhoLiked;
 
             for (let picture of data) {
 
@@ -260,7 +275,7 @@ function showGalleryView() {
                     pictureId = picture._id;
                     pictureLikes = Number.parseFloat(picture.myProperty);
                     pictureCategory = picture.category;
-                    console.log(categoryName + "=" + pictureCategory);
+                    usersWhoLiked = picture.usersWhoLiked;
                 if (categoryName === pictureCategory) {
 
                     pictureTable.append($('<tr>').append(
@@ -273,13 +288,13 @@ function showGalleryView() {
             }
 
 
-            $('#likeConfirm').click(function () {
+            $('#likeConfirm').click(function () {  //TODO:проблем с рефрешването
 
                 let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
                     .map(function () {
                         return $(this).closest('tr').find('td:nth-child(1)').text();
                     }).get();
-                console.log(likedPictures);
+
                 pictureName = likedPictures[0];
 
 
@@ -295,8 +310,11 @@ function showGalleryView() {
                             name: picture.name,
                             file: picture.file,
                             creator: picture.creator,
-                            category: picture.category
+                            category: picture.category,
+                            usersWhoLiked: username
                         };
+
+                        usersWhoLiked = picture.usersWhoLiked;
 
                         if (picture.name === pictureName) {
                             break;
@@ -309,55 +327,68 @@ function showGalleryView() {
                 let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
 
                 let newValueOfLikes = pictureObj.likes + 1;
+                let newValueOfUsersWhoLiked = usersWhoLiked.concat('/' + username);
+
                 let dataNewValueOfLikes = {
 
                     "likes": newValueOfLikes,
                     "name": pictureObj.name,
                     "file": pictureObj.file,
                     "creator": pictureObj.creator,
-                    "category": pictureObj.category
+                    "category": pictureObj.category,
+                    "usersWhoLiked": newValueOfUsersWhoLiked
                 };
 
+                console.log(usersWhoLiked);
+                let matches = usersWhoLiked.indexOf(username);
+                console.log(matches);
+                if (matches == -1){
 
-                $.ajax({
-                    method: "PUT",
-                    url: newLikeUrl,
-                    data: dataNewValueOfLikes,
-                    ContentType: 'application/json',
-                    headers: kinveyAuthHeaders,
-                    success: likedPictureSuccessful
-                });
+                    $.ajax({
+                        method: "PUT",
+                        url: newLikeUrl,
+                        data: dataNewValueOfLikes,
+                        ContentType: 'application/json',
+                        headers: kinveyAuthHeaders,
+                        success: likedPictureSuccessful
+                    });
+                }else {
+                    showError("You already liked this picture :)");
+                }
 
-                function likedPictureSuccessful() {
+                function likedPictureSuccessful() {  //TODO: да не рефрешва при повторен лаик
 
+                    if (matches == -1) {
 
-                    $('#pictureTableFromJS').empty();
-
-                    switch (categoryName){
-                        case "animals":
-                            loadAnimalsCategory();
-                            break;
-                        case "people":
-                            loadPeopleCategory();
-                            break;
-                        case "landscapes":
-                            loadLandscapesCategory();
-                            break;
-                        case "flowers":
-                            loadFlowersCategory();
-                            break;
-                        case "love":
-                            loadLoveCategory();
-                            break;
-                        case "logos":
-                            loadLogosCategory();
-                            break;
-                        case "games":
-                            loadGamesCategory();
-                            break;
-                        case "other":
-                            loadOtherCategory();
-                            break;
+                        $('#pictureTableFromJS').empty();
+                        switch (categoryName) {
+                            case "animals":
+                                loadAnimalsCategory();
+                                break;
+                            case "people":
+                                loadPeopleCategory();
+                                break;
+                            case "landscapes":
+                                loadLandscapesCategory();
+                                break;
+                            case "flowers":
+                                loadFlowersCategory();
+                                break;
+                            case "love":
+                                loadLoveCategory();
+                                break;
+                            case "logos":
+                                loadLogosCategory();
+                                break;
+                            case "games":
+                                loadGamesCategory();
+                                break;
+                            case "other":
+                                loadOtherCategory();
+                                break;
+                        }
+                    } else{
+                        showError("You already liked this picture :)");
                     }
                 }
 
@@ -402,13 +433,12 @@ function showGalleryView() {
                 $.ajax({
                     method: "DELETE",
                     url: newLikeUrl,
-                    //data: dataNewValueOfLikes,
                     ContentType: 'application/json',
                     headers: kinveyAuthHeaders,
-                    success: likedPictureSuccessful
+                    success: deletePictureSuccessful
                 });
 
-                function likedPictureSuccessful() {
+                function deletePictureSuccessful() {
 
 
                     $('#pictureTableFromJS').empty();
@@ -461,14 +491,11 @@ function addPhoto() {
     let uploadURL;
 
     let fileName = $('#fileName').val;
-    console.log(fileName);
+
     let onUpload = function(err, metadata) {
         ospry.get({
             url: metadata.url,
             maxHeight: 400
-            //imageReady: function(err, domImage) {
-              //  $('body').append(domImage);
-
         });
         uploadURL = metadata.url;
         console.log(uploadURL);
@@ -488,7 +515,9 @@ function addPhoto() {
                 file: uploadURL,
                 creator: username,
                 category: $('#categoryName').val(),
-                likes: 0
+                likes: 0,
+                usersWhoLiked: ""
+
             };
 
             let loginUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/login";
@@ -499,7 +528,6 @@ function addPhoto() {
                 "password": "123"
             };
 
-            //promisi
             $.when( $.ajax({
                 method: "POST",
                 url:loginUrl,
@@ -513,15 +541,12 @@ function addPhoto() {
                     'Content-Type' : "application/json"
                 };
 
-                //zaqvki kum data tablicite v kinvey mogat da se pravqt samo sus user credentials ne sus app credentials
                 $.when( $.ajax({
                     method: "POST",
                     url:uploadDataUrl,
                     data: JSON.stringify(uploadData),
                     headers: userHeaders
                 })).then(function(data) {
-                    console.log(data);
-                    console.log("aww Yeah");
                     showInfo("Upload successful!");
                     $('#photoName').val("");
                     $('.upload-label-buton').val("");
@@ -602,7 +627,8 @@ function logout() {
 
 function showProfileView() {
     showView('viewProfile');
-    $('#profileView').text("");
+    $('#profileView').text('');
+    $('#infoUser').text('');
 
     $('#infoUser').append($('<span id="usernameProfile">Username: '+ username +'</span>'));
     $('#infoUser').append($('<span id="emailProfile">Email: '+ userEmail +'</span>'));
@@ -645,7 +671,6 @@ function showProfileView() {
                     pictureTable.append($('<tr>').append(
                         $('<td>').text(picture.name),
                         $('<td>').text(picture.likes),
-                        //$('<td>').text(picture.likes),
                         $("<td>").html($('<a href='+ picture.file +' target="_blank"><img src=' + picture.file + '></a>')),
                         $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
                     );
@@ -661,11 +686,8 @@ function showProfileView() {
                     .map(function(){
                         return $(this).closest('tr').find('td:nth-child(1)').text();
                     }).get();
-                console.log(likedPictures);
-                pictureName = likedPictures[0];
 
-                //let responseString = JSON.stringify(data.usersLiked);
-                //let matches = responseString.search('"' + username + '"'); //TODO: Logic for likes restrictions
+                pictureName = likedPictures[0];
 
                 if(likedPictures.length > 0){
                     for (let picture of data){

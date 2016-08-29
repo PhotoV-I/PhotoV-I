@@ -36,7 +36,6 @@
         </header>
 
         <main>
-            <section id="loadingBox">loading....</section>
 
             <section id="infoBox" onclick="$(this).hide()">Info</section>
 
@@ -59,14 +58,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="mostLikedPictures">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-8">
-                            <div class="fav-images" id="favImages">
-                                <img src="images/pic1.jpg" alt="pic1"/>
-                                <img src="images/pic2.jpg" alt="pic2"/>
-                                <img src="images/pic3.jpg" alt="pic3"/>
-                            </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                        <div class="fav-images" id="favImages">
+
                         </div>
                     </div>
                 </div>
@@ -89,6 +84,8 @@
                             <div id="photos"></div>
                             <form id="likeConfirmForm">
                                 <input type="button" id="likeConfirm" value="Like confirm"/>
+                            </form>
+                            <form id="deleteConfirmForm">
                                 <input type="button" id="deleteConfirm" value="Delete confirm"/>
                             </form>
                         </div>
@@ -101,38 +98,54 @@
                 <div class="container">
                     <div class="row">
                         <div id="categories">
-                            <div id="catAnimals">
-                                <img src="images/categories/animals.jpg" alt="animals"/>
-                                <span>Animals</span>
-                            </div>
-                            <div id="catPeople">
-                                <img src="images/categories/people.jpg" alt="people"/>
-                                <span>People</span>
-                            </div>
-                            <div id="catLandscapes">
-                                <img src="images/categories/landscapes.jpg" alt="landscapes"/>
-                                <span>Landscapes</span>
-                            </div>
-                            <div id="catFlowers">
-                                <img src="images/categories/flowers.jpg" alt="flowers"/>
-                                <span>Flowers</span>
-                            </div>
-                            <div id="catLove">
-                                <img src="images/categories/love.jpg" alt="love"/>
-                                <span>Love</span>
-                            </div>
-                            <div id="catLogos">
-                                <img src="images/categories/logos.jpg" alt="logos"/>
-                                <span>Logos</span>
-                            </div>
-                            <div id="catGames">
-                                <img src="images/categories/games.jpg" alt="games"/>
-                                <span>Games</span>
-                            </div>
-                            <div id="catOther">
-                                <img src="images/categories/other.jpg" alt="other"/>
-                                <span>Other</span>
-                            </div>
+                            <a href="#">
+                                <div id="catAnimals">
+                                    <img src="images/categories/animals.jpg" alt="animals"/>
+                                    <span>Animals</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div id="catPeople">
+                                    <img src="images/categories/people.jpg" alt="people"/>
+                                    <span>People</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div id="catLandscapes">
+                                    <img src="images/categories/landscapes.jpg" alt="landscapes"/>
+                                    <span>Landscapes</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div id="catFlowers">
+                                    <img src="images/categories/flowers.jpg" alt="flowers"/>
+                                    <span>Flowers</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div id="catLove">
+                                    <img src="images/categories/love.jpg" alt="love"/>
+                                    <span>Love</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div id="catLogos">
+                                    <img src="images/categories/logos.jpg" alt="logos"/>
+                                    <span>Logos</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div id="catGames">
+                                    <img src="images/categories/games.jpg" alt="games"/>
+                                    <span>Games</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div id="catOther">
+                                    <img src="images/categories/other.jpg" alt="other"/>
+                                    <span>Other</span>
+                                </div>
+                            </a>
                         </div>
                         <img class="background-image" src="images/main_background.png" alt="background"/>
                     </div>
@@ -363,7 +376,7 @@
         <div class="col-md-12">
             <div class="container">
                 <div class="footer">All rights reserved 2016 &copy; We are not responsible for the photos uploaded by our users.
-                    <a><span id="adminPanelButton">[Users list]</span></a></div>
+                    <a href="#"><span id="adminPanelButton">[Users list]</span></a></div>
             </div>
         </div>
     </body>
