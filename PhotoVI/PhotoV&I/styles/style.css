@@ -453,43 +453,46 @@ main > section{
 
 #staticPicturesTableHeader { /*Позиция на хедърите на таблицата*/
     position: absolute;
-    margin-top: 48px;
-    margin-left: -5px;
+    margin-top: 45px;
+    margin-left: 400px;
+    border: 2px solid #d0d2cf;
 }
 
 .picture-name-of-picture-table, .picture-likes-of-picture-table, .picture-image-of-picture-table, .picture-check-of-picture-table{
     padding: 10px;
-
     font-size: 1.3em;
     font-weight: bold;
     text-align: center;
     background-color: rgba(208, 210, 207, 0.6);
-    border: 2px solid black;
+    border: 1px solid #d0d2cf;
     display: inline-block;
-    width: 100px; /*размер на хедърите на таблицата*/
+    width: 101px; /*размер на хедърите на таблицата*/
     color: #2b542c;
 
 }
 
 .picture-likes-of-picture-table, .picture-image-of-picture-table, .picture-check-of-picture-table{
-    margin-left: -7px;
+    margin-left: -8px;
 }
 
 .picture-image-of-picture-table{
-    width: 453px;
+    width: 447px;
 }
 
 
 
 #pictureTableFromJS img { /*Размер на снимките*/
-    height: 350px;
-    width: 450px;
+    height: 340px;
+    width: 435px;
+    padding: 15px 15px;
+    margin: 2px;
 }
 
 #gallery { /*Позиция на галерията*/
-    margin-left:10px;
+    margin-left:415px;
     position: absolute;
     margin-top: 90px;
+
 }
 
 #gallery table {
@@ -502,17 +505,20 @@ main > section{
 }
 
 #gallery th,td {
-    border: 2px solid #3c3c3c;
+    border: 1px solid #d0d2cf;
     text-align: center;
 }
 
 #gallery th{
     font-size: 1.3em;
+
+
 }
 
 #gallery td{
     word-break: break-all;
     width: 100px;
+    border: 3px solid #d0d2cf;
 
 }
 
@@ -522,7 +528,7 @@ main > section{
 
 .buttons-gallery{ /*мястото на бутоните*/
     position: absolute;
-    margin-top: 400px;
+    margin-top: 465px;
 }
 
 #deleteConfirm{
@@ -533,7 +539,7 @@ main > section{
     border-radius: 5px;
     border: 1px solid #d0d2cf;
     position: absolute;
-    margin-left: 840px;
+    margin-left: 875px;
     margin-top: -36px;
 
 }
@@ -562,21 +568,23 @@ main > section{
 #staticProfilePicturesTableHeader{ /*Местоположение на хедърите*/
     display: none; /*НЕ ПИПАЙ ТОЯ ДИСПЛЕЙ!!!*/
     position: absolute;
-    margin-top: 28px;
-    margin-left: 50px;
-    border: 3px solid red;
+    margin-top: 78px;
+    margin-left: 402px;
+    border: 2px solid #d0d2cf;
 }
+
 
 #infoUser { /*Местоположение на юзър инфото*/
     position: absolute;
-    top: 130px;
-    left:1100px;
+    top: 120px;
+    left:800px;
+
 
 }
 
 #emailProfile, #usernameProfile{
     padding: 10px;
-    background-color: #eaede8;
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 5px;
     border: 1px solid #d0d2cf;
 }
@@ -587,20 +595,23 @@ main > section{
 
 #profileView{ /*Местоположение на таблицата*/
     overflow: auto;
-    height: 300px;
-    width: 840px;
+    height: 350px;
+    width: 760px;
     position: absolute;
-    top:170px;
-    left: 280px;
+    top:220px;
+    left: 500px;
 }
 
 #profileView td{
     word-break: break-all;
     width: 100px;
+    border: 3px solid #d0d2cf;
 }
 #pictureTableFromJSProfile img{
-    height: 350px;
-    width: 450px;
+    height: 340px;
+    width: 435px;
+    padding: 15px 15px;
+    margin: 2px;
 }
 
 #pictureTableFromJSProfile{
@@ -608,7 +619,7 @@ main > section{
     color:#355020;
     font-family: Verdana, sans-serif;
     border-radius: 5px;
-    width: 820px;
+    width: 740px;
     padding: 0;
 }
 
@@ -626,8 +637,8 @@ main > section{
 #deleteConfirmProfile{
     display: none; /*НЕ ПИПАЙ ТОЯ ДИСПЛЕЙ!!!*/
     position: absolute;
-    margin-left: 1000px;
-    top:450px;
+    margin-left: 1050px;
+    top:578px;
     color: #355021;
     background-color: #eaede8;
     border-radius: 5px;
@@ -644,7 +655,7 @@ main > section{
     display: none; /*НЕ ПИПАЙ ТОЯ ДИСПЛЕЙ!!!*/
     position: absolute;
     top: 250px;
-    left:500px;
+    left:880px;
     color: #2b542c;
     padding: 15px;
     background-color: #eaede8;
