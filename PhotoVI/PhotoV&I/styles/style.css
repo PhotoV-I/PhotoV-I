@@ -109,10 +109,6 @@ main > section{
     color: #355021;
 }
 
-.container-fluid{
-
-}
-
 .main-content {
     z-index: -1;
 }
@@ -419,45 +415,6 @@ main > section{
     background-color: #d3d4d2;
 }
 
-
-#pictureTableFromJSProfile{
-    position: relative;
-    margin-top:50px;
-}
-
-#staticProfilePicturesTableHeader{
-    position: absolute;
-    margin-top: 20px;
-    margin-left: 300px;
-}
-
-#staticProfilePicturesTableHeader th {
-    padding: 10px;
-    border:2px solid black;
-    background-color: #9d9d9d;
-}
-
-#infoUser {
-    position: absolute;
-    margin-top: 100px;
-    border: 3px solid red;
-
-}
-
-#emailProfile, #usernameProfile{
-    padding: 10px;
-    background-color: #9d9d9d;
-    border-radius: 5px;
-}
-
-#emailProfile{
-    margin-left: 30px;
-}
-
-#profileView{
-    overflow: scroll;
-    height: 300px;
-}
 /*categories-start*/
 #categories {
     position: absolute;
@@ -484,45 +441,63 @@ main > section{
 /*categories-start*/
 
 /*gallery-start*/
-#pictureTableFromJS {
-    position: relative;
-    margin-top: 100px;
-}
+
 
 #photos{
     overflow:auto;
-height: 250px;
-
+    height: 350px;
+    width: 760px;
+    margin: 0;
+    padding: 0;
 }
 
-#staticPicturesTableHeader {
+#staticPicturesTableHeader { /*Позиция на хедърите на таблицата*/
     position: absolute;
-    margin-top: 70px;
+    margin-top: 48px;
+    margin-left: -5px;
 }
 
-
-#staticPicturesTableHeader th{
+.picture-name-of-picture-table, .picture-likes-of-picture-table, .picture-image-of-picture-table, .picture-check-of-picture-table{
     padding: 10px;
-    background-color: #9d9d9d;
+
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(208, 210, 207, 0.6);
     border: 2px solid black;
+    display: inline-block;
+    width: 100px; /*размер на хедърите на таблицата*/
+    color: #2b542c;
+
 }
 
-#pictureTableFromJS img {
-    height: 250px;
+.picture-likes-of-picture-table, .picture-image-of-picture-table, .picture-check-of-picture-table{
+    margin-left: -7px;
 }
 
-#gallery {
+.picture-image-of-picture-table{
+    width: 453px;
+}
+
+
+
+#pictureTableFromJS img { /*Размер на снимките*/
+    height: 350px;
+    width: 450px;
+}
+
+#gallery { /*Позиция на галерията*/
     margin-left:10px;
     position: absolute;
-    margin-top: 70px;
-
+    margin-top: 90px;
 }
 
 #gallery table {
-    background-color: #dddddd;
     padding: 10px;
     font-family: Verdana, sans-serif;
     border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 3px solid #d0d2cf;
 
 }
 
@@ -536,22 +511,31 @@ height: 250px;
 }
 
 #gallery td{
-    padding: 0 40px;
+    word-break: break-all;
+    width: 100px;
+
 }
 
 #gallery h4 {
     color:red;
 }
 
+.buttons-gallery{ /*мястото на бутоните*/
+    position: absolute;
+    margin-top: 400px;
+}
+
 #deleteConfirm{
     padding: 5px 10px;
     color: #355021;
     font-size: 1.3em;
-    margin-left: 840px;
-    margin-top: -102px;
     background-color: #eaede8;
     border-radius: 5px;
     border: 1px solid #d0d2cf;
+    position: absolute;
+    margin-left: 840px;
+    margin-top: -36px;
+
 }
 #deleteConfirm:hover{
     background-color: #d3d4d2;
@@ -575,42 +559,75 @@ height: 250px;
 
 /*profile-start*/
 
-#pictureTableFromJSProfile img{
-    height: 250px;
-}
-#pictureTableFromJSProfile{
+#staticProfilePicturesTableHeader{ /*Местоположение на хедърите*/
+    display: none; /*НЕ ПИПАЙ ТОЯ ДИСПЛЕЙ!!!*/
     position: absolute;
+    margin-top: 28px;
+    margin-left: 50px;
+    border: 3px solid red;
+}
+
+#infoUser { /*Местоположение на юзър инфото*/
+    position: absolute;
+    top: 130px;
+    left:1100px;
+
+}
+
+#emailProfile, #usernameProfile{
+    padding: 10px;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+}
+
+#emailProfile{
+    margin-left: 30px;
+}
+
+#profileView{ /*Местоположение на таблицата*/
+    overflow: auto;
+    height: 300px;
+    width: 840px;
+    position: absolute;
+    top:170px;
+    left: 280px;
+}
+
+#profileView td{
+    word-break: break-all;
+    width: 100px;
+}
+#pictureTableFromJSProfile img{
+    height: 350px;
+    width: 450px;
+}
+
+#pictureTableFromJSProfile{
     border: 3px solid #d0d2cf;
     color:#355020;
     font-family: Verdana, sans-serif;
-    margin-left: 355px;
     border-radius: 5px;
-    height: 268px;
     width: 820px;
+    padding: 0;
 }
+
 #pictureTableFromJSProfile tr{
     border: 3px solid #d0d2cf;
-}
-#pictureTableFromJSProfile th{
-    font-size: 1.3em;
-    font-weight: bold;
-    text-align: center;
-    background-color: rgba(208, 210, 207, 0.6);
-    padding: 1px;
-    border: 1px solid #d0d2cf;
 }
 
 #pictureTableFromJSProfile td{
     background-color: rgba(255, 255, 255, 0.6);
     border: 3px solid #d0d2cf;
     vertical-align: middle;
-    padding: 15px;
 }
 
 
-#deleteConfirmProfileForm{
-    margin-left: 1100px;
-    margin-top: 455px;
+#deleteConfirmProfile{
+    display: none; /*НЕ ПИПАЙ ТОЯ ДИСПЛЕЙ!!!*/
+    position: absolute;
+    margin-left: 1000px;
+    top:450px;
     color: #355021;
     background-color: #eaede8;
     border-radius: 5px;
@@ -619,8 +636,22 @@ height: 250px;
 }
 
 
-#deleteConfirmProfileForm:hover{
+#deleteConfirmProfile:hover{
     background-color: #d3d4d2;
+}
+
+#noPicturesAlert{ /*Местоположение на надписа за без снимки*/
+    display: none; /*НЕ ПИПАЙ ТОЯ ДИСПЛЕЙ!!!*/
+    position: absolute;
+    top: 250px;
+    left:500px;
+    color: #2b542c;
+    padding: 15px;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+    font-size: 1.3em;
+    font-weight: bold;
 }
 
 /*profile-end*/

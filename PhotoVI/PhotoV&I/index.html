@@ -69,19 +69,17 @@
 
             <section id="viewGallery">
                 <div class="container">
+                    <div id="staticPicturesTableHeader">
+                        <span class="picture-name-of-picture-table">Name</span>
+                        <span class="picture-likes-of-picture-table">Likes</span>
+                        <span class="picture-image-of-picture-table">Picture</span>
+                        <span class="picture-check-of-picture-table">Check</span>
+                    </div>
                     <div class="row">
-                        <div id="staticPicturesTableHeader">
-                            <table>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Likes</th>
-                                    <th>Picture</th>
-                                    <th>Check</th>
-                                </tr>
-                            </table>
-                        </div>
                         <div id="gallery">
                             <div id="photos"></div>
+                        </div>
+                        <div class="buttons-gallery">
                             <form id="likeConfirmForm">
                                 <input type="button" id="likeConfirm" value="Like confirm"/>
                             </form>
@@ -333,14 +331,13 @@
                 <div class="container">
                     <div class="row">
                         <div id="staticProfilePicturesTableHeader">
-                            <table>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Likes</th>
-                                    <th>Picture</th>
-                                    <th>Check</th>
-                                </tr>
-                            </table>
+                                <span class="picture-name-of-picture-table">Name</span>
+                                <span class="picture-likes-of-picture-table">Likes</span>
+                                <span class="picture-image-of-picture-table">Picture</span>
+                                <span class="picture-check-of-picture-table">Check</span>
+                        </div>
+                        <div id="noPicturesAlert">
+                            <span>You haven't pictures yet!!!</span>
                         </div>
                             <!--JS-->
                         </div>

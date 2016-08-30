@@ -282,18 +282,23 @@ function showGalleryView() {
                         $('<td>').text(picture.name),
                         $('<td>').text(picture.likes),
                         $("<td>").html($('<a href=' + picture.file + ' target="_blank"><img src=' + picture.file + '></a>')),
-                        $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
+                        $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox"/>')))
                     );
                 }
             }
 
 
+
             $('#likeConfirm').click(function () {  //TODO:проблем с рефрешването
+
+
 
                 let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
                     .map(function () {
                         return $(this).closest('tr').find('td:nth-child(1)').text();
                     }).get();
+
+
 
                 pictureName = likedPictures[0];
 
@@ -339,9 +344,9 @@ function showGalleryView() {
                     "usersWhoLiked": newValueOfUsersWhoLiked
                 };
 
-                console.log(usersWhoLiked);
+
                 let matches = usersWhoLiked.indexOf(username);
-                console.log(matches);
+
                 if (matches == -1){
 
                     $.ajax({
@@ -351,8 +356,11 @@ function showGalleryView() {
                         ContentType: 'application/json',
                         headers: kinveyAuthHeaders,
                         success: likedPictureSuccessful
+
                     });
-                }else {
+                }
+
+                if(matches > -1){
                     showError("You already liked this picture :)");
                 }
 
@@ -387,8 +395,6 @@ function showGalleryView() {
                                 loadOtherCategory();
                                 break;
                         }
-                    } else{
-                        showError("You already liked this picture :)");
                     }
                 }
 
@@ -402,7 +408,7 @@ function showGalleryView() {
                     .map(function () {
                         return $(this).closest('tr').find('td:nth-child(1)').text();
                     }).get();
-                console.log(likedPictures);
+
                 pictureName = likedPictures[0];
 
 
@@ -440,7 +446,7 @@ function showGalleryView() {
 
                 function deletePictureSuccessful() {
 
-
+                    showError("Delete succesful!");
                     $('#pictureTableFromJS').empty();
 
                     switch (categoryName){
@@ -647,11 +653,10 @@ function showProfileView() {
         });
 
         function loadGallery(data, status){
+            let responseString = JSON.stringify(data);
+            let matches = responseString.search('"' + username + '"');
 
             $('#photos').text('');
-
-
-            showInfo("THE IMAGES!!!");
 
             let pictureTable = $('<table id="pictureTableFromJSProfile">');                
 
@@ -667,7 +672,17 @@ function showProfileView() {
                 pictureLikes = Number.parseFloat(picture.myProperty);
                 pictureCreator = picture.creator;
 
+                if(matches < 0){
+
+                    $('#noPicturesAlert').show();
+
+                }
+
                 if(pictureCreator === username) {
+                    showInfo("THE IMAGES!!!");
+                    $('#staticProfilePicturesTableHeader').show();
+                    $('#deleteConfirmProfile').show();
+
                     pictureTable.append($('<tr>').append(
                         $('<td>').text(picture.name),
                         $('<td>').text(picture.likes),
@@ -675,6 +690,7 @@ function showProfileView() {
                         $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
                     );
                 }
+
             }
 
             $('#profileView').append(pictureTable);
