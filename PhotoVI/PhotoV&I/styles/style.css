@@ -57,7 +57,7 @@ table {
     color: red;
     position: absolute;
     margin-top: 172px;
-    margin-left: 1070px;
+    margin-left: 1250px;
     padding: 5px 5px;
     width: 150px;
 }
@@ -67,9 +67,12 @@ table {
     background-color: #355021;
     color:white;
     position: absolute;
+    z-index: 999;
     margin-top: -15px;
     width: 735px;
     margin-left: 490px;
+    /*font-weight: bold;
+    font-size: 1.3em;*/
 }
 
 main > section{
@@ -179,6 +182,10 @@ main > section{
     background-color: #eaede8;
     border: 1px solid #d0d2cf;
     border-radius: 5px;
+}
+
+.red-stars{
+    color: red;
 }
 
 #alertRegister{
@@ -529,6 +536,7 @@ main > section{
 .buttons-gallery{ /*мястото на бутоните*/
     position: absolute;
     margin-top: 465px;
+    z-index: 999;
 }
 
 #deleteConfirm{
@@ -560,6 +568,23 @@ main > section{
 
 #likeConfirm:hover {
     background-color: #d3d4d2;
+}
+
+#alertAlreadyLiked{
+    display: none;
+    position: absolute;
+    top:300px;
+    left:300px;
+    background-color: #eaede8;
+    border-radius: 5px;
+    border: 1px solid #d0d2cf;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #2b542c;
+}
+
+#alertAlreadyLiked span{
+    padding: 20px;
 }
  /*gallery- end*/
 
@@ -637,6 +662,7 @@ main > section{
 #deleteConfirmProfile{
     display: none; /*НЕ ПИПАЙ ТОЯ ДИСПЛЕЙ!!!*/
     position: absolute;
+    z-index: 999;
     margin-left: 1050px;
     top:578px;
     color: #355021;

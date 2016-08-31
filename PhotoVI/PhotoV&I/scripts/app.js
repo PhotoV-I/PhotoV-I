@@ -116,12 +116,12 @@ function isAdmin(username) {
         error: showAjaxError
     });
 
-    function showAdminPage(response, status) {
+    function showAdminPage(response) {
         let responseString = JSON.stringify(response);
         let matches = responseString.search('"' + username + '"');
 
         if(matches > 0){
-            //TODO:Functionalities
+
             $("#adminPanelButton").show();
             $("#viewHome").hide();
             $("#viewAdminPanel").show();
@@ -140,7 +140,7 @@ function isAdmin(username) {
                 error: showAjaxError
             });
 
-            function listUsers(response, status) {
+            function listUsers(response) {
                 let usersTable = $('<table id="usersTableFromJS">');                   
                 
                 for (let user of response){
@@ -169,13 +169,14 @@ function showInfo(messageText) {
     $('#infoBox').text(messageText).show().delay(3000).fadeOut();
 }
    
-function showAjaxError(data, status) {
+function showAjaxError() {
     let errorMsg = "Wrong password or user name!";
     $('#errorBox').text(errorMsg).show();
 }
 
 function showGalleryView() {
     showView('viewCategory');
+    showInfo("CATEGORIES");
 
     $('#catAnimals').click(loadAnimalsCategory);
     $('#catPeople').click(loadPeopleCategory);
@@ -282,23 +283,23 @@ function showGalleryView() {
                         $('<td>').text(picture.name),
                         $('<td>').text(picture.likes),
                         $("<td>").html($('<a href=' + picture.file + ' target="_blank"><img src=' + picture.file + '></a>')),
-                        $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox"/>')))
+                        $('<td>').append('<form class="pictureLikesButton">').append($('<input type="radio" name="radioGroup" value="' + picture._id+ '"/>')))
                     );
                 }
             }
 
 
 
-            $('#likeConfirm').click(function () {  //TODO:проблем с рефрешването
+        $('#likeConfirm').unbind('click').bind('click', function () {   //TODO:проблем с рефрешването
 
 
 
-                let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
+                let likedPictures = $('#pictureTableFromJS').find('[type="radio"]:checked')
                     .map(function () {
                         return $(this).closest('tr').find('td:nth-child(1)').text();
                     }).get();
 
-
+                pictureId = $('input[name="radioGroup"]:checked').val();
 
                 pictureName = likedPictures[0];
 
@@ -307,7 +308,7 @@ function showGalleryView() {
                     for (let picture of data) {
                         pictureLikes = Number.parseFloat(picture.likes);
 
-                        pictureId = picture._id;
+                        //pictureId = picture._id;
 
                         pictureObj = {
                             pictureName: pictureId,
@@ -321,12 +322,12 @@ function showGalleryView() {
 
                         usersWhoLiked = picture.usersWhoLiked;
 
-                        if (picture.name === pictureName) {
+                        if (picture._id === pictureId) {
                             break;
                         }
                     }
                 }
-
+                console.log(pictureId);
 
                 let newLikeUrl = kinveyServiceBaseUrl + "appdata/" + kinveyAppID + "/Test/" + pictureObj.pictureName;
                 let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppMasterSecret)};
@@ -361,7 +362,7 @@ function showGalleryView() {
                 }
 
                 if(matches > -1){
-                    showError("You already liked this picture :)");
+                    $('#alertAlreadyLiked').show().delay(3000).fadeOut();
                 }
 
                 function likedPictureSuccessful() {  //TODO: да не рефрешва при повторен лаик
@@ -403,12 +404,13 @@ function showGalleryView() {
             $('#photos').append(pictureTable);
 
 
-            $('#deleteConfirm').click(function () {
-                let likedPictures = $('#pictureTableFromJS').find('[type="checkbox"]:checked')
+            $('#deleteConfirm').unbind('click').bind('click', function () {
+                let likedPictures = $('#pictureTableFromJS').find('[type="radio"]:checked')
                     .map(function () {
                         return $(this).closest('tr').find('td:nth-child(1)').text();
                     }).get();
 
+                pictureId = $('input[name="radioGroup"]:checked').val();
                 pictureName = likedPictures[0];
 
 
@@ -416,7 +418,7 @@ function showGalleryView() {
                     for (let picture of data) {
                         pictureLikes = Number.parseFloat(picture.likes);
 
-                        pictureId = picture._id;
+                        //pictureId = picture._id;
 
                         pictureObj = {
                             pictureName: pictureId,
@@ -427,7 +429,7 @@ function showGalleryView() {
                             category: picture.category
                         };
 
-                        if (picture.name === pictureName) {
+                        if (picture._id === pictureId) {
                             break;
                         }
                     }
@@ -562,7 +564,7 @@ function addPhoto() {
         }
     };
 
-    $('#up-form').submit(function(e) {
+    $('#up-form').unbind('submit').bind('submit',function(e) {
         e.preventDefault();
         ospry.up({
             form: this,
@@ -580,6 +582,7 @@ function register() {
 
     let registerUrl = kinveyServiceBaseUrl + "user/" + kinveyAppID + "/";
     let kinveyAuthHeaders = {'Authorization': "Basic " + btoa(kinveyAppID + ":" + kinveyAppSecret)};
+
     let registerData = {
         username: $("#registerUserName").val(),
         password: $("#registerPassword").val(),
@@ -587,9 +590,12 @@ function register() {
         email: $("#registerEmailAdress").val(),
         first_name: "user"
     };
-    let username = $("#registerUserName").val();
+
+    username = $("#registerUserName").val();
     let password = $("#registerPassword").val();
     let confirmPassword = $("#registerConfirmPassword").val();
+    userEmail = $("#registerEmailAdress").val();
+
     if( password == confirmPassword && password.length >= 6){
         $.ajax({
             method: "POST",
@@ -597,9 +603,9 @@ function register() {
             data: registerData,
             headers: kinveyAuthHeaders,
             success: registerSuccess,
-            error: showError("This username already exist!") //TODO:show on success and error
+            error: showAjaxError
         });
-        function registerSuccess(data, status) {
+        function registerSuccess(data) {
             sessionStorage.authtoken = data._kmd.authtoken;
             showHideNavigationLinks();
             showHomeView();
@@ -637,8 +643,11 @@ function showProfileView() {
     $('#infoUser').text('');
 
     $('#infoUser').append($('<span id="usernameProfile">Username: '+ username +'</span>'));
-    $('#infoUser').append($('<span id="emailProfile">Email: '+ userEmail +'</span>'));
-
+    if(userEmail == ""){
+        $('#infoUser').append($('<span id="emailProfile">Email: not specified</span>'));
+    }else {
+        $('#infoUser').append($('<span id="emailProfile">Email: ' + userEmail + '</span>'));
+    }
     ajaxGallery();
     function ajaxGallery() {
 
@@ -687,7 +696,7 @@ function showProfileView() {
                         $('<td>').text(picture.name),
                         $('<td>').text(picture.likes),
                         $("<td>").html($('<a href='+ picture.file +' target="_blank"><img src=' + picture.file + '></a>')),
-                        $('<td>').append('<form class="pictureLikesButton">').append($('<input type="checkbox" />')))
+                        $('<td>').append('<form class="pictureLikesButton">').append($('<input type="radio" name="radioGroupProfile" value="' + picture._id+ '"/>')))
                     );
                 }
 
@@ -695,21 +704,21 @@ function showProfileView() {
 
             $('#profileView').append(pictureTable);
 
-            $('#deleteConfirmProfileForm').submit(function (e) {
+            $('#deleteConfirmProfileForm').unbind('submit').bind('submit',function(e) {
                 e.preventDefault();
 
-                let likedPictures = $('#pictureTableFromJSProfile').find('[type="checkbox"]:checked')
+                let likedPictures = $('#pictureTableFromJSProfile').find('[type="radio"]:checked')
                     .map(function(){
                         return $(this).closest('tr').find('td:nth-child(1)').text();
                     }).get();
 
                 pictureName = likedPictures[0];
-
+                pictureId = $('input[name="radioGroupProfile"]:checked').val();
                 if(likedPictures.length > 0){
                     for (let picture of data){
                         pictureLikes = Number.parseFloat(picture.likes);
 
-                        pictureId = picture._id;
+                        //pictureId = picture._id;
 
                         pictureObj = {
                             pictureName:pictureId,
@@ -720,7 +729,7 @@ function showProfileView() {
                             category:picture.category
                         };
 
-                        if (picture.name === pictureName){
+                        if (picture._id === pictureId){
                             break;
                         }
                     }
@@ -733,15 +742,12 @@ function showProfileView() {
                 $.ajax({
                     method: "DELETE",
                     url: newLikeUrl,
-                    //data: dataNewValueOfLikes,
                     ContentType: 'application/json',
                     headers: kinveyAuthHeaders,
                     success: likedPictureSuccessful
                 });
 
                 function likedPictureSuccessful() {
-
-
                     $('#pictureTableFromJSProfile').empty();
                     showProfileView();
                 }
@@ -766,22 +772,23 @@ $(function () {
    $("#linkLogout").click(logout);
    $("#linkProfile").click(showProfileView);
 
-   $("#loginForm").submit(function( event ) {
+   $("#loginForm").unbind('submit').bind('submit',function(event) {
         event.preventDefault();
         login();
     });
-   $("#registerForm").submit(function( event ) {
+   $("#registerForm").unbind('submit').bind('submit',function(event) {
         event.preventDefault();
         register();
     });
 
-   $("#adminPanelButton").click(function(){ //TODO: Може да се изнесе в метод
+   $("#adminPanelButton").click(function(){
        $("#viewAdminPanel").show();
        $("#viewHome").hide();
        $("#viewAbout").hide();
        $("#viewProfile").hide();
        $("#viewAddPhoto").hide();
        $("#viewGallery").hide();
+       $("#viewCategory").hide();
    });
 
    showHomeView();
